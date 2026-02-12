@@ -3,6 +3,9 @@ extends GraphEdit
 @export var file_dia: FileDialog
 @export var file_load: FileDialog
 @export var more: AcceptDialog
+@export var poparquivo: MenuButton
+@export var popMake: MenuButton
+
 var current_project_path: String = ""
 var posit:= Vector2(160,160)
 
@@ -11,12 +14,32 @@ func _ready():
 	file_dia.file_selected.connect(_on_save_file_selected)
 	file_load.file_selected.connect(_on_load_file_selected)
 	
-func _on_button_pressed() -> void:
-	var nodesGraph = preload("res://graph_node.tscn").instantiate()
-	nodesGraph.name = "Node_" + str(Time.get_ticks_usec())
-	add_child(nodesGraph)
-	nodesGraph.position_offset += posit
-	posit += Vector2(160,160)
+	var popup_arquivo = poparquivo.get_popup() 
+	popup_arquivo.id_pressed.connect(_on_item_selected)
+	
+	var pop_inserir = popMake.get_popup()
+	pop_inserir.id_pressed.connect(_on_item_selected_insert)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("Novo"):
+		get_tree().reload_current_scene()
+		
+	elif Input.is_action_just_pressed("Abrir"):
+		file_load.popup()
+	
+	elif Input.is_action_just_pressed("Salvar"):
+		if current_project_path == "":
+				file_dia.popup()
+				
+		else:
+			save_project_to_path(current_project_path)
+	
+	elif Input.is_action_just_pressed("Salvar Como"):
+		file_dia.popup()
+
+	elif Input.is_action_just_pressed("Add Bloco Notas"):
+		criar_bloco_notas()
+		
 
 func _input(_event):
 	if Input.is_action_just_pressed("Duplicar"):
@@ -31,11 +54,6 @@ func _input(_event):
 func _on_connection_request(from_node, from_port, to_node, to_port):
 	connect_node(from_node, from_port, to_node, to_port)
 
-
-func _on_more_pressed() -> void:
-	var text_infor := "Versão do Projeto: " + str(ProjectSettings.get_setting("application/config/version")) + "\nEste é um programa para Anotações totalmente gratuito e ilimitado"
-	more.dialog_text = text_infor
-	more.popup()
 
 func save_project_to_path(path: String):
 	var data := {
@@ -67,11 +85,14 @@ func save_project_to_path(path: String):
 	current_project_path = path
 	print("Projeto salvo em: ", path)
 
-func load_project_from_path(path: String):
-	if not FileAccess.file_exists(path):
-		print("Arquivo não encontrado.")
-		return
+func criar_bloco_notas() -> void:
+	var nodesGraph = preload("res://graph_node.tscn").instantiate()
+	nodesGraph.name = "Node_" + str(Time.get_ticks_usec())
+	add_child(nodesGraph)
+	nodesGraph.position_offset += posit
+	posit += Vector2(160,160)
 
+func Novo():
 	# 1️⃣ Remove conexões visuais
 	clear_connections()
 
@@ -79,6 +100,13 @@ func load_project_from_path(path: String):
 	for child in get_children():
 		if child is GraphNode:
 			child.queue_free()
+
+func load_project_from_path(path: String):
+	if not FileAccess.file_exists(path):
+		print("Arquivo não encontrado.")
+		return
+
+	Novo()
 
 	# 3️⃣ Espera eles realmente sumirem da cena
 	await get_tree().process_frame
@@ -121,17 +149,6 @@ func load_project_from_path(path: String):
 
 	current_project_path = path
 	print("Projeto carregado de: ", path)
-
-
-func _on_save_pressed() -> void:
-	if current_project_path == "":
-		file_dia.popup()
-	else:
-		save_project_to_path(current_project_path)
-
-
-func _on_load_pressed() -> void:
-	file_load.popup()
 	
 	
 func _on_save_file_selected(path: String) -> void:
@@ -142,5 +159,30 @@ func _on_load_file_selected(path: String) -> void:
 	load_project_from_path(path)
 
 
-func _on_save_more_pressed() -> void:
-	file_dia.popup()
+func _on_item_selected(id: int) -> void:
+	match id:
+		0:
+			get_tree().reload_current_scene()
+		1:
+			file_load.popup()
+		2:
+			if current_project_path == "":
+				file_dia.popup()
+				
+			else:
+				save_project_to_path(current_project_path)
+				
+		3:
+			file_dia.popup()
+
+func _on_item_selected_insert(id: int) -> void:
+	match id:
+		0:
+			criar_bloco_notas()
+
+
+func _on_menu_button_more_pressed() -> void:
+	var text_infor := "Versão do Projeto: " + str(ProjectSettings.get_setting("application/config/version")) + "\nEste é um programa para Anotações totalmente gratuito e ilimitado"
+	more.dialog_text = text_infor
+	more.popup()
+	DisplayServer.beep()
