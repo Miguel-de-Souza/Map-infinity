@@ -5,6 +5,8 @@ extends GraphEdit
 @export var more: AcceptDialog
 @export var poparquivo: MenuButton
 @export var popMake: MenuButton
+@export var label_diretorio: Label
+@export var check_diretory: CheckBox
 
 var current_project_path: String = ""
 var posit:= Vector2(160,160)
@@ -21,6 +23,9 @@ func _ready():
 	pop_inserir.id_pressed.connect(_on_item_selected_insert)
 
 func _process(_delta: float) -> void:
+	
+	label_diretorio.text = current_project_path
+	
 	if Input.is_action_just_pressed("Novo"):
 		get_tree().reload_current_scene()
 		
@@ -43,13 +48,37 @@ func _process(_delta: float) -> void:
 
 func _input(_event):
 	if Input.is_action_just_pressed("Duplicar"):
+
+		var selecionados: Array = []
+		var mapa := {}
+
+		# 1️⃣ Pega selecionados
 		for node in get_children():
 			if node is GraphNode and node.selected:
-				var copia = node.duplicate()
-				add_child(copia)
-				copia.position_offset += node.position_offset + Vector2(160,160)
-				copia.selected = false
-				posit += Vector2(160,160)
+				selecionados.append(node)
+
+		# 2️⃣ Duplica mantendo posição relativa
+		for node in selecionados:
+			var copia = node.duplicate()
+			add_child(copia)
+
+			copia.position_offset = node.position_offset + Vector2(160,160)
+			copia.selected = false
+
+			mapa[node.name] = copia.name
+
+		# 3️⃣ Recria conexões entre os duplicados
+		for conn in get_connection_list():
+
+			if conn.from_node in mapa and conn.to_node in mapa:
+
+				connect_node(
+					mapa[conn.from_node],
+					conn.from_port,
+					mapa[conn.to_node],
+					conn.to_port
+				)
+
 
 func _on_connection_request(from_node, from_port, to_node, to_port):
 	connect_node(from_node, from_port, to_node, to_port)
@@ -186,3 +215,12 @@ func _on_menu_button_more_pressed() -> void:
 	more.dialog_text = text_infor
 	more.popup()
 	DisplayServer.beep()
+
+
+func _on_check_diretorio_pressed() -> void:
+	if check_diretory.button_pressed:
+		label_diretorio.hide()
+		
+	
+	else:
+		label_diretorio.show()

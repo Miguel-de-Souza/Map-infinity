@@ -24,19 +24,70 @@ func _on_check_box_pressed() -> void:
 
 
 func get_save_data() -> Dictionary:
+	var slots := []
+
+	for child in get_children():
+		if child is ColorRect:
+			slots.append({
+				"min_size": [child.custom_minimum_size.x, child.custom_minimum_size.y],
+				"color": [child.color.r, child.color.g, child.color.b, child.color.a]
+			})
+
 	return {
 		"title": title_line.text,
 		"note_text": note.text,
-		"font_size": size_fonts.value
+		"font_size": size_fonts.value,
+		"slots_add": slots_add,
+		"slots": slots
 	}
 
 
 func load_save_data(data: Dictionary) -> void:
+
 	title_line.text = data.get("title", "Node")
 	note.text = data.get("note_text", "")
 	size_fonts.value = data.get("font_size", 14)
 
 	_on_font_size_value_changed(size_fonts.value)
+
+	# 🔥 Limpa ColorRects antigos
+	for child in get_children():
+		if child is ColorRect:
+			child.queue_free()
+
+
+	# 🔥 Limpa ColorRects antigos
+	for child in get_children():
+		if child is ColorRect:
+			child.queue_free()
+
+	slots_add = 2
+	var saved_slots = data.get("slots", [])
+
+	for slot_data in saved_slots:
+
+		var item = ColorRect.new()
+		add_child(item)
+		item.clip_contents = true
+
+		# Reconstrói Vector2
+		var min_size = slot_data["min_size"]
+		item.custom_minimum_size = Vector2(min_size[0], min_size[1])
+
+		# Reconstrói Color
+		var c = slot_data["color"]
+		item.color = Color(c[0], c[1], c[2], c[3])
+
+		# 🔥 Recria o SLOT REAL do GraphNode
+		set_slot(
+			slots_add,
+			true, 0, Color.WHITE,
+			true, 0, Color.WHITE
+		)
+
+		slots_add += 1
+
+
 
 var ative := false
 func _process(_delta: float) -> void:
