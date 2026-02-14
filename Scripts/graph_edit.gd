@@ -32,15 +32,15 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("Abrir"):
 		file_load.popup()
 	
+	elif Input.is_action_just_pressed("Salvar Como"):
+		file_dia.popup()
+	
 	elif Input.is_action_just_pressed("Salvar"):
 		if current_project_path == "":
 				file_dia.popup()
 				
 		else:
 			save_project_to_path(current_project_path)
-	
-	elif Input.is_action_just_pressed("Salvar Como"):
-		file_dia.popup()
 
 	elif Input.is_action_just_pressed("Add Bloco Notas"):
 		criar_bloco_notas()

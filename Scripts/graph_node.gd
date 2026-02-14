@@ -3,14 +3,17 @@ extends GraphNode
 @export var note: TextEdit
 @export var title_line: LineEdit
 @export var size_fonts: SpinBox
+@export var font_size: SpinBox #adiciona, precisa ser salvo
 
 func _ready() -> void:
 	size_fonts.value = Global.font_size_default
 
-	# Atualiza título quando o texto muda (em vez de usar _process)
 	size_fonts.value_changed.connect(_on_font_size_value_changed)
+	font_size.value_changed.connect(_on_font_size_title_value_changed)
 
 	_on_font_size_value_changed(size_fonts.value)
+	_on_font_size_title_value_changed(font_size.value)
+
 
 func _on_font_size_value_changed(value: float) -> void:
 	note.add_theme_font_size_override("font_size", int(value))
@@ -34,27 +37,24 @@ func get_save_data() -> Dictionary:
 			})
 
 	return {
-		"title": title_line.text,
-		"note_text": note.text,
-		"font_size": size_fonts.value,
-		"slots_add": slots_add,
-		"slots": slots
-	}
-
+	"title": title_line.text,
+	"note_text": note.text,
+	"font_size": size_fonts.value,
+	"title_font_size": font_size.value, # 🔥 NOVO
+	"slots_add": slots_add,
+	"slots": slots
+}
 
 func load_save_data(data: Dictionary) -> void:
 
 	title_line.text = data.get("title", "Node")
 	note.text = data.get("note_text", "")
+
 	size_fonts.value = data.get("font_size", 14)
+	font_size.value = data.get("title_font_size", 14)
 
 	_on_font_size_value_changed(size_fonts.value)
-
-	# 🔥 Limpa ColorRects antigos
-	for child in get_children():
-		if child is ColorRect:
-			child.queue_free()
-
+	_on_font_size_title_value_changed(font_size.value) # 🔥 FALTAVA ISSO
 
 	# 🔥 Limpa ColorRects antigos
 	for child in get_children():
@@ -70,15 +70,12 @@ func load_save_data(data: Dictionary) -> void:
 		add_child(item)
 		item.clip_contents = true
 
-		# Reconstrói Vector2
 		var min_size = slot_data["min_size"]
 		item.custom_minimum_size = Vector2(min_size[0], min_size[1])
 
-		# Reconstrói Color
 		var c = slot_data["color"]
 		item.color = Color(c[0], c[1], c[2], c[3])
 
-		# 🔥 Recria o SLOT REAL do GraphNode
 		set_slot(
 			slots_add,
 			true, 0, Color.WHITE,
@@ -86,7 +83,6 @@ func load_save_data(data: Dictionary) -> void:
 		)
 
 		slots_add += 1
-
 
 
 var ative := false
