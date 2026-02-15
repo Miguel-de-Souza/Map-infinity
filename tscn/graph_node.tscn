@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://e64pqmygk8vf"]
+[gd_scene format=3 uid="uid://excut3nknqvk"]
 
-[ext_resource type="Script" uid="uid://djcd2bpvg161x" path="res://Scripts/graph_node.gd" id="1_iusu8"]
+[ext_resource type="Script" uid="uid://djcd2bpvg161x" path="res://Scripts/graph_node.gd" id="1_2yokc"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("note", "title_line", "size_fonts", "font_size")]
 anchors_preset = 8
@@ -52,7 +52,7 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
-script = ExtResource("1_iusu8")
+script = ExtResource("1_2yokc")
 note = NodePath("Notepad")
 title_line = NodePath("Ttle")
 size_fonts = NodePath("Container Tool/Container Left/Container Size/Container Size Block/Font Size")

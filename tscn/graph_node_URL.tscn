@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://2i7xwt00wisl"]
+[gd_scene format=3 uid="uid://ci4galkmc7v4a"]
 
 [ext_resource type="Script" uid="uid://bje5q4v3if27r" path="res://Scripts/graph_node_URL.gd" id="1_lo1fl"]
 
@@ -10,7 +10,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -635.0
 offset_top = -360.0
-offset_right = -278.0
+offset_right = -273.0
 offset_bottom = -204.0
 grow_horizontal = 2
 grow_vertical = 2

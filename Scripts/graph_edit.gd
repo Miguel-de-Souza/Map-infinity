@@ -129,13 +129,13 @@ func criar_bloco_notas(id : int = 1) -> void:
 	
 	match  id:
 		1:
-			nodesGraph = preload("res://graph_node.tscn").instantiate()
+			nodesGraph = preload("res://tscn/graph_node.tscn").instantiate()
 		
 		2:
-			nodesGraph = preload("res://graph_node_color.tscn").instantiate()
+			nodesGraph = preload("res://tscn/graph_node_color.tscn").instantiate()
 			
 		3:
-			nodesGraph = preload("res://graph_node_URL.tscn").instantiate()
+			nodesGraph = preload("res://tscn/graph_node_URL.tscn").instantiate()
 	
 	nodesGraph.name = "Node_" + str(Time.get_ticks_usec())
 	
