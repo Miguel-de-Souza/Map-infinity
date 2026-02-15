@@ -57,34 +57,34 @@ slot/3/right_icon = null
 slot/3/draw_stylebox = true
 script = ExtResource("1_iusu8")
 note = NodePath("Notepad")
-title_line = NodePath("LineEdit")
-size_fonts = NodePath("HBoxContainer/Font Size")
-font_size = NodePath("HBoxContainer/Font Size Title")
+title_line = NodePath("Ttle")
+size_fonts = NodePath("Container/Font Size")
+font_size = NodePath("Container/Font Size Title")
 metadata/_edit_horizontal_guides_ = [-8.0]
 
-[node name="LineEdit" type="LineEdit" parent="." unique_id=577137378]
+[node name="Ttle" type="LineEdit" parent="." unique_id=577137378]
 layout_mode = 2
 placeholder_text = "Título"
 alignment = 1
 expand_to_text_length = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1614242062]
+[node name="Container" type="HBoxContainer" parent="." unique_id=1614242062]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Font Size Title" type="SpinBox" parent="HBoxContainer" unique_id=397914048]
+[node name="Font Size Title" type="SpinBox" parent="Container" unique_id=397914048]
 layout_mode = 2
 min_value = 1.0
 max_value = 80.0
 value = 16.0
 
-[node name="Font Size" type="SpinBox" parent="HBoxContainer" unique_id=331735634]
+[node name="Font Size" type="SpinBox" parent="Container" unique_id=331735634]
 layout_mode = 2
 min_value = 1.0
 max_value = 120.0
 value = 16.0
 
-[node name="CheckBox" type="Button" parent="HBoxContainer" unique_id=499506831]
+[node name="CheckBox" type="Button" parent="Container" unique_id=499506831]
 layout_mode = 2
 text = "X"
 
@@ -103,7 +103,7 @@ text = "+"
 
 [connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
 [connection signal="node_selected" from="." to="." method="_on_node_selected"]
-[connection signal="value_changed" from="HBoxContainer/Font Size Title" to="." method="_on_font_size_title_value_changed"]
-[connection signal="value_changed" from="HBoxContainer/Font Size" to="." method="_on_font_size_value_changed"]
-[connection signal="pressed" from="HBoxContainer/CheckBox" to="." method="_on_check_box_pressed"]
+[connection signal="value_changed" from="Container/Font Size Title" to="." method="_on_font_size_title_value_changed"]
+[connection signal="value_changed" from="Container/Font Size" to="." method="_on_font_size_value_changed"]
+[connection signal="pressed" from="Container/CheckBox" to="." method="_on_check_box_pressed"]
 [connection signal="pressed" from="Button Add" to="." method="_on_button_add_pressed"]

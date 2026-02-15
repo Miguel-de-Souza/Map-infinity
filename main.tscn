@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1825417117]
+[node name="BackGround ToolBar" type="ColorRect" parent="." unique_id=1825417117]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -27,18 +27,19 @@ anchor_bottom = 1.0
 offset_top = 35.0
 grow_horizontal = 2
 grow_vertical = 2
+right_disconnects = true
 show_zoom_label = true
 show_arrange_button = false
 script = ExtResource("1_ig7tw")
-file_dia = NodePath("../FileDialog")
+file_dia = NodePath("../File Save")
 file_load = NodePath("../File Load")
-more = NodePath("../AcceptDialog")
-poparquivo = NodePath("../Container/MenuButton Arquivo")
-popMake = NodePath("../Container/MenuButton Inserir")
-label_diretorio = NodePath("../Label Diretorio")
-check_diretory = NodePath("../Window/VBoxContainer/HBoxContainer4/Check Diretorio")
+more = NodePath("../More Program")
+poparquivo = NodePath("../Container Tool/MenuButton File")
+popMake = NodePath("../Container Tool/MenuButton Insert")
+label_diretorio = NodePath("../Label Diretory")
+check_diretory = NodePath("../Window Config/Container Config/Container Diretory/Check Diretorio")
 
-[node name="Window" type="Window" parent="." unique_id=1806257895 node_paths=PackedStringArray("Geapgh")]
+[node name="Window Config" type="Window" parent="." unique_id=1806257895 node_paths=PackedStringArray("Geapgh")]
 oversampling_override = 1.0
 title = "Configurações"
 initial_position = 1
@@ -47,7 +48,7 @@ visible = false
 script = ExtResource("2_0xm2m")
 Geapgh = NodePath("../GraphEdit")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Window" unique_id=647695880]
+[node name="Container Config" type="VBoxContainer" parent="Window Config" unique_id=647695880]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -56,15 +57,15 @@ offset_right = 170.0
 offset_bottom = 136.0
 grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Window/VBoxContainer" unique_id=1086933459]
+[node name="Container Grid" type="HBoxContainer" parent="Window Config/Container Config" unique_id=1086933459]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Type Grid" type="Label" parent="Window/VBoxContainer/HBoxContainer" unique_id=920161610]
+[node name="Type Grid" type="Label" parent="Window Config/Container Config/Container Grid" unique_id=920161610]
 layout_mode = 2
 text = "Tipo de Grade"
 
-[node name="Option Grids" type="OptionButton" parent="Window/VBoxContainer/HBoxContainer" unique_id=1789191148]
+[node name="Option Grids" type="OptionButton" parent="Window Config/Container Config/Container Grid" unique_id=1789191148]
 layout_mode = 2
 selected = 0
 item_count = 2
@@ -73,15 +74,15 @@ popup/item_0/id = 0
 popup/item_1/text = "Dots"
 popup/item_1/id = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Window/VBoxContainer" unique_id=946023233]
+[node name="Container Scroll" type="HBoxContainer" parent="Window Config/Container Config" unique_id=946023233]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Type Grid" type="Label" parent="Window/VBoxContainer/HBoxContainer2" unique_id=1334705798]
+[node name="Type Grid" type="Label" parent="Window Config/Container Config/Container Scroll" unique_id=1334705798]
 layout_mode = 2
 text = "Tipo de Scroll"
 
-[node name="Option Scroll" type="OptionButton" parent="Window/VBoxContainer/HBoxContainer2" unique_id=396857958]
+[node name="Option Scroll" type="OptionButton" parent="Window Config/Container Config/Container Scroll" unique_id=396857958]
 layout_mode = 2
 selected = 0
 item_count = 2
@@ -90,32 +91,50 @@ popup/item_0/id = 0
 popup/item_1/text = "Pans"
 popup/item_1/id = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Window/VBoxContainer" unique_id=61843572]
+[node name="Container Size" type="HBoxContainer" parent="Window Config/Container Config" unique_id=61843572]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Type Grid" type="Label" parent="Window/VBoxContainer/HBoxContainer3" unique_id=559483811]
+[node name="Type Grid" type="Label" parent="Window Config/Container Config/Container Size" unique_id=559483811]
 layout_mode = 2
 text = "Tamanho Padrão"
 
-[node name="Option Scroll" type="SpinBox" parent="Window/VBoxContainer/HBoxContainer3" unique_id=1830448274]
+[node name="Option Scroll" type="SpinBox" parent="Window Config/Container Config/Container Size" unique_id=1830448274]
 layout_mode = 2
 min_value = 1.0
 max_value = 120.0
 value = 16.0
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="Window/VBoxContainer" unique_id=433423033]
+[node name="Container Diretory" type="HBoxContainer" parent="Window Config/Container Config" unique_id=433423033]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Type Grid" type="Label" parent="Window/VBoxContainer/HBoxContainer4" unique_id=1522040438]
+[node name="Type Grid" type="Label" parent="Window Config/Container Config/Container Diretory" unique_id=1522040438]
 layout_mode = 2
 text = "Ocultar Diretório do Arquivo"
 
-[node name="Check Diretorio" type="CheckBox" parent="Window/VBoxContainer/HBoxContainer4" unique_id=985224444]
+[node name="Check Diretorio" type="CheckBox" parent="Window Config/Container Config/Container Diretory" unique_id=985224444]
 layout_mode = 2
 
-[node name="AcceptDialog" type="AcceptDialog" parent="." unique_id=164421219]
+[node name="Container Mode" type="HBoxContainer" parent="Window Config/Container Config" unique_id=172956295]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Modo" type="Label" parent="Window Config/Container Config/Container Mode" unique_id=978186425]
+layout_mode = 2
+text = "Modo"
+
+[node name="Type Window" type="OptionButton" parent="Window Config/Container Config/Container Mode" unique_id=1466644928]
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "Janela"
+popup/item_0/id = 0
+popup/item_1/text = "Tela Cheia"
+popup/item_1/id = 1
+
+[node name="More Program" type="AcceptDialog" parent="." unique_id=164421219]
 oversampling_override = 1.0
 title = "Sobre o Programa"
 initial_position = 1
@@ -123,7 +142,7 @@ size = Vector2i(132, 100)
 unresizable = true
 force_native = true
 
-[node name="FileDialog" type="FileDialog" parent="." unique_id=2093349877]
+[node name="File Save" type="FileDialog" parent="." unique_id=2093349877]
 oversampling_override = 1.0
 initial_position = 1
 access = 2
@@ -139,17 +158,17 @@ access = 2
 filters = PackedStringArray("*.json", "*.uxv")
 use_native_dialog = true
 
-[node name="Container" type="HBoxContainer" parent="." unique_id=329935236]
+[node name="Container Tool" type="HBoxContainer" parent="." unique_id=329935236]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="Container" unique_id=1338208039]
+[node name="Margin" type="MarginContainer" parent="Container Tool" unique_id=1338208039]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 
-[node name="MenuButton Arquivo" type="MenuButton" parent="Container" unique_id=1623260776]
+[node name="MenuButton File" type="MenuButton" parent="Container Tool" unique_id=1623260776]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Arquivo"
@@ -163,7 +182,7 @@ popup/item_2/id = 2
 popup/item_3/text = "Salvar Como... (Ctrl + Shit + S)"
 popup/item_3/id = 3
 
-[node name="MenuButton Inserir" type="MenuButton" parent="Container" unique_id=1374439090]
+[node name="MenuButton Insert" type="MenuButton" parent="Container Tool" unique_id=1374439090]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Inserir"
@@ -171,17 +190,17 @@ item_count = 1
 popup/item_0/text = "Bloco de Texto (Ctrl + A)"
 popup/item_0/id = 0
 
-[node name="MenuButton Config" type="MenuButton" parent="Container" unique_id=461255740]
+[node name="MenuButton Config" type="MenuButton" parent="Container Tool" unique_id=461255740]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Configurações"
 
-[node name="MenuButton More" type="MenuButton" parent="Container" unique_id=1957305224]
+[node name="MenuButton More" type="MenuButton" parent="Container Tool" unique_id=1957305224]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Sobre"
 
-[node name="Label Diretorio" type="Label" parent="." unique_id=1657462741]
+[node name="Label Diretory" type="Label" parent="." unique_id=1657462741]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -195,10 +214,11 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
-[connection signal="close_requested" from="Window" to="Window" method="_on_close_requested"]
-[connection signal="item_selected" from="Window/VBoxContainer/HBoxContainer/Option Grids" to="Window" method="_on_option_grids_item_selected"]
-[connection signal="item_selected" from="Window/VBoxContainer/HBoxContainer2/Option Scroll" to="Window" method="_on_option_scroll_item_selected"]
-[connection signal="value_changed" from="Window/VBoxContainer/HBoxContainer3/Option Scroll" to="Window" method="_on_option_scroll_value_changed"]
-[connection signal="pressed" from="Window/VBoxContainer/HBoxContainer4/Check Diretorio" to="GraphEdit" method="_on_check_diretorio_pressed"]
-[connection signal="pressed" from="Container/MenuButton Config" to="Window" method="_on_menu_button_config_pressed"]
-[connection signal="pressed" from="Container/MenuButton More" to="GraphEdit" method="_on_menu_button_more_pressed"]
+[connection signal="close_requested" from="Window Config" to="Window Config" method="_on_close_requested"]
+[connection signal="item_selected" from="Window Config/Container Config/Container Grid/Option Grids" to="Window Config" method="_on_option_grids_item_selected"]
+[connection signal="item_selected" from="Window Config/Container Config/Container Scroll/Option Scroll" to="Window Config" method="_on_option_scroll_item_selected"]
+[connection signal="value_changed" from="Window Config/Container Config/Container Size/Option Scroll" to="Window Config" method="_on_option_scroll_value_changed"]
+[connection signal="pressed" from="Window Config/Container Config/Container Diretory/Check Diretorio" to="GraphEdit" method="_on_check_diretorio_pressed"]
+[connection signal="item_selected" from="Window Config/Container Config/Container Mode/Type Window" to="GraphEdit" method="_on_type_window_item_selected"]
+[connection signal="pressed" from="Container Tool/MenuButton Config" to="Window Config" method="_on_menu_button_config_pressed"]
+[connection signal="pressed" from="Container Tool/MenuButton More" to="GraphEdit" method="_on_menu_button_more_pressed"]

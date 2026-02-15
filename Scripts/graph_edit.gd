@@ -11,10 +11,15 @@ extends GraphEdit
 var current_project_path: String = ""
 var posit:= Vector2(160,160)
 
+func _on_disconnection_request(from_node, from_port, to_node, to_port):
+	disconnect_node(from_node, from_port, to_node, to_port)
+
 func _ready():
+	
 	connection_request.connect(_on_connection_request)
 	file_dia.file_selected.connect(_on_save_file_selected)
 	file_load.file_selected.connect(_on_load_file_selected)
+	disconnection_request.connect(_on_disconnection_request)
 	
 	var popup_arquivo = poparquivo.get_popup() 
 	popup_arquivo.id_pressed.connect(_on_item_selected)
@@ -211,11 +216,10 @@ func _on_item_selected_insert(id: int) -> void:
 
 
 func _on_menu_button_more_pressed() -> void:
-	var text_infor := "Versão do Projeto: " + str(ProjectSettings.get_setting("application/config/version")) + "\nEste é um programa para Anotações totalmente gratuito e ilimitado"
+	var text_infor := "Versão do Projeto: " + str(ProjectSettings.get_setting("application/config/version")) + "\n" + str(ProjectSettings.get_setting("application/config/description"))
 	more.dialog_text = text_infor
 	more.popup()
 	DisplayServer.beep()
-
 
 func _on_check_diretorio_pressed() -> void:
 	if check_diretory.button_pressed:
@@ -224,3 +228,13 @@ func _on_check_diretorio_pressed() -> void:
 	
 	else:
 		label_diretorio.show()
+
+
+func _on_type_window_item_selected(index: int) -> void:
+		
+	match index:
+		0:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			
+		1:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
