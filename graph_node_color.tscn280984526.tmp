@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://e64pqmygk8vf"]
+[gd_scene format=3 uid="uid://cax3nes6h0lis"]
 
-[ext_resource type="Script" uid="uid://djcd2bpvg161x" path="res://Scripts/graph_node.gd" id="1_iusu8"]
+[ext_resource type="Script" uid="uid://b1u1x75hvwpac" path="res://Scripts/graph_node_color.gd" id="1_mktjo"]
 
-[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("note", "title_line", "size_fonts", "font_size")]
+[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("size_fonts")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -43,27 +43,9 @@ slot/2/right_type = 0
 slot/2/right_color = Color(1, 1, 1, 1)
 slot/2/right_icon = null
 slot/2/draw_stylebox = true
-slot/3/left_enabled = false
-slot/3/left_type = 0
-slot/3/left_color = Color(1, 1, 1, 1)
-slot/3/left_icon = null
-slot/3/right_enabled = false
-slot/3/right_type = 0
-slot/3/right_color = Color(1, 1, 1, 1)
-slot/3/right_icon = null
-slot/3/draw_stylebox = true
-script = ExtResource("1_iusu8")
-note = NodePath("Notepad")
-title_line = NodePath("Ttle")
-size_fonts = NodePath("Container/Container Size/Container Size Block/Font Size")
-font_size = NodePath("Container/Container Size/Container Size Title/Font Size Title")
+script = ExtResource("1_mktjo")
+size_fonts = NodePath("Container/Container Size/Container Size Title/Font Size Title")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
-
-[node name="Ttle" type="LineEdit" parent="." unique_id=577137378]
-layout_mode = 2
-placeholder_text = "Título"
-alignment = 1
-expand_to_text_length = true
 
 [node name="Container" type="HBoxContainer" parent="." unique_id=1614242062]
 layout_mode = 2
@@ -87,30 +69,15 @@ min_value = 1.0
 max_value = 80.0
 value = 16.0
 
-[node name="Container Size Block" type="HBoxContainer" parent="Container/Container Size" unique_id=40404927]
-layout_mode = 2
-
-[node name="Block" type="Label" parent="Container/Container Size/Container Size Block" unique_id=1671287076]
-layout_mode = 2
-text = "Bloco"
-
-[node name="Font Size" type="SpinBox" parent="Container/Container Size/Container Size Block" unique_id=331735634]
-layout_mode = 2
-min_value = 1.0
-max_value = 120.0
-value = 16.0
-
 [node name="CheckBox" type="Button" parent="Container" unique_id=499506831]
 layout_mode = 2
 text = "Fechar"
 
-[node name="Notepad" type="TextEdit" parent="." unique_id=1833819988]
+[node name="Button" type="ColorPickerButton" parent="." unique_id=528503151]
 clip_contents = true
-custom_minimum_size = Vector2(100, 150)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
-placeholder_text = "Bloco"
-scroll_fit_content_height = true
-scroll_fit_content_width = true
+color = Color(0.061996236, 0.33039266, 0, 1)
 
 [node name="Button Add" type="Button" parent="." unique_id=1867466557]
 layout_mode = 2
@@ -119,6 +86,5 @@ text = "+"
 [connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
 [connection signal="node_selected" from="." to="." method="_on_node_selected"]
 [connection signal="value_changed" from="Container/Container Size/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
-[connection signal="value_changed" from="Container/Container Size/Container Size Block/Font Size" to="." method="_on_font_size_value_changed"]
 [connection signal="pressed" from="Container/CheckBox" to="." method="_on_check_box_pressed"]
 [connection signal="pressed" from="Button Add" to="." method="_on_button_add_pressed"]

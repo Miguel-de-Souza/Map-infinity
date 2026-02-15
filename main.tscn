@@ -186,9 +186,11 @@ popup/item_3/id = 3
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Inserir"
-item_count = 1
+item_count = 2
 popup/item_0/text = "Bloco de Texto (Ctrl + A)"
 popup/item_0/id = 0
+popup/item_1/text = "Bloco de Cor (Ctrl + Shit + A)"
+popup/item_1/id = 1
 
 [node name="MenuButton Config" type="MenuButton" parent="Container Tool" unique_id=461255740]
 layout_mode = 2

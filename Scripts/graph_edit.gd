@@ -47,6 +47,10 @@ func _process(_delta: float) -> void:
 		else:
 			save_project_to_path(current_project_path)
 
+	elif Input.is_action_just_pressed("Add Bloco Color"):
+		criar_bloco_notas(2)
+		
+
 	elif Input.is_action_just_pressed("Add Bloco Notas"):
 		criar_bloco_notas()
 		
@@ -57,12 +61,10 @@ func _input(_event):
 		var selecionados: Array = []
 		var mapa := {}
 
-		# 1️⃣ Pega selecionados
 		for node in get_children():
 			if node is GraphNode and node.selected:
 				selecionados.append(node)
 
-		# 2️⃣ Duplica mantendo posição relativa
 		for node in selecionados:
 			var copia = node.duplicate()
 			add_child(copia)
@@ -72,7 +74,6 @@ func _input(_event):
 
 			mapa[node.name] = copia.name
 
-		# 3️⃣ Recria conexões entre os duplicados
 		for conn in get_connection_list():
 
 			if conn.from_node in mapa and conn.to_node in mapa:
@@ -119,18 +120,27 @@ func save_project_to_path(path: String):
 	current_project_path = path
 	print("Projeto salvo em: ", path)
 
-func criar_bloco_notas() -> void:
-	var nodesGraph = preload("res://graph_node.tscn").instantiate()
-	nodesGraph.name = "Node_" + str(Time.get_ticks_usec())
+
+func criar_bloco_notas(id : int = 1) -> void:
+	var nodesGraph = null
+	
+	if id == 1:
+		nodesGraph = preload("res://graph_node.tscn").instantiate()
+		nodesGraph.name = "Node_" + str(Time.get_ticks_usec())
+		
+	elif id == 2:
+		nodesGraph = preload("res://graph_node_color.tscn").instantiate()
+		nodesGraph.name = "Node_" + str(Time.get_ticks_usec())
+	
 	add_child(nodesGraph)
 	nodesGraph.position_offset += posit
 	posit += Vector2(160,160)
+		
 
 func Novo():
-	# 1️⃣ Remove conexões visuais
+
 	clear_connections()
 
-	# 2️⃣ Apaga todos os GraphNodes
 	for child in get_children():
 		if child is GraphNode:
 			child.queue_free()
@@ -142,10 +152,8 @@ func load_project_from_path(path: String):
 
 	Novo()
 
-	# 3️⃣ Espera eles realmente sumirem da cena
 	await get_tree().process_frame
 
-	# 4️⃣ Agora sim ler o arquivo
 	var file = FileAccess.open(path, FileAccess.READ)
 	var content = file.get_as_text()
 	file.close()
@@ -157,7 +165,6 @@ func load_project_from_path(path: String):
 
 	var data: Dictionary = result
 
-	# 5️⃣ Recriar nodes
 	for node_data in data["nodes"]:
 		var scene = load(node_data["scene"])
 		var node = scene.instantiate()
@@ -167,10 +174,9 @@ func load_project_from_path(path: String):
 		node.position_offset = Vector2(node_data["position"][0], node_data["position"][1])
 		node.load_save_data(node_data["data"])
 
-	# 6️⃣ Espera os ports existirem
 	await get_tree().process_frame
 
-	# 7️⃣ Recriar conexões
+
 	for conn in data["connections"]:
 		if has_node(NodePath(conn["from"])) and has_node(NodePath(conn["to"])):
 			connect_node(conn["from"], conn["from_port"], conn["to"], conn["to_port"])
@@ -213,6 +219,9 @@ func _on_item_selected_insert(id: int) -> void:
 	match id:
 		0:
 			criar_bloco_notas()
+			
+		1:
+			criar_bloco_notas(2)
 
 
 func _on_menu_button_more_pressed() -> void:

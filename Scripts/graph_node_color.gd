@@ -1,22 +1,11 @@
 extends GraphNode
 
-@export var note: TextEdit
 @export var title_line: LineEdit
 @export var size_fonts: SpinBox
-@export var font_size: SpinBox
+@export var color: ColorPickerButton
 
 func _ready() -> void:
 	size_fonts.value = Global.font_size_default
-
-	size_fonts.value_changed.connect(_on_font_size_value_changed)
-	font_size.value_changed.connect(_on_font_size_title_value_changed)
-
-	_on_font_size_value_changed(size_fonts.value)
-	_on_font_size_title_value_changed(font_size.value)
-
-
-func _on_font_size_value_changed(value: float) -> void:
-	note.add_theme_font_size_override("font_size", int(value))
 
 	
 func _on_font_size_title_value_changed(value: float) -> void:
@@ -37,24 +26,21 @@ func get_save_data() -> Dictionary:
 			})
 
 	return {
-	"title": title_line.text,
-	"note_text": note.text,
-	"font_size": size_fonts.value,
-	"title_font_size": font_size.value,
-	"slots_add": slots_add,
-	"slots": slots
-}
+		"title": title_line.text,
+		"font_size": size_fonts.value,
+		"node_color": [color.color.r, color.color.g, color.color.b, color.color.a], # 👈 ADICIONA ISSO
+		"slots_add": slots_add,
+		"slots": slots
+	}
+
 
 func load_save_data(data: Dictionary) -> void:
 
 	title_line.text = data.get("title", "Node")
-	note.text = data.get("note_text", "")
-
 	size_fonts.value = data.get("font_size", 14)
-	font_size.value = data.get("title_font_size", 14)
-
-	_on_font_size_value_changed(size_fonts.value)
-	_on_font_size_title_value_changed(font_size.value)
+	
+	var saved_color = data.get("node_color", [1,1,1,1])
+	color.color = Color(saved_color[0], saved_color[1], saved_color[2], saved_color[3])
 
 	for child in get_children():
 		if child is ColorRect:
@@ -87,8 +73,7 @@ func load_save_data(data: Dictionary) -> void:
 var ative := false
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_text_delete") and ative:
-		if not title_line.has_focus() and not note.has_focus():
-			queue_free()
+		queue_free()
 
 func _on_node_selected() -> void:
 	ative = true
