@@ -105,3 +105,19 @@ func _on_button_add_pressed() -> void:
 	item.color = Color(0.078, 0.078, 0.078, 0)
 	set_slot(slots_add, true, 0, Color(1.0, 1.0, 1.0, 1.0), true, 0, Color(1.0, 1.0, 1.0, 1.0))
 	slots_add += 1
+
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ENTER:
+			var line = note.get_line(note.get_caret_line())
+
+			if line.begins_with("• "):
+				await get_tree().process_frame
+				note.insert_text_at_caret("• ")
+
+
+func _on_button_lista_pressed() -> void:
+	var cursor_line = note.get_caret_line()
+	var cursor_column = note.get_caret_column()
+
+	note.insert_text_at_caret("• ")
