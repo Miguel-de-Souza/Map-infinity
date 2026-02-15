@@ -50,9 +50,12 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("Add Bloco Color"):
 		criar_bloco_notas(2)
 		
+	elif Input.is_action_just_pressed("Add Bloco URL"):
+		criar_bloco_notas(3)
 
 	elif Input.is_action_just_pressed("Add Bloco Notas"):
 		criar_bloco_notas()
+		
 		
 
 func _input(_event):
@@ -124,18 +127,22 @@ func save_project_to_path(path: String):
 func criar_bloco_notas(id : int = 1) -> void:
 	var nodesGraph = null
 	
-	if id == 1:
-		nodesGraph = preload("res://graph_node.tscn").instantiate()
-		nodesGraph.name = "Node_" + str(Time.get_ticks_usec())
+	match  id:
+		1:
+			nodesGraph = preload("res://graph_node.tscn").instantiate()
 		
-	elif id == 2:
-		nodesGraph = preload("res://graph_node_color.tscn").instantiate()
-		nodesGraph.name = "Node_" + str(Time.get_ticks_usec())
+		2:
+			nodesGraph = preload("res://graph_node_color.tscn").instantiate()
+			
+		3:
+			nodesGraph = preload("res://graph_node_URL.tscn").instantiate()
+	
+	nodesGraph.name = "Node_" + str(Time.get_ticks_usec())
 	
 	add_child(nodesGraph)
 	nodesGraph.position_offset += posit
 	posit += Vector2(160,160)
-		
+
 
 func Novo():
 
@@ -222,6 +229,9 @@ func _on_item_selected_insert(id: int) -> void:
 			
 		1:
 			criar_bloco_notas(2)
+			
+		2:
+			criar_bloco_notas(3)
 
 
 func _on_menu_button_more_pressed() -> void:
