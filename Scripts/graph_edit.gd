@@ -235,8 +235,6 @@ func _on_item_selected_insert(id: int) -> void:
 
 
 func _on_menu_button_more_pressed() -> void:
-	var text_infor := "Versão do Projeto: " + str(ProjectSettings.get_setting("application/config/version")) + "\n" + str(ProjectSettings.get_setting("application/config/description"))
-	more.dialog_text = text_infor
 	more.popup()
 	DisplayServer.beep()
 

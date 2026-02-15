@@ -138,9 +138,32 @@ popup/item_1/id = 1
 oversampling_override = 1.0
 title = "Sobre o Programa"
 initial_position = 1
-size = Vector2i(132, 100)
+size = Vector2i(864, 234)
 unresizable = true
 force_native = true
+
+[node name="Container More" type="VBoxContainer" parent="More Program" unique_id=967553643]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 856.0
+offset_bottom = 185.0
+theme_override_constants/separation = 10
+
+[node name="Text More" type="RichTextLabel" parent="More Program/Container More" unique_id=11849708]
+layout_mode = 2
+bbcode_enabled = true
+text = "Map Mind Infinity é um programa open-source de anotações e criação de mapa mental feito com a Godot 4.6. 
+Com foco principal na total customização, espaços e nodes ilimitados de forma gratuita, sem planos.
+
+[b]Versão do Projeto: 0.0.4[/b]"
+fit_content = true
+
+[node name="LinkButton" type="LinkButton" parent="More Program/Container More" unique_id=394255072]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Pagina do GitHub"
+uri = "https://github.com/Miguel-de-Souza/Map-infinity"
 
 [node name="File Save" type="FileDialog" parent="." unique_id=2093349877]
 oversampling_override = 1.0
