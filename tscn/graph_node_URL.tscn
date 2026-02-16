@@ -50,7 +50,8 @@ metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
 [node name="Container" type="HBoxContainer" parent="." unique_id=1614242062]
 layout_mode = 2
-theme_override_constants/separation = 125
+size_flags_horizontal = 4
+theme_override_constants/separation = 257
 
 [node name="Container Size" type="VBoxContainer" parent="Container" unique_id=958391021]
 layout_mode = 2
@@ -66,6 +67,7 @@ value = 16.0
 
 [node name="CheckBox" type="Button" parent="Container" unique_id=499506831]
 layout_mode = 2
+size_flags_horizontal = 8
 text = "Fechar"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2072020754]
@@ -80,6 +82,8 @@ alignment = 1
 expand_to_text_length = true
 
 [node name="Go URL" type="Button" parent="HBoxContainer" unique_id=1017148609]
+clip_contents = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "→"
 

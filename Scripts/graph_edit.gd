@@ -16,6 +16,7 @@ func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	disconnect_node(from_node, from_port, to_node, to_port)
 
 func _ready():
+	label_diretorio.text = ""
 	file_dia.current_dir = desktop
 	file_load.current_dir = desktop
 
@@ -31,8 +32,6 @@ func _ready():
 	pop_inserir.id_pressed.connect(_on_item_selected_insert)
 
 func _process(_delta: float) -> void:
-	
-	label_diretorio.text = current_project_path
 	
 	if Input.is_action_just_pressed("Novo"):
 		get_tree().reload_current_scene()
@@ -128,6 +127,10 @@ func save_project_to_path(path: String):
 
 	current_project_path = path
 	print("Projeto salvo em: ", path)
+	
+	label_diretorio.text = current_project_path + " (Salvo) "
+	await get_tree().create_timer(1.5).timeout
+	label_diretorio.text = current_project_path
 
 
 func criar_bloco_notas(id : int = 1) -> void:
@@ -200,11 +203,8 @@ func load_project_from_path(path: String):
 			print("Conexão ignorada:", conn)
 
 	current_project_path = path
-	print("Projeto carregado de:", path)
-
-
-	current_project_path = path
 	print("Projeto carregado de: ", path)
+	label_diretorio.text = current_project_path
 	
 	
 func _on_save_file_selected(path: String) -> void:
@@ -267,3 +267,7 @@ func _on_type_window_item_selected(index: int) -> void:
 			
 		1:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
+
+func _on_option_size_title_value_changed(value: float) -> void:
+	Global.font_size_title_default = int(value)

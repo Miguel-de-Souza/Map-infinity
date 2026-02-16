@@ -49,17 +49,16 @@ script = ExtResource("2_0xm2m")
 Geapgh = NodePath("../GraphEdit")
 
 [node name="Container Config" type="VBoxContainer" parent="Window Config" unique_id=647695880]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -170.0
-offset_right = 170.0
-offset_bottom = 136.0
-grow_horizontal = 2
+offset_left = 10.0
+offset_top = 15.0
+offset_right = 350.0
+offset_bottom = 214.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="Container Grid" type="HBoxContainer" parent="Window Config/Container Config" unique_id=1086933459]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 
 [node name="Type Grid" type="Label" parent="Window Config/Container Config/Container Grid" unique_id=920161610]
 layout_mode = 2
@@ -76,9 +75,9 @@ popup/item_1/id = 1
 
 [node name="Container Scroll" type="HBoxContainer" parent="Window Config/Container Config" unique_id=946023233]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 
-[node name="Type Grid" type="Label" parent="Window Config/Container Config/Container Scroll" unique_id=1334705798]
+[node name="Type Scroll" type="Label" parent="Window Config/Container Config/Container Scroll" unique_id=1334705798]
 layout_mode = 2
 text = "Tipo de Scroll"
 
@@ -93,21 +92,35 @@ popup/item_1/id = 1
 
 [node name="Container Size" type="HBoxContainer" parent="Window Config/Container Config" unique_id=61843572]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 
-[node name="Type Grid" type="Label" parent="Window Config/Container Config/Container Size" unique_id=559483811]
+[node name="Type Size Camp" type="Label" parent="Window Config/Container Config/Container Size" unique_id=559483811]
 layout_mode = 2
-text = "Tamanho Padrão"
+text = "Tamanho Padrão dos Campos"
 
-[node name="Option Scroll" type="SpinBox" parent="Window Config/Container Config/Container Size" unique_id=1830448274]
+[node name="Option Size Camp" type="SpinBox" parent="Window Config/Container Config/Container Size" unique_id=1830448274]
 layout_mode = 2
 min_value = 1.0
 max_value = 120.0
 value = 16.0
 
+[node name="Container Size Title" type="HBoxContainer" parent="Window Config/Container Config" unique_id=1775673372]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Type Size Ttitle" type="Label" parent="Window Config/Container Config/Container Size Title" unique_id=718274692]
+layout_mode = 2
+text = "Tamanho Padrão dos Títulos"
+
+[node name="Option Size Title" type="SpinBox" parent="Window Config/Container Config/Container Size Title" unique_id=132651674]
+layout_mode = 2
+min_value = 1.0
+max_value = 80.0
+value = 16.0
+
 [node name="Container Diretory" type="HBoxContainer" parent="Window Config/Container Config" unique_id=433423033]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 
 [node name="Type Grid" type="Label" parent="Window Config/Container Config/Container Diretory" unique_id=1522040438]
 layout_mode = 2
@@ -118,7 +131,7 @@ layout_mode = 2
 
 [node name="Container Mode" type="HBoxContainer" parent="Window Config/Container Config" unique_id=172956295]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 
 [node name="Modo" type="Label" parent="Window Config/Container Config/Container Mode" unique_id=978186425]
 layout_mode = 2
@@ -246,7 +259,8 @@ vertical_alignment = 1
 [connection signal="close_requested" from="Window Config" to="Window Config" method="_on_close_requested"]
 [connection signal="item_selected" from="Window Config/Container Config/Container Grid/Option Grids" to="Window Config" method="_on_option_grids_item_selected"]
 [connection signal="item_selected" from="Window Config/Container Config/Container Scroll/Option Scroll" to="Window Config" method="_on_option_scroll_item_selected"]
-[connection signal="value_changed" from="Window Config/Container Config/Container Size/Option Scroll" to="Window Config" method="_on_option_scroll_value_changed"]
+[connection signal="value_changed" from="Window Config/Container Config/Container Size/Option Size Camp" to="Window Config" method="_on_option_scroll_value_changed"]
+[connection signal="value_changed" from="Window Config/Container Config/Container Size Title/Option Size Title" to="GraphEdit" method="_on_option_size_title_value_changed"]
 [connection signal="pressed" from="Window Config/Container Config/Container Diretory/Check Diretorio" to="GraphEdit" method="_on_check_diretorio_pressed"]
 [connection signal="item_selected" from="Window Config/Container Config/Container Mode/Type Window" to="GraphEdit" method="_on_type_window_item_selected"]
 [connection signal="pressed" from="Container Tool/MenuButton Config" to="Window Config" method="_on_menu_button_config_pressed"]

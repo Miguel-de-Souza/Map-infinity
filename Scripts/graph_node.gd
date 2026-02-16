@@ -7,6 +7,7 @@ extends GraphNode
 
 func _ready() -> void:
 	size_fonts.value = Global.font_size_default
+	font_size.value = Global.font_size_title_default
 
 	size_fonts.value_changed.connect(_on_font_size_value_changed)
 	font_size.value_changed.connect(_on_font_size_title_value_changed)
