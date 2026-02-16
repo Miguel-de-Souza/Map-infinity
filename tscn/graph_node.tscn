@@ -96,7 +96,7 @@ layout_mode = 2
 
 [node name="Block" type="Label" parent="Container Tool/Container Left/Container Size/Container Size Block" unique_id=1671287076]
 layout_mode = 2
-text = "Bloco"
+text = "Campo"
 
 [node name="Font Size" type="SpinBox" parent="Container Tool/Container Left/Container Size/Container Size Block" unique_id=331735634]
 layout_mode = 2

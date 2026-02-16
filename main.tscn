@@ -168,7 +168,7 @@ bbcode_enabled = true
 text = "Map Mind Infinity é um programa open-source de anotações e criação de mapa mental feito com a Godot 4.6. 
 Com foco principal na total customização, espaços e nodes ilimitados de forma gratuita, sem planos.
 
-[b]Versão do Projeto: 0.0.4[/b]"
+[b]Versão do Projeto: 0.0.5[/b]"
 fit_content = true
 
 [node name="LinkButton" type="LinkButton" parent="More Program/Container More" unique_id=394255072]
