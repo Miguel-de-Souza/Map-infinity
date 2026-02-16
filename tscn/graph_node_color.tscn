@@ -10,7 +10,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -635.0
 offset_top = -360.0
-offset_right = -278.0
+offset_right = -195.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -95,12 +95,26 @@ clip_contents = true
 custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
 
-[node name="Button Add" type="Button" parent="." unique_id=1867466557]
+[node name="Container Slots" type="HBoxContainer" parent="." unique_id=1512169561]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Button Add" type="Button" parent="Container Slots" unique_id=1242139143]
+clip_contents = true
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "+"
+
+[node name="Button Sub" type="Button" parent="Container Slots" unique_id=223033690]
+clip_contents = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "-"
 
 [connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
 [connection signal="node_selected" from="." to="." method="_on_node_selected"]
 [connection signal="value_changed" from="Container/Container Size/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
 [connection signal="pressed" from="Container/CheckBox" to="." method="_on_check_box_pressed"]
-[connection signal="pressed" from="Button Add" to="." method="_on_button_add_pressed"]
+[connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
+[connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

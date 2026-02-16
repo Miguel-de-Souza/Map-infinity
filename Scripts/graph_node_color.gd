@@ -90,3 +90,21 @@ func _on_button_add_pressed() -> void:
 	item.color = Color(0.078, 0.078, 0.078, 0)
 	set_slot(slots_add, true, 0, Color(1.0, 1.0, 1.0, 1.0), true, 0, Color(1.0, 1.0, 1.0, 1.0))
 	slots_add += 1
+
+
+func _on_button_sub_pressed() -> void:
+	var rects := []
+	
+	for child in get_children():
+		if child is ColorRect:
+			rects.append(child)
+	
+	if rects.is_empty():
+		return
+	
+	var last_rect = rects[-1]
+	last_rect.queue_free()
+	slots_add -= 1
+	size = Vector2(1,1)
+	
+	set_slot(slots_add, false, 0, Color.WHITE, false, 0, Color.WHITE)
