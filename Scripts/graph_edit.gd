@@ -10,12 +10,15 @@ extends GraphEdit
 
 var current_project_path: String = ""
 var posit:= Vector2(160,160)
+var desktop := OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 
 func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	disconnect_node(from_node, from_port, to_node, to_port)
 
 func _ready():
-	
+	file_dia.current_dir = desktop
+	file_load.current_dir = desktop
+
 	connection_request.connect(_on_connection_request)
 	file_dia.file_selected.connect(_on_save_file_selected)
 	file_load.file_selected.connect(_on_load_file_selected)
