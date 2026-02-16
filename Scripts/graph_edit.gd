@@ -52,6 +52,9 @@ func _process(_delta: float) -> void:
 		
 	elif Input.is_action_just_pressed("Add Bloco URL"):
 		criar_bloco_notas(3)
+		
+	elif Input.is_action_just_pressed("Add Bloco Imagem"):
+		criar_bloco_notas(4)
 
 	elif Input.is_action_just_pressed("Add Bloco Notas"):
 		criar_bloco_notas()
@@ -136,6 +139,9 @@ func criar_bloco_notas(id : int = 1) -> void:
 			
 		3:
 			nodesGraph = preload("res://tscn/graph_node_URL.tscn").instantiate()
+			
+		4:
+			nodesGraph = preload("res://tscn/graph_node_Iamge.tscn").instantiate()
 	
 	nodesGraph.name = "Node_" + str(Time.get_ticks_usec())
 	
@@ -232,6 +238,9 @@ func _on_item_selected_insert(id: int) -> void:
 			
 		2:
 			criar_bloco_notas(3)
+			
+		3:
+			criar_bloco_notas(4)
 
 
 func _on_menu_button_more_pressed() -> void:

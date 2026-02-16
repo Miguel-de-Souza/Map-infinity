@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://di7oqrwfyddru"]
+
+[ext_resource type="Script" uid="uid://b1frqmyqglxuq" path="res://Scripts/graph_node_Image.gd" id="1_lx2yf"]
+[ext_resource type="Texture2D" uid="uid://bdtbfaqxn5emc" path="res://icons/no-image.jpg" id="2_p2b3y"]
+
+[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("open_image", "texture_node", "check")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -635.0
+offset_top = -360.0
+offset_right = -251.0
+offset_bottom = -135.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+resizable = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = true
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
+script = ExtResource("1_lx2yf")
+open_image = NodePath("Open Image")
+texture_node = NodePath("Button Image")
+check = NodePath("Container/Container Size/Check Size")
+metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
+
+[node name="Container" type="HBoxContainer" parent="." unique_id=1614242062]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 125
+
+[node name="Container Size" type="HBoxContainer" parent="Container" unique_id=963762433]
+layout_mode = 2
+
+[node name="Size Label" type="Label" parent="Container/Container Size" unique_id=1886954870]
+layout_mode = 2
+text = "Manter Tamanho"
+
+[node name="Check Size" type="CheckBox" parent="Container/Container Size" unique_id=2003499002]
+layout_mode = 2
+
+[node name="CheckBox" type="Button" parent="Container" unique_id=499506831]
+layout_mode = 2
+text = "Fechar"
+
+[node name="Button Image" type="TextureButton" parent="." unique_id=581091718]
+clip_contents = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture_normal = ExtResource("2_p2b3y")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Button Add" type="Button" parent="." unique_id=1867466557]
+layout_mode = 2
+text = "+"
+
+[node name="Open Image" type="FileDialog" parent="." unique_id=1539895728]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 1
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png", "*.jpg")
+use_native_dialog = true
+
+[connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
+[connection signal="node_selected" from="." to="." method="_on_node_selected"]
+[connection signal="pressed" from="Container/Container Size/Check Size" to="." method="_on_check_size_pressed"]
+[connection signal="pressed" from="Container/CheckBox" to="." method="_on_check_box_pressed"]
+[connection signal="pressed" from="Button Image" to="." method="_on_texture_rect_pressed"]
+[connection signal="pressed" from="Button Add" to="." method="_on_button_add_pressed"]
+[connection signal="file_selected" from="Open Image" to="." method="_on_open_image_file_selected"]
