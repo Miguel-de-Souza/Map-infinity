@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://excut3nknqvk"]
 
 [ext_resource type="Script" uid="uid://djcd2bpvg161x" path="res://Scripts/graph_node.gd" id="1_2yokc"]
+[ext_resource type="Texture2D" uid="uid://bdlb6rurlr5e3" path="res://icons/List.png" id="2_1iaox"]
+[ext_resource type="Texture2D" uid="uid://bowxmek6m67o0" path="res://icons/List Num.png" id="3_jbsip"]
 
-[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("note", "title_line", "size_fonts", "font_size")]
+[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("note", "title_line", "size_fonts", "font_size", "size_content")]
 offset_right = 440.0
 offset_bottom = 345.0
 theme_override_constants/separation = 4
@@ -48,6 +50,7 @@ note = NodePath("Notepad")
 title_line = NodePath("Ttle")
 size_fonts = NodePath("Container Tool/Container Left/Container Size/Container Size Block/Font Size")
 font_size = NodePath("Container Tool/Container Left/Container Size/Container Size Title/Font Size Title")
+size_content = NodePath("Container Tool/Container Left/Container Down/Container Content/Check Ajust")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
 [node name="Ttle" type="LineEdit" parent="." unique_id=577137378]
@@ -61,12 +64,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 49
 
-[node name="Container Left" type="HBoxContainer" parent="Container Tool" unique_id=327237046]
+[node name="Container Left" type="VBoxContainer" parent="Container Tool" unique_id=1428407372]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="Container Size" type="VBoxContainer" parent="Container Tool/Container Left" unique_id=958391021]
+[node name="Container Size" type="HBoxContainer" parent="Container Tool/Container Left" unique_id=1860460117]
 layout_mode = 2
+theme_override_constants/separation = 25
 
 [node name="Container Size Title" type="HBoxContainer" parent="Container Tool/Container Left/Container Size" unique_id=2122979325]
 layout_mode = 2
@@ -96,19 +102,42 @@ min_value = 1.0
 max_value = 120.0
 value = 16.0
 
-[node name="Button List" type="Button" parent="Container Tool/Container Left" unique_id=548686957]
-layout_mode = 2
-text = "Lista"
-
-[node name="Button List Num" type="Button" parent="Container Tool/Container Left" unique_id=2061160296]
-layout_mode = 2
-text = "Lista
-Numérica"
-
-[node name="CheckBox" type="Button" parent="Container Tool" unique_id=499506831]
+[node name="CheckBox Exit" type="Button" parent="Container Tool/Container Left/Container Size" unique_id=499506831]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Fechar"
+
+[node name="Container Down" type="HBoxContainer" parent="Container Tool/Container Left" unique_id=64908302]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+
+[node name="Container List" type="HBoxContainer" parent="Container Tool/Container Left/Container Down" unique_id=180081974]
+layout_mode = 2
+theme_override_constants/separation = 17
+
+[node name="Margin" type="MarginContainer" parent="Container Tool/Container Left/Container Down/Container List" unique_id=1219825549]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+
+[node name="Button List" type="TextureButton" parent="Container Tool/Container Left/Container Down/Container List" unique_id=585398584]
+layout_mode = 2
+texture_normal = ExtResource("2_1iaox")
+
+[node name="Button List Num" type="TextureButton" parent="Container Tool/Container Left/Container Down/Container List" unique_id=291133430]
+layout_mode = 2
+texture_normal = ExtResource("3_jbsip")
+
+[node name="Container Content" type="HBoxContainer" parent="Container Tool/Container Left/Container Down" unique_id=1854303807]
+layout_mode = 2
+
+[node name="Label Ajust" type="Label" parent="Container Tool/Container Left/Container Down/Container Content" unique_id=505563627]
+layout_mode = 2
+text = "Ajustar Tamanho do Campo"
+
+[node name="Check Ajust" type="CheckBox" parent="Container Tool/Container Left/Container Down/Container Content" unique_id=1286944219]
+layout_mode = 2
 
 [node name="Notepad" type="TextEdit" parent="." unique_id=1833819988]
 clip_contents = true
@@ -139,8 +168,9 @@ text = "-"
 [connection signal="node_selected" from="." to="." method="_on_node_selected"]
 [connection signal="value_changed" from="Container Tool/Container Left/Container Size/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
 [connection signal="value_changed" from="Container Tool/Container Left/Container Size/Container Size Block/Font Size" to="." method="_on_font_size_value_changed"]
-[connection signal="pressed" from="Container Tool/Container Left/Button List" to="." method="_on_button_lista_pressed"]
-[connection signal="pressed" from="Container Tool/Container Left/Button List Num" to="." method="_on_button_list_num_pressed"]
-[connection signal="pressed" from="Container Tool/CheckBox" to="." method="_on_check_box_pressed"]
+[connection signal="pressed" from="Container Tool/Container Left/Container Size/CheckBox Exit" to="." method="_on_check_box_pressed"]
+[connection signal="pressed" from="Container Tool/Container Left/Container Down/Container List/Button List" to="." method="_on_button_lista_pressed"]
+[connection signal="pressed" from="Container Tool/Container Left/Container Down/Container List/Button List Num" to="." method="_on_button_list_num_pressed"]
+[connection signal="pressed" from="Container Tool/Container Left/Container Down/Container Content/Check Ajust" to="." method="_on_check_ajust_pressed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

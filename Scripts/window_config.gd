@@ -1,6 +1,9 @@
 extends Window
 
 @export var Geapgh: GraphEdit
+@export var check_diretory: CheckBox
+@export var check_ajust: CheckBox
+@export var label_diretorio: Label
 
 func _on_close_requested() -> void:
 	hide()
@@ -27,3 +30,20 @@ func _on_option_scroll_value_changed(value: float) -> void:
 
 func _on_menu_button_config_pressed() -> void:
 	popup()
+
+
+func _on_check_ajust_pressed() -> void:
+	if check_ajust.button_pressed:
+		Global.var_check_ajust = true
+		
+	else:
+		Global.var_check_ajust = false
+
+
+func _on_check_diretorio_pressed() -> void:
+	if check_diretory.button_pressed:
+		label_diretorio.hide()
+		
+	
+	else:
+		label_diretorio.show()

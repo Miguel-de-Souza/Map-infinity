@@ -6,7 +6,6 @@ extends GraphEdit
 @export var poparquivo: MenuButton
 @export var popMake: MenuButton
 @export var label_diretorio: Label
-@export var check_diretory: CheckBox
 
 var current_project_path: String = ""
 var posit:= Vector2(0,0)
@@ -254,14 +253,6 @@ func _on_menu_button_more_pressed() -> void:
 	more.popup()
 	DisplayServer.beep()
 
-func _on_check_diretorio_pressed() -> void:
-	if check_diretory.button_pressed:
-		label_diretorio.hide()
-		
-	
-	else:
-		label_diretorio.show()
-
 
 func _on_type_window_item_selected(index: int) -> void:
 		
@@ -275,3 +266,7 @@ func _on_type_window_item_selected(index: int) -> void:
 
 func _on_option_size_title_value_changed(value: float) -> void:
 	Global.font_size_title_default = int(value)
+
+
+func _on_check_ajust_pressed() -> void:
+	pass # Replace with function body.

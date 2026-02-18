@@ -20,7 +20,7 @@ offset_bottom = 35.0
 grow_horizontal = 2
 color = Color(0.11764706, 0.11764706, 0.11764706, 1)
 
-[node name="GraphEdit" type="GraphEdit" parent="." unique_id=251952592 node_paths=PackedStringArray("file_dia", "file_load", "more", "poparquivo", "popMake", "label_diretorio", "check_diretory")]
+[node name="GraphEdit" type="GraphEdit" parent="." unique_id=251952592 node_paths=PackedStringArray("file_dia", "file_load", "more", "poparquivo", "popMake", "label_diretorio")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,16 +37,17 @@ more = NodePath("../More Program")
 poparquivo = NodePath("../Container Tool/MenuButton File")
 popMake = NodePath("../Container Tool/MenuButton Insert")
 label_diretorio = NodePath("../Label Diretory")
-check_diretory = NodePath("../Window Config/Container Config/Container Diretory/Check Diretorio")
 
-[node name="Window Config" type="Window" parent="." unique_id=1806257895 node_paths=PackedStringArray("Geapgh")]
+[node name="Window Config" type="Window" parent="." unique_id=1806257895 node_paths=PackedStringArray("Geapgh", "check_diretory", "check_ajust", "label_diretorio")]
 oversampling_override = 1.0
 title = "Configurações"
 initial_position = 1
 size = Vector2i(500, 300)
-visible = false
 script = ExtResource("2_0xm2m")
 Geapgh = NodePath("../GraphEdit")
+check_diretory = NodePath("Container Config/Container Diretory/Check Diretorio")
+check_ajust = NodePath("Container Config/Container Ajust/Check Ajust")
+label_diretorio = NodePath("../Label Diretory")
 
 [node name="Container Config" type="VBoxContainer" parent="Window Config" unique_id=647695880]
 offset_left = 10.0
@@ -127,6 +128,17 @@ layout_mode = 2
 text = "Ocultar Diretório do Arquivo"
 
 [node name="Check Diretorio" type="CheckBox" parent="Window Config/Container Config/Container Diretory" unique_id=985224444]
+layout_mode = 2
+
+[node name="Container Ajust" type="HBoxContainer" parent="Window Config/Container Config" unique_id=1419024186]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Type Ajust" type="Label" parent="Window Config/Container Config/Container Ajust" unique_id=1041724515]
+layout_mode = 2
+text = "Ajustar Tamanho do Campo Automaticamente"
+
+[node name="Check Ajust" type="CheckBox" parent="Window Config/Container Config/Container Ajust" unique_id=835167735]
 layout_mode = 2
 
 [node name="Container Mode" type="HBoxContainer" parent="Window Config/Container Config" unique_id=172956295]
@@ -272,7 +284,8 @@ Graph = NodePath("../GraphEdit")
 [connection signal="item_selected" from="Window Config/Container Config/Container Scroll/Option Scroll" to="Window Config" method="_on_option_scroll_item_selected"]
 [connection signal="value_changed" from="Window Config/Container Config/Container Size/Option Size Camp" to="Window Config" method="_on_option_scroll_value_changed"]
 [connection signal="value_changed" from="Window Config/Container Config/Container Size Title/Option Size Title" to="GraphEdit" method="_on_option_size_title_value_changed"]
-[connection signal="pressed" from="Window Config/Container Config/Container Diretory/Check Diretorio" to="GraphEdit" method="_on_check_diretorio_pressed"]
+[connection signal="pressed" from="Window Config/Container Config/Container Diretory/Check Diretorio" to="Window Config" method="_on_check_diretorio_pressed"]
+[connection signal="pressed" from="Window Config/Container Config/Container Ajust/Check Ajust" to="Window Config" method="_on_check_ajust_pressed"]
 [connection signal="item_selected" from="Window Config/Container Config/Container Mode/Type Window" to="GraphEdit" method="_on_type_window_item_selected"]
 [connection signal="pressed" from="Container Tool/MenuButton Config" to="Window Config" method="_on_menu_button_config_pressed"]
 [connection signal="pressed" from="Container Tool/MenuButton More" to="GraphEdit" method="_on_menu_button_more_pressed"]

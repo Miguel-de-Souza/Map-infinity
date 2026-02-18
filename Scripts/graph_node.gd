@@ -4,16 +4,16 @@ extends GraphNode
 @export var title_line: LineEdit
 @export var size_fonts: SpinBox
 @export var font_size: SpinBox
+@export var size_content: CheckBox
 
 func _ready() -> void:
 	size_fonts.value = Global.font_size_default
 	font_size.value = Global.font_size_title_default
-
-	size_fonts.value_changed.connect(_on_font_size_value_changed)
-	font_size.value_changed.connect(_on_font_size_title_value_changed)
+	size_content.button_pressed = Global.var_check_ajust
 
 	_on_font_size_value_changed(size_fonts.value)
 	_on_font_size_title_value_changed(font_size.value)
+	_on_check_ajust_pressed()
 
 
 func _on_font_size_value_changed(value: float) -> void:
@@ -127,7 +127,6 @@ func _on_button_sub_pressed() -> void:
 
 
 var type_list:= "ponto"
-
 var num_count := 1
 
 func _input(event):
@@ -159,3 +158,14 @@ func _on_button_list_num_pressed() -> void:
 	num_count = 1
 	note.insert_text_at_caret(str(num_count) + ". ")
 	type_list = "num"
+
+
+func _on_check_ajust_pressed() -> void:
+	if size_content.button_pressed:
+		note.scroll_fit_content_height = false
+		note.scroll_fit_content_width = false
+		size = Vector2(1,1)
+		
+	else:
+		note.scroll_fit_content_height = true
+		note.scroll_fit_content_width = true
