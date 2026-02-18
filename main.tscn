@@ -43,6 +43,7 @@ oversampling_override = 1.0
 title = "Configurações"
 initial_position = 1
 size = Vector2i(500, 300)
+visible = false
 script = ExtResource("2_0xm2m")
 Geapgh = NodePath("../GraphEdit")
 check_diretory = NodePath("Container Config/Container Diretory/Check Diretorio")
