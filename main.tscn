@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cf0fefv42bgt4" path="res://Scripts/graph_edit.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://ctdfhgnwtrfac" path="res://Scripts/window_config.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://bg0igw8fgmsth" path="res://Scripts/debuger.gd" id="3_h2yge"]
 
 [node name="Main" type="Control" unique_id=1440128229]
 layout_mode = 3
@@ -29,7 +30,6 @@ grow_horizontal = 2
 grow_vertical = 2
 right_disconnects = true
 show_zoom_label = true
-show_arrange_button = false
 script = ExtResource("1_ig7tw")
 file_dia = NodePath("../File Save")
 file_load = NodePath("../File Load")
@@ -254,6 +254,17 @@ grow_horizontal = 0
 text = "Diretory: C"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="Text Debug" type="Label" parent="." unique_id=1581848323 node_paths=PackedStringArray("Graph")]
+visible = false
+layout_mode = 0
+offset_left = 20.0
+offset_top = 95.0
+offset_right = 461.0
+offset_bottom = 118.0
+text = "Position"
+script = ExtResource("3_h2yge")
+Graph = NodePath("../GraphEdit")
 
 [connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
 [connection signal="close_requested" from="Window Config" to="Window Config" method="_on_close_requested"]

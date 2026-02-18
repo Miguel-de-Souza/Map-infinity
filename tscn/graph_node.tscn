@@ -3,17 +3,8 @@
 [ext_resource type="Script" uid="uid://djcd2bpvg161x" path="res://Scripts/graph_node.gd" id="1_2yokc"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("note", "title_line", "size_fonts", "font_size")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -635.0
-offset_top = -360.0
-offset_right = -195.0
-offset_bottom = -15.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 440.0
+offset_bottom = 345.0
 theme_override_constants/separation = 4
 resizable = true
 slot/0/left_enabled = false

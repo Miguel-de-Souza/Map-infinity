@@ -9,7 +9,7 @@ extends GraphEdit
 @export var check_diretory: CheckBox
 
 var current_project_path: String = ""
-var posit:= Vector2(160,160)
+var posit:= Vector2(0,0)
 var desktop := OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 
 func _on_disconnection_request(from_node, from_port, to_node, to_port):
@@ -138,22 +138,26 @@ func criar_bloco_notas(id : int = 1) -> void:
 	
 	match  id:
 		1:
-			nodesGraph = preload("res://tscn/graph_node.tscn").instantiate()
-		
+			nodesGraph = preload("uid://excut3nknqvk").instantiate() #Node
+
 		2:
-			nodesGraph = preload("res://tscn/graph_node_color.tscn").instantiate()
-			
+			nodesGraph = preload("uid://dbdw60boboltf").instantiate() #Color
+
+
 		3:
-			nodesGraph = preload("res://tscn/graph_node_URL.tscn").instantiate()
+			nodesGraph = preload("uid://ci4galkmc7v4a").instantiate() #URL
 			
 		4:
-			nodesGraph = preload("res://tscn/graph_node_Iamge.tscn").instantiate()
+			nodesGraph = preload("uid://di7oqrwfyddru").instantiate() #Image
 	
 	nodesGraph.name = "Node_" + str(Time.get_ticks_usec())
 	
 	add_child(nodesGraph)
-	nodesGraph.position_offset += posit
-	posit += Vector2(160,160)
+	
+	var graph_size = size            
+	var node_size = nodesGraph.size          
+
+	nodesGraph.position_offset = scroll_offset + (graph_size - node_size) / 2
 
 
 func Novo():

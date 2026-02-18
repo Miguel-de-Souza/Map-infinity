@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://di7oqrwfyddru"]
 
-[ext_resource type="Script" uid="uid://b1frqmyqglxuq" path="res://Scripts/graph_node_Image.gd" id="1_lx2yf"]
-[ext_resource type="Texture2D" uid="uid://bdtbfaqxn5emc" path="res://icons/no-image.jpg" id="2_p2b3y"]
+[ext_resource type="Script" uid="uid://b1frqmyqglxuq" path="res://Scripts/graph_node_Image.gd" id="1_j7muo"]
+[ext_resource type="Texture2D" uid="uid://bdtbfaqxn5emc" path="res://icons/no-image.jpg" id="2_pj3d8"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("open_image", "texture_node", "check")]
 anchors_preset = 8
@@ -44,7 +44,7 @@ slot/2/right_type = 0
 slot/2/right_color = Color(1, 1, 1, 1)
 slot/2/right_icon = null
 slot/2/draw_stylebox = true
-script = ExtResource("1_lx2yf")
+script = ExtResource("1_j7muo")
 open_image = NodePath("Open Image")
 texture_node = NodePath("Button Image")
 check = NodePath("Container/Container Size/Check Size")
@@ -74,7 +74,7 @@ text = "Fechar"
 clip_contents = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-texture_normal = ExtResource("2_p2b3y")
+texture_normal = ExtResource("2_pj3d8")
 ignore_texture_size = true
 stretch_mode = 0
 
