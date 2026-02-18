@@ -68,10 +68,11 @@ expand_to_text_length = true
 [node name="Container Tool" type="HBoxContainer" parent="." unique_id=1614242062]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 160
+theme_override_constants/separation = 49
 
 [node name="Container Left" type="HBoxContainer" parent="Container Tool" unique_id=327237046]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Container Size" type="VBoxContainer" parent="Container Tool/Container Left" unique_id=958391021]
 layout_mode = 2
@@ -104,9 +105,14 @@ min_value = 1.0
 max_value = 120.0
 value = 16.0
 
-[node name="Button Lista" type="Button" parent="Container Tool/Container Left" unique_id=548686957]
+[node name="Button List" type="Button" parent="Container Tool/Container Left" unique_id=548686957]
 layout_mode = 2
 text = "Lista"
+
+[node name="Button List Num" type="Button" parent="Container Tool/Container Left" unique_id=2061160296]
+layout_mode = 2
+text = "Lista
+Numérica"
 
 [node name="CheckBox" type="Button" parent="Container Tool" unique_id=499506831]
 layout_mode = 2
@@ -142,7 +148,8 @@ text = "-"
 [connection signal="node_selected" from="." to="." method="_on_node_selected"]
 [connection signal="value_changed" from="Container Tool/Container Left/Container Size/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
 [connection signal="value_changed" from="Container Tool/Container Left/Container Size/Container Size Block/Font Size" to="." method="_on_font_size_value_changed"]
-[connection signal="pressed" from="Container Tool/Container Left/Button Lista" to="." method="_on_button_lista_pressed"]
+[connection signal="pressed" from="Container Tool/Container Left/Button List" to="." method="_on_button_lista_pressed"]
+[connection signal="pressed" from="Container Tool/Container Left/Button List Num" to="." method="_on_button_list_num_pressed"]
 [connection signal="pressed" from="Container Tool/CheckBox" to="." method="_on_check_box_pressed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

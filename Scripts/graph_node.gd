@@ -126,15 +126,36 @@ func _on_button_sub_pressed() -> void:
 	set_slot(slots_add, false, 0, Color.WHITE, false, 0, Color.WHITE)
 
 
+var type_list:= "ponto"
+
+var num_count := 1
+
 func _input(event):
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_ENTER:
-			var line = note.get_line(note.get_caret_line())
+	if type_list == "ponto":
+		if event is InputEventKey and event.pressed:
+			if event.keycode == KEY_ENTER:
+				var line = note.get_line(note.get_caret_line())
 
-			if line.begins_with("• "):
-				await get_tree().process_frame
-				note.insert_text_at_caret("• ")
+				if line.begins_with("• "):
+					await get_tree().process_frame
+					note.insert_text_at_caret("• ")
+					
+	elif type_list == "num":
+		if event is InputEventKey and event.pressed:
+			if event.keycode == KEY_ENTER:
+				var line = note.get_line(note.get_caret_line())
 
+				if line.begins_with(str(num_count)):
+					await get_tree().process_frame
+					num_count += 1
+					note.insert_text_at_caret(str(num_count) + ". ")
 
 func _on_button_lista_pressed() -> void:
 	note.insert_text_at_caret("• ")
+	type_list = "ponto"
+
+
+func _on_button_list_num_pressed() -> void:
+	num_count = 1
+	note.insert_text_at_caret(str(num_count) + ". ")
+	type_list = "num"
