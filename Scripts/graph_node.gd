@@ -42,6 +42,7 @@ func get_save_data() -> Dictionary:
 	"note_text": note.text,
 	"font_size": size_fonts.value,
 	"title_font_size": font_size.value,
+	"pressed_ajust": size_content.button_pressed, #ISSO AQUI
 	"slots_add": slots_add,
 	"slots": slots
 }
@@ -53,6 +54,10 @@ func load_save_data(data: Dictionary) -> void:
 
 	size_fonts.value = data.get("font_size", 14)
 	font_size.value = data.get("title_font_size", 14)
+	
+	size_content.button_pressed = data.get("pressed_ajust", false)
+	_on_check_ajust_pressed()
+
 
 	_on_font_size_value_changed(size_fonts.value)
 	_on_font_size_title_value_changed(font_size.value)
@@ -148,6 +153,7 @@ func _input(event):
 					await get_tree().process_frame
 					num_count += 1
 					note.insert_text_at_caret(str(num_count) + ". ")
+
 
 func _on_button_lista_pressed() -> void:
 	note.insert_text_at_caret("• ")
