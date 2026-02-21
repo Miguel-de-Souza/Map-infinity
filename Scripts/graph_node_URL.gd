@@ -3,10 +3,15 @@ extends GraphNode
 @export var url: LineEdit
 @export var size_fonts: SpinBox
 
+var new_stylebox = get_theme_stylebox("panel").duplicate()
+var new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
 
 func _ready() -> void:
-	size_fonts.value = Global.font_size_default
+	
+	add_theme_stylebox_override("panel", new_stylebox)
+	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 
+	size_fonts.value = Global.font_size_default
 	
 func _on_font_size_title_value_changed(value: float) -> void:
 	url.add_theme_font_size_override("font_size", int(value))
@@ -29,11 +34,31 @@ func get_save_data() -> Dictionary:
 		"title": url.text,
 		"font_size": size_fonts.value,
 		"slots_add": slots_add,
-		"slots": slots
+		"slots": slots,
+		"new_stylebox_color": [ #Como é um Resource (arquivo StyleBox, então tem que passar cada propriedade, e não bg_color)
+		new_stylebox.bg_color.r,
+		new_stylebox.bg_color.g,
+		new_stylebox.bg_color.b,
+		new_stylebox.bg_color.a
+		],
+
+		"new_stylebox_focus": [
+			new_stylebox_focus.bg_color.r,
+			new_stylebox_focus.bg_color.g,
+			new_stylebox_focus.bg_color.b,
+			new_stylebox_focus.bg_color.a,
+		],
 	}
 
 
 func load_save_data(data: Dictionary) -> void:
+
+	var c = data.get("new_stylebox_color", [0,0,0,1])
+	new_stylebox.bg_color = Color(c[0], c[1], c[2], c[3])
+	
+	var c_focus = data.get("new_stylebox_focus", [0,0,0,1])
+	new_stylebox_focus.bg_color = Color(c_focus[0], c_focus[1], c_focus[2], c_focus[3])
+
 
 	url.text = data.get("title", "Node")
 	size_fonts.value = data.get("font_size", 14)
@@ -54,8 +79,13 @@ func load_save_data(data: Dictionary) -> void:
 		var min_size = slot_data["min_size"]
 		item.custom_minimum_size = Vector2(min_size[0], min_size[1])
 
-		var c = slot_data["color"]
-		item.color = Color(c[0], c[1], c[2], c[3])
+		var color_data = slot_data["color"]
+		item.color = Color(
+			color_data[0],
+			color_data[1],
+			color_data[2],
+			color_data[3]
+		)
 
 		set_slot(
 			slots_add,
@@ -108,3 +138,20 @@ func _on_button_sub_pressed() -> void:
 	size = Vector2(1,1)
 	
 	set_slot(slots_add, false, 0, Color.WHITE, false, 0, Color.WHITE)
+
+
+func _on_color_button_back_color_changed(color: Color) -> void:
+
+	new_stylebox.bg_color = color
+	new_stylebox_focus.bg_color = color.darkened(0.5) #darkened escurece a cor de 0 a 1 (0.5 -> 50%)
+
+
+func _on_reset_color_pressed() -> void:
+	remove_theme_stylebox_override("panel")
+	remove_theme_stylebox_override("panel_selected")
+	
+	new_stylebox = get_theme_stylebox("panel").duplicate()
+	new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
+	
+	add_theme_stylebox_override("panel", new_stylebox)
+	add_theme_stylebox_override("panel_selected", new_stylebox_focus)

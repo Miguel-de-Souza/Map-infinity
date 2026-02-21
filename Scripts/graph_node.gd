@@ -6,7 +6,14 @@ extends GraphNode
 @export var font_size: SpinBox
 @export var size_content: CheckBox
 
+var new_stylebox = get_theme_stylebox("panel").duplicate()
+var new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
+
 func _ready() -> void:
+
+	add_theme_stylebox_override("panel", new_stylebox)
+	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
+	
 	size_fonts.value = Global.font_size_default
 	font_size.value = Global.font_size_title_default
 	size_content.button_pressed = Global.var_check_ajust
@@ -42,7 +49,21 @@ func get_save_data() -> Dictionary:
 	"note_text": note.text,
 	"font_size": size_fonts.value,
 	"title_font_size": font_size.value,
-	"pressed_ajust": size_content.button_pressed, #ISSO AQUI
+	"pressed_ajust": size_content.button_pressed,
+	"new_stylebox_color": [ #Como é um Resource (arquivo StyleBox, então tem que passar cada propriedade, e não bg_color)
+		new_stylebox.bg_color.r,
+		new_stylebox.bg_color.g,
+		new_stylebox.bg_color.b,
+		new_stylebox.bg_color.a
+		],
+
+	"new_stylebox_focus": [
+		new_stylebox_focus.bg_color.r,
+		new_stylebox_focus.bg_color.g,
+		new_stylebox_focus.bg_color.b,
+		new_stylebox_focus.bg_color.a,
+	],
+	
 	"slots_add": slots_add,
 	"slots": slots
 }
@@ -51,13 +72,18 @@ func load_save_data(data: Dictionary) -> void:
 
 	title_line.text = data.get("title", "Node")
 	note.text = data.get("note_text", "")
+	
+	var c = data.get("new_stylebox_color", [0,0,0,1])
+	new_stylebox.bg_color = Color(c[0], c[1], c[2], c[3])
+	
+	var c_focus = data.get("new_stylebox_focus", [0,0,0,1])
+	new_stylebox_focus.bg_color = Color(c_focus[0], c_focus[1], c_focus[2], c_focus[3])
 
 	size_fonts.value = data.get("font_size", 14)
 	font_size.value = data.get("title_font_size", 14)
 	
 	size_content.button_pressed = data.get("pressed_ajust", false)
 	_on_check_ajust_pressed()
-
 
 	_on_font_size_value_changed(size_fonts.value)
 	_on_font_size_title_value_changed(font_size.value)
@@ -78,8 +104,13 @@ func load_save_data(data: Dictionary) -> void:
 		var min_size = slot_data["min_size"]
 		item.custom_minimum_size = Vector2(min_size[0], min_size[1])
 
-		var c = slot_data["color"]
-		item.color = Color(c[0], c[1], c[2], c[3])
+		var color_data = slot_data["color"]
+		item.color = Color(
+			color_data[0],
+			color_data[1],
+			color_data[2],
+			color_data[3]
+		)
 
 		set_slot(
 			slots_add,
@@ -175,3 +206,20 @@ func _on_check_ajust_pressed() -> void:
 	else:
 		note.scroll_fit_content_height = true
 		note.scroll_fit_content_width = true
+
+
+func _on_color_button_back_color_changed(color: Color) -> void:
+
+	new_stylebox.bg_color = color
+	new_stylebox_focus.bg_color = color.darkened(0.5) #darkened escurece a cor de 0 a 1 (0.5 -> 50%)
+
+
+func _on_reset_color_pressed() -> void:
+	remove_theme_stylebox_override("panel")
+	remove_theme_stylebox_override("panel_selected")
+	
+	new_stylebox = get_theme_stylebox("panel").duplicate()
+	new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
+	
+	add_theme_stylebox_override("panel", new_stylebox)
+	add_theme_stylebox_override("panel_selected", new_stylebox_focus)

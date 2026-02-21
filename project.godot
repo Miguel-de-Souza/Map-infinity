@@ -13,7 +13,7 @@ config_version=5
 config/name="Map Mind Infinity"
 config/description="Map Mind Infinity é um programa open-source de anotações e criação de mapa mental feito com a Godot 4.6. 
 Com foco principal na total customização, espaços e nodes ilimitados de forma gratuita, sem planos."
-config/version="0.0.5"
+config/version="0.0.6"
 run/main_scene="uid://bu71l16qoa2dw"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/show_image=false

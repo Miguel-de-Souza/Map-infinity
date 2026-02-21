@@ -4,9 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://bdlb6rurlr5e3" path="res://icons/List.png" id="2_1iaox"]
 [ext_resource type="Texture2D" uid="uid://bowxmek6m67o0" path="res://icons/List Num.png" id="3_jbsip"]
 
+[sub_resource type="Theme" id="Theme_jbsip"]
+
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("note", "title_line", "size_fonts", "font_size", "size_content")]
 offset_right = 440.0
 offset_bottom = 345.0
+theme = SubResource("Theme_jbsip")
 theme_override_constants/separation = 4
 resizable = true
 slot/0/left_enabled = false
@@ -72,7 +75,7 @@ theme_override_constants/separation = 10
 
 [node name="Container Size" type="HBoxContainer" parent="Container Tool/Container Left" unique_id=1860460117]
 layout_mode = 2
-theme_override_constants/separation = 25
+theme_override_constants/separation = 145
 
 [node name="Container Size Title" type="HBoxContainer" parent="Container Tool/Container Left/Container Size" unique_id=2122979325]
 layout_mode = 2
@@ -102,6 +105,9 @@ min_value = 1.0
 max_value = 120.0
 value = 16.0
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Container Tool/Container Left/Container Size" unique_id=532637721]
+layout_mode = 2
+
 [node name="CheckBox Exit" type="Button" parent="Container Tool/Container Left/Container Size" unique_id=499506831]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -111,7 +117,7 @@ text = "Fechar"
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_constants/separation = 25
+theme_override_constants/separation = 96
 
 [node name="Container List" type="HBoxContainer" parent="Container Tool/Container Left/Container Down" unique_id=180081974]
 layout_mode = 2
@@ -128,6 +134,21 @@ texture_normal = ExtResource("2_1iaox")
 [node name="Button List Num" type="TextureButton" parent="Container Tool/Container Left/Container Down/Container List" unique_id=291133430]
 layout_mode = 2
 texture_normal = ExtResource("3_jbsip")
+
+[node name="Container color" type="HBoxContainer" parent="Container Tool/Container Left/Container Down" unique_id=564472995]
+layout_mode = 2
+
+[node name="Label Color" type="Label" parent="Container Tool/Container Left/Container Down/Container color" unique_id=857524577]
+layout_mode = 2
+text = "Cor de Fundo"
+
+[node name="ColorButton Back" type="ColorPickerButton" parent="Container Tool/Container Left/Container Down/Container color" unique_id=806857826]
+layout_mode = 2
+text = "11111111111"
+
+[node name="Reset Color" type="Button" parent="Container Tool/Container Left/Container Down/Container color" unique_id=808229530]
+layout_mode = 2
+text = "Restaurar Cor"
 
 [node name="Container Content" type="HBoxContainer" parent="Container Tool/Container Left/Container Down" unique_id=1854303807]
 layout_mode = 2
@@ -171,6 +192,8 @@ text = "-"
 [connection signal="pressed" from="Container Tool/Container Left/Container Size/CheckBox Exit" to="." method="_on_check_box_pressed"]
 [connection signal="pressed" from="Container Tool/Container Left/Container Down/Container List/Button List" to="." method="_on_button_lista_pressed"]
 [connection signal="pressed" from="Container Tool/Container Left/Container Down/Container List/Button List Num" to="." method="_on_button_list_num_pressed"]
+[connection signal="color_changed" from="Container Tool/Container Left/Container Down/Container color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
+[connection signal="pressed" from="Container Tool/Container Left/Container Down/Container color/Reset Color" to="." method="_on_reset_color_pressed"]
 [connection signal="pressed" from="Container Tool/Container Left/Container Down/Container Content/Check Ajust" to="." method="_on_check_ajust_pressed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
