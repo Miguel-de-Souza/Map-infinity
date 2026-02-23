@@ -75,7 +75,7 @@ theme_override_constants/separation = 10
 
 [node name="Container Size" type="HBoxContainer" parent="Container Tool/Container Left" unique_id=1860460117]
 layout_mode = 2
-theme_override_constants/separation = 145
+theme_override_constants/separation = 184
 
 [node name="Container Size Title" type="HBoxContainer" parent="Container Tool/Container Left/Container Size" unique_id=2122979325]
 layout_mode = 2
@@ -168,18 +168,18 @@ placeholder_text = "Campo"
 scroll_fit_content_height = true
 scroll_fit_content_width = true
 
-[node name="Container Slots" type="HBoxContainer" parent="." unique_id=1088307314]
+[node name="Container Slots" type="HBoxContainer" parent="." unique_id=349922258]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Button Add" type="Button" parent="Container Slots" unique_id=1867466557]
+[node name="Button Add" type="Button" parent="Container Slots" unique_id=1266326989]
 clip_contents = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "+"
 
-[node name="Button Sub" type="Button" parent="Container Slots" unique_id=41026778]
+[node name="Button Sub" type="Button" parent="Container Slots" unique_id=803363858]
 clip_contents = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2

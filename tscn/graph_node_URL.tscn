@@ -81,7 +81,8 @@ text = "Fechar"
 
 [node name="Container color" type="HBoxContainer" parent="." unique_id=1207928514]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
+theme_override_constants/separation = 40
 
 [node name="Label Color" type="Label" parent="Container color" unique_id=1947229263]
 layout_mode = 2
@@ -89,6 +90,7 @@ text = "Cor de Fundo"
 
 [node name="ColorButton Back" type="ColorPickerButton" parent="Container color" unique_id=837226541]
 layout_mode = 2
+size_flags_horizontal = 0
 text = "11111111111"
 
 [node name="Reset Color" type="Button" parent="Container color" unique_id=165207237]

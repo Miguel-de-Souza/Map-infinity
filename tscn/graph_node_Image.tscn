@@ -82,6 +82,7 @@ text = "Fechar"
 [node name="Container color" type="HBoxContainer" parent="." unique_id=1055127660]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 38
 
 [node name="Label Color" type="Label" parent="Container color" unique_id=923294777]
 layout_mode = 2
