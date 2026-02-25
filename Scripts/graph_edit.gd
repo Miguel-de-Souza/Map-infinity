@@ -10,6 +10,9 @@ extends GraphEdit
 var current_project_path: String = ""
 var posit:= Vector2(0,0)
 var desktop := OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
+var active_mode_node:= false
+var selected_mode_make:= false
+var numb := 0
 
 func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	disconnect_node(from_node, from_port, to_node, to_port)
@@ -32,6 +35,17 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	
+	if not selected_mode_make:
+		mouse_default_cursor_shape = Control.CURSOR_ARROW
+	
+	if selected_mode_make:
+		
+		mouse_default_cursor_shape = Control.CURSOR_CROSS
+				
+		if Input.is_action_just_pressed("Click"):
+			criar_bloco_notas(numb)
+			selected_mode_make = false
+	
 	if Input.is_action_just_pressed("Novo"):
 		get_tree().reload_current_scene()
 		
@@ -49,18 +63,37 @@ func _process(_delta: float) -> void:
 			save_project_to_path(current_project_path)
 
 	elif Input.is_action_just_pressed("Add Bloco Color"):
-		criar_bloco_notas(2)
+		if active_mode_node:
+			selected_mode_make = true
+			numb = 2
+					
+		else:
+			criar_bloco_notas(2)
 		
 	elif Input.is_action_just_pressed("Add Bloco URL"):
-		criar_bloco_notas(3)
+		if active_mode_node:
+			selected_mode_make = true
+			numb = 3
+					
+		else:
+			criar_bloco_notas(3)
 		
 	elif Input.is_action_just_pressed("Add Bloco Imagem"):
-		criar_bloco_notas(4)
+		if active_mode_node:
+			selected_mode_make = true
+			numb = 4
+					
+		else:
+			criar_bloco_notas(4)
 
 	elif Input.is_action_just_pressed("Add Bloco Notas"):
-		criar_bloco_notas()
-		
-		
+		if active_mode_node:
+			selected_mode_make = true
+			numb = 1
+					
+		else:
+			criar_bloco_notas()
+
 
 func _input(_event):
 	if Input.is_action_just_pressed("Duplicar"):
@@ -154,9 +187,16 @@ func criar_bloco_notas(id : int = 1) -> void:
 	add_child(nodesGraph)
 	
 	var graph_size = size            
-	var node_size = nodesGraph.size          
-
-	nodesGraph.position_offset = scroll_offset + (graph_size - node_size) / 2
+	var node_size = nodesGraph.size    
+	
+	if active_mode_node:
+		nodesGraph.position_offset = (get_local_mouse_position() + scroll_offset) / zoom
+		selected_mode_make = false
+		
+	else:      
+		nodesGraph.position_offset = scroll_offset + (graph_size - node_size) / 2
+		print('normal')
+	
 
 
 func Novo():
@@ -237,16 +277,36 @@ func _on_item_selected(id: int) -> void:
 func _on_item_selected_insert(id: int) -> void:
 	match id:
 		0:
-			criar_bloco_notas()
+			if active_mode_node:
+				selected_mode_make = true
+				numb = 1
+					
+			else:
+				criar_bloco_notas()
 			
 		1:
-			criar_bloco_notas(2)
+			if active_mode_node:
+				selected_mode_make = true
+				numb = 2
+					
+			else:
+				criar_bloco_notas(2)
 			
 		2:
-			criar_bloco_notas(3)
+			if active_mode_node:
+				selected_mode_make = true
+				numb = 3
+					
+			else:
+				criar_bloco_notas(3)
 			
 		3:
-			criar_bloco_notas(4)
+			if active_mode_node:
+				selected_mode_make = true
+				numb = 4
+					
+			else:
+				criar_bloco_notas(4)
 
 
 func _on_menu_button_more_pressed() -> void:
@@ -268,5 +328,10 @@ func _on_option_size_title_value_changed(value: float) -> void:
 	Global.font_size_title_default = int(value)
 
 
-func _on_check_ajust_pressed() -> void:
-	pass # Replace with function body.
+func _on_modo_option_item_selected(index: int) -> void:
+	if index == 0:
+		active_mode_node = false
+		selected_mode_make = false
+		
+	elif index == 1:
+		active_mode_node = true

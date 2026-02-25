@@ -28,6 +28,7 @@ anchor_bottom = 1.0
 offset_top = 35.0
 grow_horizontal = 2
 grow_vertical = 2
+scroll_offset = Vector2(0, -35)
 right_disconnects = true
 show_zoom_label = true
 script = ExtResource("1_ig7tw")
@@ -160,6 +161,24 @@ popup/item_0/id = 0
 popup/item_1/text = "Tela Cheia"
 popup/item_1/id = 1
 
+[node name="Container Make" type="HBoxContainer" parent="Window Config/Container Config" unique_id=1723018699]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Modo Make" type="Label" parent="Window Config/Container Config/Container Make" unique_id=1794956381]
+layout_mode = 2
+text = "Modo de criação de Bloco"
+
+[node name="Modo Option" type="OptionButton" parent="Window Config/Container Config/Container Make" unique_id=569970736]
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "No Centro da Tela"
+popup/item_0/id = 0
+popup/item_1/text = "No clicar na posição"
+popup/item_1/id = 1
+
 [node name="More Program" type="AcceptDialog" parent="." unique_id=164421219]
 oversampling_override = 1.0
 title = "Sobre o Programa"
@@ -288,5 +307,6 @@ Graph = NodePath("../GraphEdit")
 [connection signal="pressed" from="Window Config/Container Config/Container Diretory/Check Diretorio" to="Window Config" method="_on_check_diretorio_pressed"]
 [connection signal="pressed" from="Window Config/Container Config/Container Ajust/Check Ajust" to="Window Config" method="_on_check_ajust_pressed"]
 [connection signal="item_selected" from="Window Config/Container Config/Container Mode/Type Window" to="GraphEdit" method="_on_type_window_item_selected"]
+[connection signal="item_selected" from="Window Config/Container Config/Container Make/Modo Option" to="GraphEdit" method="_on_modo_option_item_selected"]
 [connection signal="pressed" from="Container Tool/MenuButton Config" to="Window Config" method="_on_menu_button_config_pressed"]
 [connection signal="pressed" from="Container Tool/MenuButton More" to="GraphEdit" method="_on_menu_button_more_pressed"]
