@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://kid0ouwfay50" path="res://Scripts/graph_node_color.gd" id="1_mktjo"]
 
-[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("title_line", "size_fonts", "color")]
+[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("title_line", "size_fonts", "button_color", "line_hex", "line_r", "line_g", "line_b")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -10,8 +10,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -635.0
 offset_top = -360.0
-offset_right = -195.0
-offset_bottom = 30.0
+offset_right = -185.0
+offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
@@ -52,10 +52,23 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
+slot/4/left_enabled = false
+slot/4/left_type = 0
+slot/4/left_color = Color(1, 1, 1, 1)
+slot/4/left_icon = null
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color(1, 1, 1, 1)
+slot/4/right_icon = null
+slot/4/draw_stylebox = true
 script = ExtResource("1_mktjo")
 title_line = NodePath("Ttle")
 size_fonts = NodePath("Container/Container Size/Container Size Title/Font Size Title")
-color = NodePath("ColorPickerButton")
+button_color = NodePath("ColorPickerButton")
+line_hex = NodePath("Container Info Color/Info Hex/LineEdit Hex")
+line_r = NodePath("Container Info Color/Info RGB/Container R/LineEdit R")
+line_g = NodePath("Container Info Color/Info RGB/Container G/LineEdit G")
+line_b = NodePath("Container Info Color/Info RGB/Container B/LineEdit B")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
 [node name="Ttle" type="LineEdit" parent="." unique_id=577137378]
@@ -97,6 +110,70 @@ clip_contents = true
 custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
 
+[node name="Container Info Color" type="VBoxContainer" parent="." unique_id=391217995]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Info RGB" type="HBoxContainer" parent="Container Info Color" unique_id=204835613]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 100
+
+[node name="Container R" type="VBoxContainer" parent="Container Info Color/Info RGB" unique_id=568585795]
+layout_mode = 2
+
+[node name="R" type="Label" parent="Container Info Color/Info RGB/Container R" unique_id=41835506]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "R"
+
+[node name="LineEdit R" type="LineEdit" parent="Container Info Color/Info RGB/Container R" unique_id=28329913]
+layout_mode = 2
+placeholder_text = "Color R"
+editable = false
+
+[node name="Container G" type="VBoxContainer" parent="Container Info Color/Info RGB" unique_id=1159698988]
+layout_mode = 2
+
+[node name="G" type="Label" parent="Container Info Color/Info RGB/Container G" unique_id=509038637]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "G"
+
+[node name="LineEdit G" type="LineEdit" parent="Container Info Color/Info RGB/Container G" unique_id=314351605]
+layout_mode = 2
+placeholder_text = "Color G"
+editable = false
+
+[node name="Container B" type="VBoxContainer" parent="Container Info Color/Info RGB" unique_id=1853430930]
+layout_mode = 2
+
+[node name="B" type="Label" parent="Container Info Color/Info RGB/Container B" unique_id=1558661263]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "B"
+
+[node name="LineEdit B" type="LineEdit" parent="Container Info Color/Info RGB/Container B" unique_id=147000282]
+layout_mode = 2
+placeholder_text = "Color B"
+editable = false
+
+[node name="Info Hex" type="HBoxContainer" parent="Container Info Color" unique_id=1083625206]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="Label Hex" type="Label" parent="Container Info Color/Info Hex" unique_id=1811247184]
+layout_mode = 2
+text = "Hex"
+
+[node name="LineEdit Hex" type="LineEdit" parent="Container Info Color/Info Hex" unique_id=151746654]
+clip_contents = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+placeholder_text = "Color Hex"
+editable = false
+
 [node name="Container Slots" type="HBoxContainer" parent="." unique_id=1512169561]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -118,5 +195,6 @@ text = "-"
 [connection signal="node_selected" from="." to="." method="_on_node_selected"]
 [connection signal="value_changed" from="Container/Container Size/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
 [connection signal="pressed" from="Container/CheckBox" to="." method="_on_check_box_pressed"]
+[connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
