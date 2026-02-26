@@ -6,6 +6,7 @@ extends GraphEdit
 @export var poparquivo: MenuButton
 @export var popMake: MenuButton
 @export var label_diretorio: Label
+@export var text_more: RichTextLabel
 
 var current_project_path: String = ""
 var posit:= Vector2(0,0)
@@ -18,9 +19,16 @@ func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	disconnect_node(from_node, from_port, to_node, to_port)
 
 func _ready():
+	text_more.bbcode_enabled = true
 	label_diretorio.text = ""
 	file_dia.current_dir = desktop
 	file_load.current_dir = desktop
+	text_more.bbcode_enabled = true
+
+	var description := str(ProjectSettings.get_setting("application/config/description"))
+	var version := str(ProjectSettings.get_setting("application/config/version"))
+
+	text_more.text = description + " [b]Versão do Projeto: " + version + "[/b]"
 
 	connection_request.connect(_on_connection_request)
 	file_dia.file_selected.connect(_on_save_file_selected)
