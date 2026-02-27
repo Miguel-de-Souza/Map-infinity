@@ -156,6 +156,7 @@ func _disconnect_slot(slot_index: int) -> void:
 	for connection in graph.get_connection_list():
 		if connection.from_node == name and connection.from_port == slot_index:
 			graph.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+			
 		if connection.to_node == name and connection.to_port == slot_index:
 			graph.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
 

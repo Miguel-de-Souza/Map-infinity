@@ -20,7 +20,7 @@ offset_bottom = 35.0
 grow_horizontal = 2
 color = Color(0.11764706, 0.11764706, 0.11764706, 1)
 
-[node name="GraphEdit" type="GraphEdit" parent="." unique_id=251952592 node_paths=PackedStringArray("file_dia", "file_load", "more", "poparquivo", "popMake", "label_diretorio", "text_more")]
+[node name="GraphEdit" type="GraphEdit" parent="." unique_id=251952592 node_paths=PackedStringArray("file_dia", "file_load", "more", "poparquivo", "popMake", "label_diretorio", "text_more", "confirmation_version")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,6 +38,7 @@ poparquivo = NodePath("../Container Tool/MenuButton File")
 popMake = NodePath("../Container Tool/MenuButton Insert")
 label_diretorio = NodePath("../Label Diretory")
 text_more = NodePath("../More Program/Container More/Text More")
+confirmation_version = NodePath("../Confirmation Version")
 
 [node name="Window Config" type="Window" parent="." unique_id=1806257895 node_paths=PackedStringArray("Geapgh", "check_diretory", "check_ajust", "label_diretorio")]
 oversampling_override = 1.0
@@ -294,6 +295,17 @@ text = "Position"
 script = ExtResource("3_h2yge")
 Graph = NodePath("../GraphEdit")
 
+[node name="Confirmation Version" type="ConfirmationDialog" parent="." unique_id=1820917568]
+oversampling_override = 1.0
+title = "Versão Diferente"
+initial_position = 2
+size = Vector2i(744, 132)
+ok_button_text = "Abrir mesmo assim"
+dialog_text = "O arquivo foi feito em uma versão diferente do programa, tentar abri-lo pode resultar em erro
+Tem certeza que quer abrir?
+"
+cancel_button_text = "Não"
+
 [connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
 [connection signal="disconnection_request" from="GraphEdit" to="GraphEdit" method="_on_disconnection_request"]
 [connection signal="close_requested" from="Window Config" to="Window Config" method="_on_close_requested"]
@@ -307,3 +319,4 @@ Graph = NodePath("../GraphEdit")
 [connection signal="item_selected" from="Window Config/Container Config/Container Make/Modo Option" to="GraphEdit" method="_on_modo_option_item_selected"]
 [connection signal="pressed" from="Container Tool/MenuButton Config" to="Window Config" method="_on_menu_button_config_pressed"]
 [connection signal="pressed" from="Container Tool/MenuButton More" to="GraphEdit" method="_on_menu_button_more_pressed"]
+[connection signal="confirmed" from="Confirmation Version" to="GraphEdit" method="_on_confirmation_version_confirmed"]

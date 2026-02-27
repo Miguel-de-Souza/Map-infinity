@@ -7,6 +7,7 @@ extends GraphEdit
 @export var popMake: MenuButton
 @export var label_diretorio: Label
 @export var text_more: RichTextLabel
+@export var confirmation_version: ConfirmationDialog
 
 var current_project_path: String = ""
 var posit:= Vector2(0,0)
@@ -149,6 +150,7 @@ func _on_connection_request(from_node, from_port, to_node, to_port):
 
 func save_project_to_path(path: String):
 	var data := {
+		"version": version,
 		"nodes": [],
 		"connections": []
 	}
@@ -222,6 +224,8 @@ func Novo():
 		if child is GraphNode:
 			child.queue_free()
 
+
+var unlock_load:= false
 func load_project_from_path(path: String):
 	if not FileAccess.file_exists(path):
 		print("Arquivo não encontrado.")
@@ -230,7 +234,7 @@ func load_project_from_path(path: String):
 	Novo()
 
 	await get_tree().process_frame
-
+	
 	var file = FileAccess.open(path, FileAccess.READ)
 	var content = file.get_as_text()
 	file.close()
@@ -239,38 +243,45 @@ func load_project_from_path(path: String):
 	if typeof(result) != TYPE_DICTIONARY:
 		push_error("Erro ao ler JSON")
 		return
-
+		
 	var data: Dictionary = result
+	
+	if (data["version"] == version) or unlock_load:
+		print("certo")
+		for node_data in data["nodes"]:
+			var scene = load(node_data["scene"])
+			var node = scene.instantiate()
+			add_child(node)
 
-	for node_data in data["nodes"]:
-		var scene = load(node_data["scene"])
-		var node = scene.instantiate()
-		add_child(node)
+			node.name = node_data["name"]
+			node.position_offset = Vector2(node_data["position"][0], node_data["position"][1])
+			node.load_save_data(node_data["data"])
 
-		node.name = node_data["name"]
-		node.position_offset = Vector2(node_data["position"][0], node_data["position"][1])
-		node.load_save_data(node_data["data"])
-
-	await get_tree().process_frame
+		await get_tree().process_frame
 
 
-	for conn in data["connections"]:
-		if has_node(NodePath(conn["from"])) and has_node(NodePath(conn["to"])):
-			connect_node(conn["from"], conn["from_port"], conn["to"], conn["to_port"])
-		else:
-			print("Conexão ignorada:", conn)
+		for conn in data["connections"]:
+			if has_node(NodePath(conn["from"])) and has_node(NodePath(conn["to"])):
+				connect_node(conn["from"], conn["from_port"], conn["to"], conn["to_port"])
+			else:
+				print("Conexão ignorada:", conn)
 
-	current_project_path = path
-	print("Projeto carregado de: ", path)
-	label_diretorio.text = current_project_path
+		current_project_path = path
+		print("Projeto carregado de: ", path)
+		label_diretorio.text = current_project_path
+	
+	if data["version"] != version and not unlock_load:
+		confirmation_version.popup()
+		DisplayServer.beep()
 	
 	
 func _on_save_file_selected(path: String) -> void:
 	save_project_to_path(path)
 
-
+var caminho : String 
 func _on_load_file_selected(path: String) -> void:
 	load_project_from_path(path)
+	caminho = path
 
 
 func _on_item_selected(id: int) -> void:
@@ -355,3 +366,8 @@ func clear_selection():
 	for child in get_children():
 		if child is GraphNode:
 			child.selected = false
+
+
+func _on_confirmation_version_confirmed() -> void:
+	unlock_load = true
+	load_project_from_path(caminho)
