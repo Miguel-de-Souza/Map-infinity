@@ -120,18 +120,21 @@ func load_save_data(data: Dictionary) -> void:
 
 		slots_add += 1
 
+func _gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			
+			var shift_pressed = Input.is_key_pressed(KEY_SHIFT)
+			if not shift_pressed:
+				get_parent().clear_selection()
+			
+			selected = true
 
-var ative := false
 func _process(_delta: float) -> void:
-	if Input.is_action_pressed("ui_text_delete") and ative:
+	if Input.is_action_pressed("ui_text_delete") and selected:
 		if not title_line.has_focus() and not note.has_focus():
 			queue_free()
-
-func _on_node_selected() -> void:
-	ative = true
-	
-func _on_node_deselected() -> void:
-	ative = false
+			
 
 var slots_add := 2
 func _on_button_add_pressed() -> void:

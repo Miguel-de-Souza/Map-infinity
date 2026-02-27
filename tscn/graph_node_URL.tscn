@@ -131,8 +131,6 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "-"
 
-[connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
-[connection signal="node_selected" from="." to="." method="_on_node_selected"]
 [connection signal="value_changed" from="Container/Container Size/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
 [connection signal="pressed" from="Container/CheckBox" to="." method="_on_check_box_pressed"]
 [connection signal="color_changed" from="Container color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]

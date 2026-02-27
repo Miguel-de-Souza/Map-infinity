@@ -203,8 +203,6 @@ func criar_bloco_notas(id : int = 1) -> void:
 		
 	else:      
 		nodesGraph.position_offset = scroll_offset + (graph_size - node_size) / 2
-		print('normal')
-	
 
 
 func Novo():
@@ -343,3 +341,8 @@ func _on_modo_option_item_selected(index: int) -> void:
 		
 	elif index == 1:
 		active_mode_node = true
+
+func clear_selection():
+	for child in get_children():
+		if child is GraphNode:
+			child.selected = false
