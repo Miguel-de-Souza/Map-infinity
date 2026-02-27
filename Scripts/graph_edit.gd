@@ -117,6 +117,17 @@ func _input(_event):
 			var copia = node.duplicate()
 			add_child(copia)
 
+			var original_style = node.get_theme_stylebox("panel")
+			
+			if original_style:
+				copia.add_theme_stylebox_override("panel", original_style.duplicate())
+				
+				
+			var original_style_select = node.get_theme_stylebox("panel_selected")
+			
+			if original_style_select:
+				copia.add_theme_stylebox_override("panel_selected", original_style_select.duplicate())
+				
 			copia.position_offset = node.position_offset + Vector2(160,160)
 			copia.selected = false
 
@@ -132,7 +143,6 @@ func _input(_event):
 					mapa[conn.to_node],
 					conn.to_port
 				)
-
 
 func _on_connection_request(from_node, from_port, to_node, to_port):
 	connect_node(from_node, from_port, to_node, to_port)
