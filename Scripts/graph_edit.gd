@@ -14,7 +14,9 @@ var desktop := OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 var active_mode_node:= false
 var selected_mode_make:= false
 var numb := 0
-
+var description := str(ProjectSettings.get_setting("application/config/description"))
+var version := str(ProjectSettings.get_setting("application/config/version"))
+	
 func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	disconnect_node(from_node, from_port, to_node, to_port)
 
@@ -24,9 +26,6 @@ func _ready():
 	file_dia.current_dir = desktop
 	file_load.current_dir = desktop
 	text_more.bbcode_enabled = true
-
-	var description := str(ProjectSettings.get_setting("application/config/description"))
-	var version := str(ProjectSettings.get_setting("application/config/version"))
 
 	text_more.text = description + " [b]Versão do Projeto: " + version + "[/b]"
 

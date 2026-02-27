@@ -11,6 +11,9 @@ var new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
 
 func _ready() -> void:
 
+	new_stylebox = get_theme_stylebox("panel").duplicate()
+	new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
+
 	add_theme_stylebox_override("panel", new_stylebox)
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 	
@@ -213,9 +216,11 @@ func _on_check_ajust_pressed() -> void:
 
 func _on_color_button_back_color_changed(color: Color) -> void:
 
-	new_stylebox.bg_color = color
-	new_stylebox_focus.bg_color = color.darkened(0.5) #darkened escurece a cor de 0 a 1 (0.5 -> 50%)
+	var sb = get_theme_stylebox("panel")
+	var sb_focus = get_theme_stylebox("panel_selected")
 
+	sb.bg_color = color
+	sb_focus.bg_color = color.darkened(0.5)
 
 func _on_reset_color_pressed() -> void:
 	remove_theme_stylebox_override("panel")
