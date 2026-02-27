@@ -11,6 +11,8 @@ var new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
 
 func _ready() -> void:
 
+	get_parent().disconnection_request.connect(_on_disconnection_request)
+
 	new_stylebox = get_theme_stylebox("panel").duplicate()
 	new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
 
@@ -149,27 +151,49 @@ func _on_button_add_pressed() -> void:
 	set_slot(slots_add, true, 0, Color(1.0, 1.0, 1.0, 1.0), true, 0, Color(1.0, 1.0, 1.0, 1.0))
 	slots_add += 1
 
+func _disconnect_slot(slot_index: int) -> void:
+	var graph = get_parent()
+	for connection in graph.get_connection_list():
+		if connection.from_node == name and connection.from_port == slot_index:
+			graph.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+		if connection.to_node == name and connection.to_port == slot_index:
+			graph.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
 
 func _on_button_sub_pressed() -> void:
+	var graph := get_parent()
+
+
+	for connection in graph.get_connection_list():
+		if connection.from_node == name and connection.from_port == slots_add - 1:
+			graph.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+
+		if connection.to_node == name and connection.to_port == slots_add - 1:
+			graph.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+
+
 	var rects := []
-	
 	for child in get_children():
 		if child is ColorRect:
 			rects.append(child)
-	
+
 	if rects.is_empty():
 		return
-	
-	var last_rect = rects[-1]
-	last_rect.queue_free()
+
+	rects[-1].queue_free()
 	slots_add -= 1
 	size = Vector2(1,1)
 	
+	_disconnect_slot(slots_add - 1)
 	set_slot(slots_add, false, 0, Color.WHITE, false, 0, Color.WHITE)
 
 
 var type_list:= "ponto"
 var num_count := 1
+
+func _on_disconnection_request(from_node, from_port, to_node, to_port):
+
+	get_parent().disconnect_node(from_node, from_port, to_node, to_port)
+	print(get_parent())
 
 func _input(event):
 	if type_list == "ponto":
