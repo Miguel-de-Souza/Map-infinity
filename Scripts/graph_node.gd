@@ -127,9 +127,10 @@ func load_save_data(data: Dictionary) -> void:
 
 func _gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT or event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT and not selected:
 			
 			var shift_pressed = Input.is_key_pressed(KEY_SHIFT)
+			
 			if not shift_pressed:
 				get_parent().clear_selection()
 			
