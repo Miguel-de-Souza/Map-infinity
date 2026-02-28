@@ -55,7 +55,7 @@ func get_save_data() -> Dictionary:
 	"font_size": size_fonts.value,
 	"title_font_size": font_size.value,
 	"pressed_ajust": size_content.button_pressed,
-	"new_stylebox_color": [ #Como é um Resource (arquivo StyleBox, então tem que passar cada propriedade, e não bg_color)
+	"new_stylebox_color": [
 		new_stylebox.bg_color.r,
 		new_stylebox.bg_color.g,
 		new_stylebox.bg_color.b,
@@ -127,7 +127,7 @@ func load_save_data(data: Dictionary) -> void:
 
 func _gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT or event.pressed:
 			
 			var shift_pressed = Input.is_key_pressed(KEY_SHIFT)
 			if not shift_pressed:

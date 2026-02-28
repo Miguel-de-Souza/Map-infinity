@@ -247,7 +247,6 @@ func load_project_from_path(path: String):
 	var data: Dictionary = result
 	
 	if (data["version"] == version) or unlock_load:
-		print("certo")
 		for node_data in data["nodes"]:
 			var scene = load(node_data["scene"])
 			var node = scene.instantiate()
