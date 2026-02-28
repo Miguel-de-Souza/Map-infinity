@@ -69,6 +69,8 @@ func _process(_delta: float) -> void:
 				
 		else:
 			save_project_to_path(current_project_path)
+			for conn in get_connection_list():
+				print(conn)
 
 	elif Input.is_action_just_pressed("Add Bloco Color"):
 		if active_mode_node:
@@ -165,12 +167,17 @@ func save_project_to_path(path: String):
 			})
 
 	for conn in get_connection_list():
-		data["connections"].append({
-			"from": conn.from_node,
-			"from_port": conn.from_port,
-			"to": conn.to_node,
-			"to_port": conn.to_port
-		})
+		
+		var from_node = get_graph_node_by_name(conn.from_node)
+		var to_node = get_graph_node_by_name(conn.to_node)
+
+		if from_node and to_node:
+			data["connections"].append({
+				"from": from_node.name,
+				"from_port": int(conn.from_port),
+				"to": to_node.name,
+				"to_port": int(conn.to_port)
+			})
 
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(data, "\t"))
@@ -224,6 +231,11 @@ func Novo():
 		if child is GraphNode:
 			child.queue_free()
 
+func get_graph_node_by_name(namef: String) -> GraphNode:
+	for child in get_children():
+		if child is GraphNode and child.name == namef:
+			return child
+	return null
 
 var unlock_load:= false
 func load_project_from_path(path: String):
@@ -257,11 +269,20 @@ func load_project_from_path(path: String):
 			node.load_save_data(node_data["data"])
 
 		await get_tree().process_frame
-
+		await get_tree().process_frame
 
 		for conn in data["connections"]:
-			if has_node(NodePath(conn["from"])) and has_node(NodePath(conn["to"])):
-				connect_node(conn["from"], conn["from_port"], conn["to"], conn["to_port"])
+
+			var from_node = get_graph_node_by_name(conn["from"])
+			var to_node = get_graph_node_by_name(conn["to"])
+
+			if from_node and to_node:
+				connect_node(
+					from_node.name,
+					conn["from_port"],
+					to_node.name,
+					conn["to_port"]
+				)
 			else:
 				print("Conexão ignorada:", conn)
 
