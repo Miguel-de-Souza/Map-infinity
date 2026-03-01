@@ -6,8 +6,6 @@ extends Window
 @export var label_diretorio: Label
 @export var show_debug: CheckBox
 @export var debug_label: Label
-
-#novos
 @export var option_grid: OptionButton
 @export var option_scroll: OptionButton
 @export var option_camp: SpinBox
@@ -19,7 +17,6 @@ extends Window
 
 func _ready():
 	load_settings()
-	print("corintias")
 
 func save_settings():
 	var config = ConfigFile.new()
@@ -72,6 +69,12 @@ func load_settings():
 	option_title.value = config.get_value("ui", "option_title", 16)
 	min_op.value = config.get_value("ui", "min_op", 0.1)
 	max_op.value = config.get_value("ui", "max_op", 2.0)
+	
+	if show_debug.button_pressed:
+		debug_label.visible = true
+		
+	else:
+		debug_label.visible = false
 	
 	_on_type_window_item_selected(type_window.selected)
 

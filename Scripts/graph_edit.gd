@@ -10,7 +10,7 @@ extends GraphEdit
 @export var confirmation_version: ConfirmationDialog
 
 var current_project_path: String = ""
-var posit:= Vector2(0,0)
+var posit:= Vector2(160,160)
 var desktop := OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 var active_mode_node:= false
 var selected_mode_make:= false
@@ -130,7 +130,7 @@ func _input(_event):
 			if original_style_select:
 				copia.add_theme_stylebox_override("panel_selected", original_style_select.duplicate())
 				
-			copia.position_offset = node.position_offset + Vector2(160,160)
+			copia.position_offset = node.position_offset + posit
 			copia.selected = false
 
 			mapa[node.name] = copia.name
