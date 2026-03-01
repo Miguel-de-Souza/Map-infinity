@@ -18,8 +18,6 @@ run/main_scene="uid://bu71l16qoa2dw"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/show_image=false
 config/icon="uid://c6bwf5s5cj58k"
-config/macos_native_icon="uid://c6bwf5s5cj58k"
-config/windows_native_icon="uid://c6bwf5s5cj58k"
 
 [autoload]
 
