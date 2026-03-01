@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dxkn703ac8rh0"]
+
+[ext_resource type="Script" uid="uid://bk3ukc4fjgvne" path="res://button_reset.gd" id="1_5uj8h"]
+
+[node name="Reset" type="Button" unique_id=1733640759]
+clip_contents = true
+custom_minimum_size = Vector2(30, 0)
+offset_right = 8.0
+offset_bottom = 8.0
+text = "↻"
+script = ExtResource("1_5uj8h")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -359,21 +359,6 @@ func _on_menu_button_more_pressed() -> void:
 	more.popup()
 	DisplayServer.beep()
 
-
-func _on_type_window_item_selected(index: int) -> void:
-		
-	match index:
-		0:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			
-		1:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-
-
-func _on_option_size_title_value_changed(value: float) -> void:
-	Global.font_size_title_default = int(value)
-
-
 func _on_modo_option_item_selected(index: int) -> void:
 	if index == 0:
 		active_mode_node = false
