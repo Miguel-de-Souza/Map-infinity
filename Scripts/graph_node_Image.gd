@@ -19,8 +19,7 @@ func _ready() -> void:
 
 func _on_check_box_pressed() -> void:
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 	
 	queue_free()
 
@@ -126,8 +125,7 @@ func _gui_input(event):
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_text_delete") and selected:
-		if not Global.changed:
-			Global.changed = true
+		Global.alteraction()
 		
 		queue_free()
 
@@ -141,8 +139,7 @@ func _on_button_add_pressed() -> void:
 	set_slot(slots_add, true, 0, Color(1.0, 1.0, 1.0, 1.0), true, 0, Color(1.0, 1.0, 1.0, 1.0))
 	slots_add += 1
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 
 func _on_texture_rect_pressed() -> void:
@@ -157,8 +154,7 @@ func _on_open_image_file_selected(path: String) -> void:
 	var imagem_textura = ImageTexture.create_from_image(imagem)
 	texture_node.texture_normal = imagem_textura
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 
 func _on_check_size_pressed() -> void:
@@ -171,8 +167,7 @@ func _on_check_size_pressed() -> void:
 		texture_node.stretch_mode = TextureButton.STRETCH_SCALE
 		size = Vector2(384, 225) 
 		
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 		
 
 
@@ -193,8 +188,7 @@ func _on_button_sub_pressed() -> void:
 	
 	set_slot(slots_add, false, 0, Color.WHITE, false, 0, Color.WHITE)
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 
 func _on_color_button_back_color_changed(color: Color) -> void:
@@ -205,8 +199,7 @@ func _on_color_button_back_color_changed(color: Color) -> void:
 	sb.bg_color = color
 	sb_focus.bg_color = color.darkened(0.5)
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 func _on_reset_color_pressed() -> void:
 	remove_theme_stylebox_override("panel")
@@ -218,5 +211,4 @@ func _on_reset_color_pressed() -> void:
 	add_theme_stylebox_override("panel", new_stylebox)
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()

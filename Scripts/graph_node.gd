@@ -31,20 +31,17 @@ func _ready() -> void:
 func _on_font_size_value_changed(value: float) -> void:
 	note.add_theme_font_size_override("font_size", int(value))
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 	
 func _on_font_size_title_value_changed(value: float) -> void:
 	title_line.add_theme_font_size_override("font_size", int(value))
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 	
 func _on_check_box_pressed() -> void:
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 	
 	queue_free()
 
@@ -150,8 +147,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_text_delete") and selected:
 		if not title_line.has_focus() and not note.has_focus():
 			
-			if not Global.changed:
-				Global.changed = true
+			Global.alteraction()
 			
 			queue_free()
 			
@@ -166,8 +162,7 @@ func _on_button_add_pressed() -> void:
 	set_slot(slots_add, true, 0, Color(1.0, 1.0, 1.0, 1.0), true, 0, Color(1.0, 1.0, 1.0, 1.0))
 	slots_add += 1
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 func _disconnect_slot(slot_index: int) -> void:
 	var graph = get_parent()
@@ -178,8 +173,7 @@ func _disconnect_slot(slot_index: int) -> void:
 		if connection.to_node == name and connection.to_port == slot_index:
 			graph.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
 			
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 func _on_button_sub_pressed() -> void:
 	var graph := get_parent()
@@ -207,8 +201,7 @@ func _on_button_sub_pressed() -> void:
 	_disconnect_slot(slots_add - 1)
 	set_slot(slots_add, false, 0, Color.WHITE, false, 0, Color.WHITE)
 
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 var type_list:= "ponto"
 var num_count := 1
@@ -216,8 +209,7 @@ var num_count := 1
 func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	get_parent().disconnect_node(from_node, from_port, to_node, to_port)
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 func _input(event):
 	if type_list == "ponto":
@@ -238,9 +230,6 @@ func _input(event):
 					await get_tree().process_frame
 					num_count += 1
 					note.insert_text_at_caret(str(num_count) + ". ")
-					
-	if not Global.changed:
-		Global.changed = true
 
 
 func _on_button_lista_pressed() -> void:
@@ -264,8 +253,7 @@ func _on_check_ajust_pressed() -> void:
 		note.scroll_fit_content_height = true
 		note.scroll_fit_content_width = true
 		
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 
 func _on_color_button_back_color_changed(color: Color) -> void:
@@ -276,8 +264,7 @@ func _on_color_button_back_color_changed(color: Color) -> void:
 	sb.bg_color = color
 	sb_focus.bg_color = color.darkened(0.5)
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 func _on_reset_color_pressed() -> void:
 	remove_theme_stylebox_override("panel")
@@ -289,9 +276,11 @@ func _on_reset_color_pressed() -> void:
 	add_theme_stylebox_override("panel", new_stylebox)
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 func _on_notepad_text_changed() -> void:
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
+
+
+func _on_ttle_text_changed(new_text: String) -> void:
+	Global.alteraction()

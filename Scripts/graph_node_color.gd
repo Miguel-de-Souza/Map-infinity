@@ -20,13 +20,11 @@ func _ready() -> void:
 func _on_font_size_title_value_changed(value: float) -> void:
 	title_line.add_theme_font_size_override("font_size", int(value))
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 	
 func _on_check_box_pressed() -> void:
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 	
 	queue_free()
 
@@ -108,8 +106,7 @@ func _gui_input(event):
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_text_delete") and selected:
 		
-		if not Global.changed:
-			Global.changed = true
+		Global.alteraction()
 		
 		queue_free()
 
@@ -123,8 +120,7 @@ func _on_button_add_pressed() -> void:
 	set_slot(slots_add, true, 0, Color(1.0, 1.0, 1.0, 1.0), true, 0, Color(1.0, 1.0, 1.0, 1.0))
 	slots_add += 1
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 
 func _on_button_sub_pressed() -> void:
@@ -144,8 +140,7 @@ func _on_button_sub_pressed() -> void:
 	
 	set_slot(slots_add, false, 0, Color.WHITE, false, 0, Color.WHITE)
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
 
 
 func _on_color_picker_button_color_changed(color: Color) -> void:
@@ -154,5 +149,4 @@ func _on_color_picker_button_color_changed(color: Color) -> void:
 	line_b.text = str(int(button_color.color.b * 255))
 	line_hex.text = str(button_color.color.to_html(false))
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()

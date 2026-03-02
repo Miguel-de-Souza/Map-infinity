@@ -21,8 +21,8 @@ var version := str(ProjectSettings.get_setting("application/config/version"))
 func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	disconnect_node(from_node, from_port, to_node, to_port)
 	
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
+
 
 func _ready():
 	text_more.bbcode_enabled = true
@@ -166,15 +166,9 @@ func _input(_event):
 func _on_connection_request(from_node, from_port, to_node, to_port):
 	connect_node(from_node, from_port, to_node, to_port)
 	
-	if not Global.changed:
-		Global.changed = true
-
+	Global.alteraction()
 
 func save_project_to_path(path: String):
-	
-	if Global.changed:
-		Global.changed = false
-		Global.stop_unsave = false
 	
 	var data := {
 		"version": version,
@@ -214,6 +208,8 @@ func save_project_to_path(path: String):
 	label_diretorio.text = current_project_path + " (Salvo) "
 	await get_tree().create_timer(1.5).timeout
 	label_diretorio.text = current_project_path
+	
+	Global.sem_alteraction()
 
 
 func criar_bloco_notas(id : int = 1) -> void:
@@ -247,8 +243,8 @@ func criar_bloco_notas(id : int = 1) -> void:
 	else:      
 		nodesGraph.position_offset = scroll_offset + (graph_size - node_size) / 2
 		
-	if not Global.changed:
-		Global.changed = true
+	Global.alteraction()
+		
 
 
 func Novo():
@@ -324,10 +320,7 @@ func load_project_from_path(path: String):
 		confirmation_version.popup()
 		DisplayServer.beep()
 		
-	if Global.changed:
-		Global.changed = false
-		Global.stop_unsave = false
-	
+	Global.sem_alteraction()
 	
 	
 func _on_save_file_selected(path: String) -> void:
