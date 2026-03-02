@@ -69,7 +69,7 @@ func load_settings():
 	option_title.value = config.get_value("ui", "option_title", 16)
 	min_op.value = config.get_value("ui", "min_op", 0.1)
 	max_op.value = config.get_value("ui", "max_op", 2.0)
-	
+
 	if show_debug.button_pressed:
 		debug_label.visible = true
 		
@@ -151,9 +151,10 @@ func _on_option_size_title_value_changed(value: float) -> void:
 
 func _on_type_window_item_selected(index: int) -> void:
 		
-	match index:
-		0:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	if index == 0:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			
-		1:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		
+	save_settings()

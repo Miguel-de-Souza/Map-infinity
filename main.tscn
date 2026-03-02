@@ -48,7 +48,6 @@ oversampling_override = 1.0
 title = "Configurações"
 initial_position = 1
 size = Vector2i(720, 390)
-visible = false
 unresizable = true
 script = ExtResource("2_0xm2m")
 Geapgh = NodePath("../GraphEdit")
@@ -293,14 +292,14 @@ valor = 3.0
 oversampling_override = 1.0
 title = "Sobre o Programa"
 initial_position = 1
-size = Vector2i(805, 228)
+size = Vector2i(820, 228)
 unresizable = true
 force_native = true
 
 [node name="Container More" type="VBoxContainer" parent="More Program" unique_id=967553643]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 797.0
+offset_right = 812.0
 offset_bottom = 179.0
 theme_override_constants/separation = 10
 

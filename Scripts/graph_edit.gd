@@ -20,6 +20,9 @@ var version := str(ProjectSettings.get_setting("application/config/version"))
 	
 func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	disconnect_node(from_node, from_port, to_node, to_port)
+	
+	if not Global.changed:
+		Global.changed = true
 
 func _ready():
 	text_more.bbcode_enabled = true
@@ -28,7 +31,11 @@ func _ready():
 	file_load.current_dir = desktop
 	text_more.bbcode_enabled = true
 
-	text_more.text = description + " [b]Versão do Projeto: " + version + "[/b]"
+	text_more.text =  (
+		ProjectSettings.get_setting("application/config/name") + 
+		" " + description + " [b]Versão do Projeto: " + 
+		version + "[/b]"
+	)
 
 	connection_request.connect(_on_connection_request)
 	file_dia.file_selected.connect(_on_save_file_selected)
@@ -41,7 +48,17 @@ func _ready():
 	var pop_inserir = popMake.get_popup()
 	pop_inserir.id_pressed.connect(_on_item_selected_insert)
 
+
+var icon_unsave:= ""
 func _process(_delta: float) -> void:
+	
+	if Global.changed and not Global.stop_unsave:
+		icon_unsave = " *"
+		label_diretorio. text += icon_unsave
+		Global.stop_unsave = true
+
+	if not Global.stop_unsave:
+		icon_unsave = ""
 	
 	if not selected_mode_make:
 		mouse_default_cursor_shape = Control.CURSOR_ARROW
@@ -148,9 +165,17 @@ func _input(_event):
 
 func _on_connection_request(from_node, from_port, to_node, to_port):
 	connect_node(from_node, from_port, to_node, to_port)
+	
+	if not Global.changed:
+		Global.changed = true
 
 
 func save_project_to_path(path: String):
+	
+	if Global.changed:
+		Global.changed = false
+		Global.stop_unsave = false
+	
 	var data := {
 		"version": version,
 		"nodes": [],
@@ -221,6 +246,9 @@ func criar_bloco_notas(id : int = 1) -> void:
 		
 	else:      
 		nodesGraph.position_offset = scroll_offset + (graph_size - node_size) / 2
+		
+	if not Global.changed:
+		Global.changed = true
 
 
 func Novo():
@@ -239,6 +267,8 @@ func get_graph_node_by_name(namef: String) -> GraphNode:
 
 var unlock_load:= false
 func load_project_from_path(path: String):
+	
+	
 	if not FileAccess.file_exists(path):
 		print("Arquivo não encontrado.")
 		return
@@ -293,6 +323,11 @@ func load_project_from_path(path: String):
 	if data["version"] != version and not unlock_load:
 		confirmation_version.popup()
 		DisplayServer.beep()
+		
+	if Global.changed:
+		Global.changed = false
+		Global.stop_unsave = false
+	
 	
 	
 func _on_save_file_selected(path: String) -> void:

@@ -51,8 +51,8 @@ slot/3/draw_stylebox = true
 script = ExtResource("1_2yokc")
 note = NodePath("Notepad")
 title_line = NodePath("Ttle")
-size_fonts = NodePath("Container Tool/Container Left/Container Size/Container Size Block/Font Size")
-font_size = NodePath("Container Tool/Container Left/Container Size/Container Size Title/Font Size Title")
+size_fonts = NodePath("Container Tool/Container Left/Container Size/Container Size Camps/Container Size Block/Font Size")
+font_size = NodePath("Container Tool/Container Left/Container Size/Container Size Camps/Container Size Title/Font Size Title")
 size_content = NodePath("Container Tool/Container Left/Container Down/Container Content/Check Ajust")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
@@ -75,31 +75,35 @@ theme_override_constants/separation = 10
 
 [node name="Container Size" type="HBoxContainer" parent="Container Tool/Container Left" unique_id=1860460117]
 layout_mode = 2
-theme_override_constants/separation = 184
+theme_override_constants/separation = 247
 
-[node name="Container Size Title" type="HBoxContainer" parent="Container Tool/Container Left/Container Size" unique_id=2122979325]
+[node name="Container Size Camps" type="HBoxContainer" parent="Container Tool/Container Left/Container Size" unique_id=2017651290]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Container Size Title" type="HBoxContainer" parent="Container Tool/Container Left/Container Size/Container Size Camps" unique_id=2122979325]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="Container Tool/Container Left/Container Size/Container Size Title" unique_id=854777974]
+[node name="Title" type="Label" parent="Container Tool/Container Left/Container Size/Container Size Camps/Container Size Title" unique_id=854777974]
 layout_mode = 2
 text = "Título"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Font Size Title" type="SpinBox" parent="Container Tool/Container Left/Container Size/Container Size Title" unique_id=397914048]
+[node name="Font Size Title" type="SpinBox" parent="Container Tool/Container Left/Container Size/Container Size Camps/Container Size Title" unique_id=397914048]
 layout_mode = 2
 min_value = 1.0
 max_value = 80.0
 value = 16.0
 
-[node name="Container Size Block" type="HBoxContainer" parent="Container Tool/Container Left/Container Size" unique_id=40404927]
+[node name="Container Size Block" type="HBoxContainer" parent="Container Tool/Container Left/Container Size/Container Size Camps" unique_id=40404927]
 layout_mode = 2
 
-[node name="Block" type="Label" parent="Container Tool/Container Left/Container Size/Container Size Block" unique_id=1671287076]
+[node name="Block" type="Label" parent="Container Tool/Container Left/Container Size/Container Size Camps/Container Size Block" unique_id=1671287076]
 layout_mode = 2
 text = "Campo"
 
-[node name="Font Size" type="SpinBox" parent="Container Tool/Container Left/Container Size/Container Size Block" unique_id=331735634]
+[node name="Font Size" type="SpinBox" parent="Container Tool/Container Left/Container Size/Container Size Camps/Container Size Block" unique_id=331735634]
 layout_mode = 2
 min_value = 1.0
 max_value = 120.0
@@ -186,13 +190,14 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "-"
 
-[connection signal="value_changed" from="Container Tool/Container Left/Container Size/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
-[connection signal="value_changed" from="Container Tool/Container Left/Container Size/Container Size Block/Font Size" to="." method="_on_font_size_value_changed"]
+[connection signal="value_changed" from="Container Tool/Container Left/Container Size/Container Size Camps/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
+[connection signal="value_changed" from="Container Tool/Container Left/Container Size/Container Size Camps/Container Size Block/Font Size" to="." method="_on_font_size_value_changed"]
 [connection signal="pressed" from="Container Tool/Container Left/Container Size/CheckBox Exit" to="." method="_on_check_box_pressed"]
 [connection signal="pressed" from="Container Tool/Container Left/Container Down/Container List/Button List" to="." method="_on_button_lista_pressed"]
 [connection signal="pressed" from="Container Tool/Container Left/Container Down/Container List/Button List Num" to="." method="_on_button_list_num_pressed"]
 [connection signal="color_changed" from="Container Tool/Container Left/Container Down/Container color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
 [connection signal="pressed" from="Container Tool/Container Left/Container Down/Container color/Reset Color" to="." method="_on_reset_color_pressed"]
 [connection signal="pressed" from="Container Tool/Container Left/Container Down/Container Content/Check Ajust" to="." method="_on_check_ajust_pressed"]
+[connection signal="text_changed" from="Notepad" to="." method="_on_notepad_text_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
