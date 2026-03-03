@@ -38,13 +38,6 @@ func _on_font_size_title_value_changed(value: float) -> void:
 	title_line.add_theme_font_size_override("font_size", int(value))
 	
 	Global.alteraction()
-	
-func _on_check_box_pressed() -> void:
-	
-	Global.alteraction()
-	
-	queue_free()
-
 
 func get_save_data() -> Dictionary:
 	var slots := []
@@ -266,7 +259,15 @@ func _on_color_button_back_color_changed(color: Color) -> void:
 	
 	Global.alteraction()
 
-func _on_reset_color_pressed() -> void:
+func _on_notepad_text_changed() -> void:
+	Global.alteraction()
+
+
+func _on_ttle_text_changed(new_text: String) -> void:
+	Global.alteraction()
+
+
+func _on_reset_pressed() -> void:
 	remove_theme_stylebox_override("panel")
 	remove_theme_stylebox_override("panel_selected")
 	
@@ -276,11 +277,4 @@ func _on_reset_color_pressed() -> void:
 	add_theme_stylebox_override("panel", new_stylebox)
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 
-	Global.alteraction()
-
-func _on_notepad_text_changed() -> void:
-	Global.alteraction()
-
-
-func _on_ttle_text_changed(new_text: String) -> void:
 	Global.alteraction()

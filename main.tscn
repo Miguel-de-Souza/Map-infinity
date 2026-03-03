@@ -123,25 +123,6 @@ popup/item_0/id = 0
 popup/item_1/text = "Pans"
 popup/item_1/id = 1
 
-[node name="Container Size" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config" unique_id=61843572]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Type Size Camp" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size" unique_id=559483811]
-layout_mode = 2
-text = "Tamanho Padrão dos Campos"
-
-[node name="Option Size Camp" type="SpinBox" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size" unique_id=1830448274]
-layout_mode = 2
-min_value = 1.0
-max_value = 120.0
-value = 16.0
-
-[node name="Reset" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size" unique_id=1733640759 node_paths=PackedStringArray("node_pai") instance=ExtResource("3_1bvp3")]
-layout_mode = 2
-node_pai = NodePath("../Option Size Camp")
-valor = 16.0
-
 [node name="Container Size Title" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config" unique_id=1775673372]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -159,6 +140,25 @@ value = 16.0
 [node name="Reset" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size Title" unique_id=1604518478 node_paths=PackedStringArray("node_pai") instance=ExtResource("3_1bvp3")]
 layout_mode = 2
 node_pai = NodePath("../Option Size Title")
+valor = 16.0
+
+[node name="Container Size" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config" unique_id=61843572]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Type Size Camp" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size" unique_id=559483811]
+layout_mode = 2
+text = "Tamanho Padrão dos Campos"
+
+[node name="Option Size Camp" type="SpinBox" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size" unique_id=1830448274]
+layout_mode = 2
+min_value = 1.0
+max_value = 120.0
+value = 16.0
+
+[node name="Reset" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size" unique_id=1733640759 node_paths=PackedStringArray("node_pai") instance=ExtResource("3_1bvp3")]
+layout_mode = 2
+node_pai = NodePath("../Option Size Camp")
 valor = 16.0
 
 [node name="Container Diretory" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config" unique_id=433423033]
@@ -260,15 +260,14 @@ text = "Mínimo "
 
 [node name="Spin Min" type="SpinBox" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Min" unique_id=971780079]
 layout_mode = 2
-min_value = 0.05
-max_value = 1.0
-step = 0.01
-value = 0.05
+min_value = 5.0
+value = 5.0
+suffix = "%"
 
 [node name="Reset" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Min" unique_id=1627441685 node_paths=PackedStringArray("node_pai") instance=ExtResource("3_1bvp3")]
 layout_mode = 2
 node_pai = NodePath("../Spin Min")
-valor = 0.05
+valor = 5.0
 
 [node name="Container Max" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM" unique_id=1593176953]
 layout_mode = 2
@@ -279,15 +278,15 @@ text = "Maximo"
 
 [node name="Spin Max" type="SpinBox" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Max" unique_id=223392540]
 layout_mode = 2
-min_value = 1.0
-max_value = 5.0
-step = 0.01
-value = 3.0
+min_value = 100.0
+max_value = 500.0
+value = 300.0
+suffix = "%"
 
 [node name="Reset" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Max" unique_id=784778296 node_paths=PackedStringArray("node_pai") instance=ExtResource("3_1bvp3")]
 layout_mode = 2
 node_pai = NodePath("../Spin Max")
-valor = 3.0
+valor = 300.0
 
 [node name="More Program" type="AcceptDialog" parent="." unique_id=164421219]
 oversampling_override = 1.0
@@ -420,8 +419,8 @@ cancel_button_text = "Não"
 [connection signal="close_requested" from="Window Config" to="Window Config" method="_on_close_requested"]
 [connection signal="item_selected" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Grid/Option Grids" to="Window Config" method="_on_option_grids_item_selected"]
 [connection signal="item_selected" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Scroll/Option Scroll" to="Window Config" method="_on_option_scroll_item_selected"]
-[connection signal="value_changed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size/Option Size Camp" to="Window Config" method="_on_option_scroll_value_changed"]
 [connection signal="value_changed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size Title/Option Size Title" to="Window Config" method="_on_option_size_title_value_changed"]
+[connection signal="value_changed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size/Option Size Camp" to="Window Config" method="_on_option_scroll_value_changed"]
 [connection signal="pressed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Diretory/Check Diretorio" to="Window Config" method="_on_check_diretorio_pressed"]
 [connection signal="pressed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Ajust/Check Ajust" to="Window Config" method="_on_check_ajust_pressed"]
 [connection signal="item_selected" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Mode/Type Window" to="Window Config" method="_on_type_window_item_selected"]

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://di7oqrwfyddru"]
 
 [ext_resource type="Script" uid="uid://b1frqmyqglxuq" path="res://Scripts/graph_node_Image.gd" id="1_j7muo"]
+[ext_resource type="PackedScene" uid="uid://ctuvef7kihup8" path="res://tscn/button_exit.tscn" id="2_4iwyn"]
+[ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="2_fcwth"]
 [ext_resource type="Texture2D" uid="uid://bdtbfaqxn5emc" path="res://icons/no-image.jpg" id="2_pj3d8"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("open_image", "texture_node", "check")]
@@ -74,32 +76,34 @@ text = "Manter Tamanho"
 [node name="Check Size" type="CheckBox" parent="Container/Container Size" unique_id=2003499002]
 layout_mode = 2
 
-[node name="CheckBox" type="Button" parent="Container" unique_id=499506831]
+[node name="Button Exit" parent="Container" unique_id=198738323 node_paths=PackedStringArray("node_Graph") instance=ExtResource("2_4iwyn")]
 layout_mode = 2
-size_flags_horizontal = 8
-text = "Fechar"
+node_Graph = NodePath("../..")
 
-[node name="Container color" type="HBoxContainer" parent="." unique_id=1055127660]
+[node name="Container color custom" type="HBoxContainer" parent="." unique_id=1055127660]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 38
+size_flags_horizontal = 0
+theme_override_constants/separation = 30
 
-[node name="Label Color" type="Label" parent="Container color" unique_id=923294777]
+[node name="Label Color" type="Label" parent="Container color custom" unique_id=923294777]
 layout_mode = 2
 text = "Cor de Fundo"
 
-[node name="ColorButton Back" type="ColorPickerButton" parent="Container color" unique_id=415310983]
+[node name="Container Color" type="HBoxContainer" parent="Container color custom" unique_id=121538318]
+layout_mode = 2
+
+[node name="ColorButton Back" type="ColorPickerButton" parent="Container color custom/Container Color" unique_id=415310983]
 layout_mode = 2
 text = "11111111111"
 
-[node name="Reset Color" type="Button" parent="Container color" unique_id=491224662]
+[node name="Reset" parent="Container color custom/Container Color" unique_id=1733640759 instance=ExtResource("2_fcwth")]
 layout_mode = 2
-text = "Restaurar Cor"
 
 [node name="Button Image" type="TextureButton" parent="." unique_id=581091718]
 clip_contents = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+size_flags_vertical = 3
 texture_normal = ExtResource("2_pj3d8")
 ignore_texture_size = true
 stretch_mode = 0
@@ -131,9 +135,8 @@ layout_mode = 2
 text = "-"
 
 [connection signal="pressed" from="Container/Container Size/Check Size" to="." method="_on_check_size_pressed"]
-[connection signal="pressed" from="Container/CheckBox" to="." method="_on_check_box_pressed"]
-[connection signal="color_changed" from="Container color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
-[connection signal="pressed" from="Container color/Reset Color" to="." method="_on_reset_color_pressed"]
+[connection signal="color_changed" from="Container color custom/Container Color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
+[connection signal="pressed" from="Container color custom/Container Color/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="Button Image" to="." method="_on_texture_rect_pressed"]
 [connection signal="file_selected" from="Open Image" to="." method="_on_open_image_file_selected"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]

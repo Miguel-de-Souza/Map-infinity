@@ -20,13 +20,6 @@ func _on_font_size_title_value_changed(value: float) -> void:
 	url.add_theme_font_size_override("font_size", int(value))
 	
 	Global.alteraction()
-	
-func _on_check_box_pressed() -> void:
-	
-	Global.alteraction()
-	
-	queue_free()
-
 
 func get_save_data() -> Dictionary:
 	var slots := []
@@ -167,7 +160,7 @@ func _on_color_button_back_color_changed(color: Color) -> void:
 	
 	Global.alteraction()
 
-func _on_reset_color_pressed() -> void:
+func _on_reset_pressed() -> void:
 	remove_theme_stylebox_override("panel")
 	remove_theme_stylebox_override("panel_selected")
 	

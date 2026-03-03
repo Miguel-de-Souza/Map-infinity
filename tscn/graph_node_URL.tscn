@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ci4galkmc7v4a"]
 
 [ext_resource type="Script" uid="uid://bje5q4v3if27r" path="res://Scripts/graph_node_URL.gd" id="1_lo1fl"]
+[ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="2_7wd0v"]
+[ext_resource type="PackedScene" uid="uid://ctuvef7kihup8" path="res://tscn/button_exit.tscn" id="2_plr0o"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("url", "size_fonts")]
 anchors_preset = 8
@@ -74,31 +76,34 @@ min_value = 1.0
 max_value = 80.0
 value = 16.0
 
-[node name="CheckBox" type="Button" parent="Container" unique_id=499506831]
+[node name="Button Exit" parent="Container" unique_id=198738323 node_paths=PackedStringArray("node_Graph") instance=ExtResource("2_plr0o")]
 layout_mode = 2
-size_flags_horizontal = 8
-text = "Fechar"
+node_Graph = NodePath("../..")
 
-[node name="Container color" type="HBoxContainer" parent="." unique_id=1207928514]
+[node name="Container custom color" type="HBoxContainer" parent="." unique_id=1207928514]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_constants/separation = 40
+theme_override_constants/separation = 30
 
-[node name="Label Color" type="Label" parent="Container color" unique_id=1947229263]
+[node name="Label Color" type="Label" parent="Container custom color" unique_id=1947229263]
 layout_mode = 2
 text = "Cor de Fundo"
 
-[node name="ColorButton Back" type="ColorPickerButton" parent="Container color" unique_id=837226541]
+[node name="Container" type="HBoxContainer" parent="Container custom color" unique_id=1970244651]
+layout_mode = 2
+
+[node name="ColorButton Back" type="ColorPickerButton" parent="Container custom color/Container" unique_id=837226541]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "11111111111"
 
-[node name="Reset Color" type="Button" parent="Container color" unique_id=165207237]
+[node name="Reset" parent="Container custom color/Container" unique_id=1733640759 node_paths=PackedStringArray("node_pai") instance=ExtResource("2_7wd0v")]
 layout_mode = 2
-text = "Restaurar Cor"
+node_pai = NodePath("../../..")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2072020754]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="URL" type="LineEdit" parent="HBoxContainer" unique_id=577137378]
 clip_contents = true
@@ -132,9 +137,8 @@ layout_mode = 2
 text = "-"
 
 [connection signal="value_changed" from="Container/Container Size/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
-[connection signal="pressed" from="Container/CheckBox" to="." method="_on_check_box_pressed"]
-[connection signal="color_changed" from="Container color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
-[connection signal="pressed" from="Container color/Reset Color" to="." method="_on_reset_color_pressed"]
+[connection signal="color_changed" from="Container custom color/Container/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
+[connection signal="pressed" from="Container custom color/Container/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="HBoxContainer/Go URL" to="." method="_on_go_url_pressed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

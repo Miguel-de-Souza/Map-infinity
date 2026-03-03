@@ -136,11 +136,11 @@ func _on_check_debug_pressed() -> void:
 	save_settings()
 
 func _on_spin_min_value_changed(value: float) -> void:
-	Geapgh.zoom_min = value
+	Geapgh.zoom_min = (value / 100)
 	save_settings()
 
 func _on_spin_max_value_changed(value: float) -> void:
-	Geapgh.zoom_max = value
+	Geapgh.zoom_max = (value / 100)
 	save_settings()
 
 

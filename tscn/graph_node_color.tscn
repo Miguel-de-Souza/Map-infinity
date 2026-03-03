@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dbdw60boboltf"]
 
 [ext_resource type="Script" uid="uid://kid0ouwfay50" path="res://Scripts/graph_node_color.gd" id="1_mktjo"]
+[ext_resource type="PackedScene" uid="uid://ctuvef7kihup8" path="res://tscn/button_exit.tscn" id="2_nuh5h"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("title_line", "size_fonts", "button_color", "line_hex", "line_r", "line_g", "line_b")]
 anchors_preset = 8
@@ -80,7 +81,7 @@ expand_to_text_length = true
 [node name="Container" type="HBoxContainer" parent="." unique_id=1614242062]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 210
+theme_override_constants/separation = 248
 
 [node name="Container Size" type="VBoxContainer" parent="Container" unique_id=958391021]
 layout_mode = 2
@@ -100,10 +101,9 @@ min_value = 1.0
 max_value = 80.0
 value = 16.0
 
-[node name="CheckBox" type="Button" parent="Container" unique_id=499506831]
+[node name="Button Exit" parent="Container" unique_id=198738323 node_paths=PackedStringArray("node_Graph") instance=ExtResource("2_nuh5h")]
 layout_mode = 2
-size_flags_horizontal = 8
-text = "Fechar"
+node_Graph = NodePath("../..")
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="." unique_id=1795591820]
 clip_contents = true
@@ -192,7 +192,6 @@ layout_mode = 2
 text = "-"
 
 [connection signal="value_changed" from="Container/Container Size/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
-[connection signal="pressed" from="Container/CheckBox" to="." method="_on_check_box_pressed"]
 [connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

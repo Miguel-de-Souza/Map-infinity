@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://djcd2bpvg161x" path="res://Scripts/graph_node.gd" id="1_2yokc"]
 [ext_resource type="Texture2D" uid="uid://bdlb6rurlr5e3" path="res://icons/List.png" id="2_1iaox"]
+[ext_resource type="PackedScene" uid="uid://ctuvef7kihup8" path="res://tscn/button_exit.tscn" id="2_ufvhc"]
 [ext_resource type="Texture2D" uid="uid://bowxmek6m67o0" path="res://icons/List Num.png" id="3_jbsip"]
+[ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="4_jbsip"]
 
 [sub_resource type="Theme" id="Theme_jbsip"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("note", "title_line", "size_fonts", "font_size", "size_content")]
-offset_right = 931.0
+offset_right = 900.0
 offset_bottom = 352.0
 theme = SubResource("Theme_jbsip")
 theme_override_constants/separation = 4
@@ -75,7 +77,7 @@ theme_override_constants/separation = 10
 
 [node name="Container Size" type="HBoxContainer" parent="Container Tool/Container Left" unique_id=1860460117]
 layout_mode = 2
-theme_override_constants/separation = 247
+theme_override_constants/separation = 220
 
 [node name="Container Size Camps" type="HBoxContainer" parent="Container Tool/Container Left/Container Size" unique_id=2017651290]
 layout_mode = 2
@@ -112,10 +114,9 @@ value = 16.0
 [node name="HBoxContainer" type="HBoxContainer" parent="Container Tool/Container Left/Container Size" unique_id=532637721]
 layout_mode = 2
 
-[node name="CheckBox Exit" type="Button" parent="Container Tool/Container Left/Container Size" unique_id=499506831]
+[node name="Button Exit" parent="Container Tool/Container Left/Container Size" unique_id=198738323 node_paths=PackedStringArray("node_Graph") instance=ExtResource("2_ufvhc")]
 layout_mode = 2
-size_flags_horizontal = 8
-text = "Fechar"
+node_Graph = NodePath("../../../..")
 
 [node name="Container Down" type="HBoxContainer" parent="Container Tool/Container Left" unique_id=64908302]
 layout_mode = 2
@@ -150,9 +151,9 @@ text = "Cor de Fundo"
 layout_mode = 2
 text = "11111111111"
 
-[node name="Reset Color" type="Button" parent="Container Tool/Container Left/Container Down/Container color" unique_id=808229530]
+[node name="Reset" parent="Container Tool/Container Left/Container Down/Container color" unique_id=1733640759 node_paths=PackedStringArray("node_pai") instance=ExtResource("4_jbsip")]
 layout_mode = 2
-text = "Restaurar Cor"
+node_pai = NodePath("../../../../..")
 
 [node name="Container Content" type="HBoxContainer" parent="Container Tool/Container Left/Container Down" unique_id=1854303807]
 layout_mode = 2
@@ -193,11 +194,10 @@ text = "-"
 [connection signal="text_changed" from="Ttle" to="." method="_on_ttle_text_changed"]
 [connection signal="value_changed" from="Container Tool/Container Left/Container Size/Container Size Camps/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
 [connection signal="value_changed" from="Container Tool/Container Left/Container Size/Container Size Camps/Container Size Block/Font Size" to="." method="_on_font_size_value_changed"]
-[connection signal="pressed" from="Container Tool/Container Left/Container Size/CheckBox Exit" to="." method="_on_check_box_pressed"]
 [connection signal="pressed" from="Container Tool/Container Left/Container Down/Container List/Button List" to="." method="_on_button_lista_pressed"]
 [connection signal="pressed" from="Container Tool/Container Left/Container Down/Container List/Button List Num" to="." method="_on_button_list_num_pressed"]
 [connection signal="color_changed" from="Container Tool/Container Left/Container Down/Container color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
-[connection signal="pressed" from="Container Tool/Container Left/Container Down/Container color/Reset Color" to="." method="_on_reset_color_pressed"]
+[connection signal="pressed" from="Container Tool/Container Left/Container Down/Container color/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="Container Tool/Container Left/Container Down/Container Content/Check Ajust" to="." method="_on_check_ajust_pressed"]
 [connection signal="text_changed" from="Notepad" to="." method="_on_notepad_text_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
