@@ -63,15 +63,15 @@ metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
 [node name="Container" type="HBoxContainer" parent="." unique_id=1614242062]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 180
+size_flags_horizontal = 0
+theme_override_constants/separation = 140
 
 [node name="Container Size" type="HBoxContainer" parent="Container" unique_id=963762433]
 layout_mode = 2
 
 [node name="Size Label" type="Label" parent="Container/Container Size" unique_id=1886954870]
 layout_mode = 2
-text = "Manter Tamanho"
+text = "Manter Tamanho O riginal"
 
 [node name="Check Size" type="CheckBox" parent="Container/Container Size" unique_id=2003499002]
 layout_mode = 2

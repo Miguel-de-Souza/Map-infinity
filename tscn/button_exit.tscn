@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://ciky5g138w0c4" path="res://Scripts/button_exit.gd" id="1_yl47d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yl47d"]
-bg_color = Color(0.2686335, 1.8049032e-07, 7.219613e-08, 1)
+bg_color = Color(0.15, 0, 0, 1)
 border_width_left = 10
 border_width_right = 10
-border_color = Color(0.26666668, 0, 0, 1)
+border_color = Color(0.15, 0, 0, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5

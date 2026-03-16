@@ -14,6 +14,10 @@ extends Window
 @export var mode_option: OptionButton
 @export var min_op: SpinBox
 @export var max_op: SpinBox
+@export var option_BG: HSlider
+@export var option_Grides: HSlider
+
+var cor_tema : Color = Color.BLACK
 
 func _ready():
 	load_settings()
@@ -25,6 +29,11 @@ func save_settings():
 	config.set_value("graph", "panning_scheme", Geapgh.panning_scheme)
 	config.set_value("graph", "zoom_min", Geapgh.zoom_min)
 	config.set_value("graph", "zoom_max", Geapgh.zoom_max)
+	config.set_value("theme", "grid_major_alpha", get_values_ma)
+	config.set_value("theme", "grid_minor_alpha", get_values_mi)
+	config.set_value("theme", "option_bg", option_BG.value)
+	config.set_value("theme", "option_grids", option_Grides.value)
+	
 
 	config.set_value("ui", "check_ajust", check_ajust.button_pressed)
 	config.set_value("ui", "check_diretory", check_diretory.button_pressed)
@@ -40,6 +49,7 @@ func save_settings():
 	config.set_value("ui", "option_title", option_title.value)
 	config.set_value("ui", "min_op", min_op.value)
 	config.set_value("ui", "max_op", max_op.value)
+	
 
 	config.save("user://settings.cfg")
 
@@ -69,6 +79,15 @@ func load_settings():
 	option_title.value = config.get_value("ui", "option_title", 16)
 	min_op.value = config.get_value("ui", "min_op", 0.1)
 	max_op.value = config.get_value("ui", "max_op", 2.0)
+	
+	get_values_ma = config.get_value("theme", "grid_major_alpha", 51)
+	get_values_mi = config.get_value("theme", "grid_minor_alpha", 13)
+
+	option_BG.value = config.get_value("theme", "option_bg", 0)
+	option_Grides.value = config.get_value("theme", "option_grids", 0)
+
+	tema(option_BG.value)
+	verification_theme()
 
 	if show_debug.button_pressed:
 		debug_label.visible = true
@@ -157,4 +176,66 @@ func _on_type_window_item_selected(index: int) -> void:
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		
+	save_settings()
+
+var cor_for_theme: int
+func tema(intensy: float):
+	var style = Geapgh.get_theme_stylebox("panel")
+	if style == null:
+		return
+
+	var new_stylebox_normal = style.duplicate()
+	
+	cor_tema.v = intensy
+	new_stylebox_normal.bg_color = cor_tema
+
+	Geapgh.remove_theme_stylebox_override("panel")
+	Geapgh.add_theme_stylebox_override("panel", new_stylebox_normal)
+	
+	verification_theme()
+	save_settings()
+
+
+func verification_theme():
+	if cor_tema.v > 0.5:
+		cor_for_theme = 33
+		Geapgh.add_theme_color_override("grid_major", Color.from_rgba8(cor_for_theme, cor_for_theme, cor_for_theme, get_values_ma))
+		Geapgh.add_theme_color_override("grid_minor", Color.from_rgba8(cor_for_theme, cor_for_theme, cor_for_theme, get_values_mi))
+		
+	else:
+		cor_for_theme = 255
+		Geapgh.add_theme_color_override("grid_major", Color.from_rgba8(cor_for_theme, cor_for_theme, cor_for_theme, get_values_ma))
+		Geapgh.add_theme_color_override("grid_minor", Color.from_rgba8(cor_for_theme, cor_for_theme, cor_for_theme, get_values_mi))
+
+
+var get_values_ma : int = 51
+var get_values_mi : int = 13
+
+func _on_option_grid_value_changed(value: float) -> void:
+	var cor_ma = Color.from_rgba8(cor_for_theme, cor_for_theme, cor_for_theme, 51)
+	cor_ma.a8 = int(value + 51)
+	
+	var cor_mi = Color.from_rgba8(cor_for_theme, cor_for_theme, cor_for_theme, 13)
+	cor_mi.a8 = int(value + 13)
+	
+	verification_theme()
+
+	get_values_ma = int(value + 51)
+	get_values_mi = int(value + 13)
+	save_settings()
+
+
+func _on_reset_themes_pressed() -> void:
+	option_BG.value = 0.17682926829268
+	option_Grides.value = 0
+	
+	Geapgh.remove_theme_stylebox_override("panel")
+	Geapgh.remove_theme_color_override("grid_major")
+	Geapgh.remove_theme_color_override("grid_minor")
+	
+	save_settings()
+
+func _on_option_bg_value_changed(value: float) -> void:
+	tema(value)
+	print("value do slide ",value)
 	save_settings()
