@@ -148,7 +148,7 @@ func _gui_input(event):
 #Sistema para apagar Node
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_text_delete") and selected:
-		if not title_line.has_focus() and not note.has_focus():			
+		if not title_line.has_focus() and not note.has_focus():
 			Global.alteraction()
 			queue_free()
 
@@ -215,24 +215,25 @@ func _on_disconnection_request(from_node, from_port, to_node, to_port):
 
 #Sistema para Adicionar Caracteres de listas
 func _input(event):
-	if type_list == "ponto":
-		if event is InputEventKey and event.pressed:
-			if event.keycode == KEY_ENTER:
-				var line = note.get_line(note.get_caret_line())
+	if note.has_focus():
+		if type_list == "ponto":
+			if event is InputEventKey and event.pressed:
+				if event.keycode == KEY_ENTER:
+					var line = note.get_line(note.get_caret_line())
 
-				if line.begins_with("• "):
-					await get_tree().process_frame
-					note.insert_text_at_caret("• ")
-					
-	elif type_list == "num":
-		if event is InputEventKey and event.pressed:
-			if event.keycode == KEY_ENTER:
-				var line = note.get_line(note.get_caret_line())
+					if line.begins_with("• "):
+						await get_tree().process_frame
+						note.insert_text_at_caret("• ")
+						
+		elif type_list == "num":
+			if event is InputEventKey and event.pressed:
+				if event.keycode == KEY_ENTER:
+					var line = note.get_line(note.get_caret_line())
 
-				if line.begins_with(str(num_count)):
-					await get_tree().process_frame
-					num_count += 1
-					note.insert_text_at_caret(str(num_count) + ". ")
+					if line.begins_with(str(num_count)):
+						await get_tree().process_frame
+						num_count += 1
+						note.insert_text_at_caret(str(num_count) + ". ")
 
 
 #Quando apertar o botão, insere o caracter e altera a variavel type_list
