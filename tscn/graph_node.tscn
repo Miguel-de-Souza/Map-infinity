@@ -6,12 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bowxmek6m67o0" path="res://icons/List Num.png" id="3_jbsip"]
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="4_jbsip"]
 
-[sub_resource type="Theme" id="Theme_jbsip"]
-
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("note", "title_line", "size_fonts", "font_size", "size_content")]
 offset_right = 900.0
 offset_bottom = 352.0
-theme = SubResource("Theme_jbsip")
 theme_override_constants/separation = 4
 resizable = true
 slot/0/left_enabled = false
@@ -53,7 +50,7 @@ slot/3/draw_stylebox = true
 script = ExtResource("1_2yokc")
 note = NodePath("Notepad")
 title_line = NodePath("Ttle")
-size_fonts = NodePath("Container Tool/Container Left/Container Size/Container Size Camps/Container Size Block/Font Size")
+size_fonts = NodePath("Container Tool/Container Left/Container Size/Container Size Camps/Container Size Block/Font Size Campo")
 font_size = NodePath("Container Tool/Container Left/Container Size/Container Size Camps/Container Size Title/Font Size Title")
 size_content = NodePath("Container Tool/Container Left/Container Down/Container Content/Check Ajust")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
@@ -105,7 +102,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Campo"
 
-[node name="Font Size" type="SpinBox" parent="Container Tool/Container Left/Container Size/Container Size Camps/Container Size Block" unique_id=331735634]
+[node name="Font Size Campo" type="SpinBox" parent="Container Tool/Container Left/Container Size/Container Size Camps/Container Size Block" unique_id=331735634]
 layout_mode = 2
 min_value = 1.0
 max_value = 120.0
@@ -193,7 +190,7 @@ text = "-"
 
 [connection signal="text_changed" from="Ttle" to="." method="_on_ttle_text_changed"]
 [connection signal="value_changed" from="Container Tool/Container Left/Container Size/Container Size Camps/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
-[connection signal="value_changed" from="Container Tool/Container Left/Container Size/Container Size Camps/Container Size Block/Font Size" to="." method="_on_font_size_value_changed"]
+[connection signal="value_changed" from="Container Tool/Container Left/Container Size/Container Size Camps/Container Size Block/Font Size Campo" to="." method="_on_font_size_value_changed"]
 [connection signal="pressed" from="Container Tool/Container Left/Container Down/Container List/Button List" to="." method="_on_button_lista_pressed"]
 [connection signal="pressed" from="Container Tool/Container Left/Container Down/Container List/Button List Num" to="." method="_on_button_list_num_pressed"]
 [connection signal="color_changed" from="Container Tool/Container Left/Container Down/Container color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]

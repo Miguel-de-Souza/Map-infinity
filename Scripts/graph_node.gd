@@ -6,39 +6,39 @@ extends GraphNode
 @export var font_size: SpinBox
 @export var size_content: CheckBox
 
+#Pega stylebox do GraphNode
 var new_stylebox = get_theme_stylebox("panel").duplicate()
 var new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
 
 func _ready() -> void:
 
+	#Para disconectar o GraphEdit
 	get_parent().disconnection_request.connect(_on_disconnection_request)
-
-	new_stylebox = get_theme_stylebox("panel").duplicate()
-	new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
 
 	add_theme_stylebox_override("panel", new_stylebox)
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 	
+	#Valores padrão das Configurações (Ex: Config Title Size = 10, então )
 	size_fonts.value = Global.font_size_default
 	font_size.value = Global.font_size_title_default
 	size_content.button_pressed = Global.var_check_ajust
 
+	#atualiza os valores para o padrões das Configuações
 	_on_font_size_value_changed(size_fonts.value)
 	_on_font_size_title_value_changed(font_size.value)
 	_on_check_ajust_pressed()
 
-
+#Mexer no SpinBox correspondnete ao tamanho do Texto do Campo
 func _on_font_size_value_changed(value: float) -> void:
 	note.add_theme_font_size_override("font_size", int(value))
-	
 	Global.alteraction()
 
-	
+#Mexer no SpinBox correspondnete ao tamanho do Texto do Título
 func _on_font_size_title_value_changed(value: float) -> void:
 	title_line.add_theme_font_size_override("font_size", int(value))
-	
 	Global.alteraction()
 
+#Método para salvar as propriedades do Node (o método é chamado em GraphEdit)
 func get_save_data() -> Dictionary:
 	var slots := []
 
@@ -73,26 +73,34 @@ func get_save_data() -> Dictionary:
 	"slots": slots
 }
 
+#Método para Carregar as propriedades do Node (o método é chamado em GraphEdit)
 func load_save_data(data: Dictionary) -> void:
 
+	#Atualiza os valores de Title e Campo
 	title_line.text = data.get("title", "Node")
 	note.text = data.get("note_text", "")
 	
+	#Atualiza o fundo normal
 	var c = data.get("new_stylebox_color", [0,0,0,1])
 	new_stylebox.bg_color = Color(c[0], c[1], c[2], c[3])
 	
+	#Atualiza o fundo quando focado
 	var c_focus = data.get("new_stylebox_focus", [0,0,0,1])
 	new_stylebox_focus.bg_color = Color(c_focus[0], c_focus[1], c_focus[2], c_focus[3])
 
+	#Atualiza os valores do SpinBoxs
 	size_fonts.value = data.get("font_size", 14)
 	font_size.value = data.get("title_font_size", 14)
 	
+	#Atualiza o CheckBox "Ajustar Tamanho do Campo"
 	size_content.button_pressed = data.get("pressed_ajust", false)
+	
+	#Chama os métodos presicos para atualizar os objetos
 	_on_check_ajust_pressed()
-
 	_on_font_size_value_changed(size_fonts.value)
 	_on_font_size_title_value_changed(font_size.value)
 
+	#Coisa para slots
 	for child in get_children():
 		if child is ColorRect:
 			child.queue_free()
@@ -125,6 +133,7 @@ func load_save_data(data: Dictionary) -> void:
 
 		slots_add += 1
 
+#Sistema de Multi Seleção
 func _gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not selected:
@@ -136,15 +145,14 @@ func _gui_input(event):
 			
 			selected = true
 
+#Sistema para apagar Node
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_text_delete") and selected:
-		if not title_line.has_focus() and not note.has_focus():
-			
+		if not title_line.has_focus() and not note.has_focus():			
 			Global.alteraction()
-			
 			queue_free()
-			
 
+#Sistema para adicionar slots
 var slots_add := 2
 func _on_button_add_pressed() -> void:
 	var item = ColorRect.new()
@@ -154,9 +162,9 @@ func _on_button_add_pressed() -> void:
 	item.color = Color(0.078, 0.078, 0.078, 0)
 	set_slot(slots_add, true, 0, Color(1.0, 1.0, 1.0, 1.0), true, 0, Color(1.0, 1.0, 1.0, 1.0))
 	slots_add += 1
-	
 	Global.alteraction()
 
+#Disconecta Slots
 func _disconnect_slot(slot_index: int) -> void:
 	var graph = get_parent()
 	for connection in graph.get_connection_list():
@@ -168,9 +176,9 @@ func _disconnect_slot(slot_index: int) -> void:
 			
 	Global.alteraction()
 
+#Sistema para retirar slots (e também desconectar)
 func _on_button_sub_pressed() -> void:
 	var graph := get_parent()
-
 
 	for connection in graph.get_connection_list():
 		if connection.from_node == name and connection.from_port == slots_add - 1:
@@ -196,14 +204,16 @@ func _on_button_sub_pressed() -> void:
 
 	Global.alteraction()
 
-var type_list:= "ponto"
+var type_list:= "poto"
 var num_count := 1
 
+#O que realmente faz a desconexão (GraphEdit)
 func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	get_parent().disconnect_node(from_node, from_port, to_node, to_port)
 	
 	Global.alteraction()
 
+#Sistema para Adicionar Caracteres de listas
 func _input(event):
 	if type_list == "ponto":
 		if event is InputEventKey and event.pressed:
@@ -225,17 +235,18 @@ func _input(event):
 					note.insert_text_at_caret(str(num_count) + ". ")
 
 
+#Quando apertar o botão, insere o caracter e altera a variavel type_list
 func _on_button_lista_pressed() -> void:
 	note.insert_text_at_caret("• ")
 	type_list = "ponto"
 
-
+#Quando apertar o botão, insere o caracter e altera a variavel type_list
 func _on_button_list_num_pressed() -> void:
 	num_count = 1
 	note.insert_text_at_caret(str(num_count) + ". ")
 	type_list = "num"
 
-
+#CheckBox de Ajustar Campo, quando verdadeiro mantém o tamanho do Campo
 func _on_check_ajust_pressed() -> void:
 	if size_content.button_pressed:
 		note.scroll_fit_content_height = false
@@ -248,7 +259,7 @@ func _on_check_ajust_pressed() -> void:
 		
 	Global.alteraction()
 
-
+#Sistemas de Cores
 func _on_color_button_back_color_changed(color: Color) -> void:
 
 	var sb = get_theme_stylebox("panel")
@@ -259,13 +270,13 @@ func _on_color_button_back_color_changed(color: Color) -> void:
 	
 	Global.alteraction()
 
+#Se alterar algum texto do Campo
 func _on_notepad_text_changed() -> void:
 	Global.alteraction()
 
-
-func _on_ttle_text_changed(new_text: String) -> void:
+#Se alterar algum texto do Título
+func _on_ttle_text_changed(_new_text: String) -> void:
 	Global.alteraction()
-
 
 func _on_reset_pressed() -> void:
 	remove_theme_stylebox_override("panel")

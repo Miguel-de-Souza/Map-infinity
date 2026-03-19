@@ -49,7 +49,7 @@ func save_settings():
 	config.set_value("ui", "option_title", option_title.value)
 	config.set_value("ui", "min_op", min_op.value)
 	config.set_value("ui", "max_op", max_op.value)
-	
+	config.set_value("index", "option", mode_option.selected)
 
 	config.save("user://settings.cfg")
 
@@ -85,6 +85,7 @@ func load_settings():
 
 	option_BG.value = config.get_value("theme", "option_bg", 0)
 	option_Grides.value = config.get_value("theme", "option_grids", 0)
+	mode_option.select( config.get_value("index", "option", 0))
 
 	tema(option_BG.value)
 	verification_theme()
@@ -238,4 +239,8 @@ func _on_reset_themes_pressed() -> void:
 func _on_option_bg_value_changed(value: float) -> void:
 	tema(value)
 	print("value do slide ",value)
+	save_settings()
+
+
+func _on_modo_option_item_selected(_index: int) -> void:
 	save_settings()

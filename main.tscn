@@ -52,7 +52,6 @@ oversampling_override = 1.0
 title = "Configurações"
 initial_position = 1
 size = Vector2i(720, 390)
-visible = false
 unresizable = true
 script = ExtResource("2_0xm2m")
 Geapgh = NodePath("../GraphEdit")
@@ -478,6 +477,7 @@ cancel_button_text = "Não"
 [connection signal="pressed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Ajust/Check Ajust" to="Window Config" method="_on_check_ajust_pressed"]
 [connection signal="item_selected" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Mode/Type Window" to="Window Config" method="_on_type_window_item_selected"]
 [connection signal="item_selected" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Make/Modo Option" to="GraphEdit" method="_on_modo_option_item_selected"]
+[connection signal="item_selected" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Make/Modo Option" to="Window Config" method="_on_modo_option_item_selected"]
 [connection signal="pressed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Debug/Check Debug" to="Window Config" method="_on_check_debug_pressed"]
 [connection signal="value_changed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Min/Spin Min" to="Window Config" method="_on_spin_min_value_changed"]
 [connection signal="value_changed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Max/Spin Max" to="Window Config" method="_on_spin_max_value_changed"]
