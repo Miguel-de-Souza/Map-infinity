@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="2_7wd0v"]
 [ext_resource type="PackedScene" uid="uid://ctuvef7kihup8" path="res://tscn/button_exit.tscn" id="2_plr0o"]
 
-[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("url", "size_fonts")]
+[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("url", "size_fonts", "linkButotn")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -13,7 +13,7 @@ anchor_bottom = 0.5
 offset_left = -635.0
 offset_top = -360.0
 offset_right = -195.0
-offset_bottom = -169.0
+offset_bottom = -137.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
@@ -54,9 +54,19 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
+slot/4/left_enabled = false
+slot/4/left_type = 0
+slot/4/left_color = Color(1, 1, 1, 1)
+slot/4/left_icon = null
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color(1, 1, 1, 1)
+slot/4/right_icon = null
+slot/4/draw_stylebox = true
 script = ExtResource("1_lo1fl")
 url = NodePath("HBoxContainer/URL")
 size_fonts = NodePath("Container/Container Size/Container Size Title/Font Size Title")
+linkButotn = NodePath("LinkButton")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
 [node name="Container" type="HBoxContainer" parent="." unique_id=1614242062]
@@ -113,11 +123,12 @@ placeholder_text = "URL:"
 alignment = 1
 expand_to_text_length = true
 
-[node name="Go URL" type="Button" parent="HBoxContainer" unique_id=1017148609]
-clip_contents = true
-custom_minimum_size = Vector2(100, 0)
+[node name="LinkButton" type="LinkButton" parent="." unique_id=960081145]
 layout_mode = 2
-text = "→"
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.616, 0.6424, 0.88, 1)
+theme_override_font_sizes/font_size = 20
+text = "ccffsdfsd"
 
 [node name="Container Slots" type="HBoxContainer" parent="." unique_id=1260961243]
 layout_mode = 2
@@ -139,6 +150,5 @@ text = "-"
 [connection signal="value_changed" from="Container/Container Size/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
 [connection signal="color_changed" from="Container custom color/Container/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
 [connection signal="pressed" from="Container custom color/Container/Reset" to="." method="_on_reset_pressed"]
-[connection signal="pressed" from="HBoxContainer/Go URL" to="." method="_on_go_url_pressed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

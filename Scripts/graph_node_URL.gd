@@ -2,9 +2,11 @@ extends GraphNode
 
 @export var url: LineEdit
 @export var size_fonts: SpinBox
+@export var linkButotn: LinkButton
 
 var new_stylebox = get_theme_stylebox("panel").duplicate()
 var new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
+#OS.shell_open(url.text)
 
 func _ready() -> void:
 	
@@ -108,6 +110,10 @@ func _gui_input(event):
 			selected = true
 
 func _process(_delta: float) -> void:
+	
+	linkButotn.uri = url.text
+	linkButotn.text = url.text
+	
 	if Input.is_action_pressed("ui_text_delete") and selected:
 		Global.alteraction()
 		
@@ -124,11 +130,7 @@ func _on_button_add_pressed() -> void:
 	slots_add += 1
 	
 	Global.alteraction()
-
-
-func _on_go_url_pressed() -> void:
-	OS.shell_open(url.text)
-
+	
 
 func _on_button_sub_pressed() -> void:
 	var rects := []
