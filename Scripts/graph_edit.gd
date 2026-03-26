@@ -23,8 +23,8 @@ func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	
 	Global.alteraction()
 
-
 func _ready():
+	
 	text_more.bbcode_enabled = true
 	label_diretorio.text = ""
 	file_dia.current_dir = desktop
@@ -109,7 +109,7 @@ func _process(_delta: float) -> void:
 		if active_mode_node:
 			selected_mode_make = true
 			numb = 4
-					
+
 		else:
 			criar_bloco_notas(4)
 

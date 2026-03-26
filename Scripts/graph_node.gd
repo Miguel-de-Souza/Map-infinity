@@ -24,12 +24,12 @@ func _ready() -> void:
 	size_content.button_pressed = Global.var_check_ajust
 
 	#atualiza os valores para o padrões das Configuações
-	_on_font_size_value_changed(size_fonts.value)
+	_on_font_size_campo_value_changed(size_fonts.value)
 	_on_font_size_title_value_changed(font_size.value)
 	_on_check_ajust_pressed()
 
 #Mexer no SpinBox correspondnete ao tamanho do Texto do Campo
-func _on_font_size_value_changed(value: float) -> void:
+func _on_font_size_campo_value_changed(value: float) -> void:
 	note.add_theme_font_size_override("font_size", int(value))
 	Global.alteraction()
 
@@ -97,7 +97,7 @@ func load_save_data(data: Dictionary) -> void:
 	
 	#Chama os métodos presicos para atualizar os objetos
 	_on_check_ajust_pressed()
-	_on_font_size_value_changed(size_fonts.value)
+	_on_font_size_campo_value_changed(size_fonts.value)
 	_on_font_size_title_value_changed(font_size.value)
 
 	#Coisa para slots
@@ -237,7 +237,7 @@ func _input(event):
 
 
 #Quando apertar o botão, insere o caracter e altera a variavel type_list
-func _on_button_lista_pressed() -> void:
+func _on_button_list_pressed() -> void:
 	note.insert_text_at_caret("• ")
 	type_list = "ponto"
 
@@ -290,3 +290,11 @@ func _on_reset_pressed() -> void:
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 
 	Global.alteraction()
+
+
+func _on_node_selected() -> void:
+	Global.selected_nodes += 1
+
+
+func _on_node_deselected() -> void:
+	Global.selected_nodes -= 1

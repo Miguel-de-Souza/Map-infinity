@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d3x6md1kxy124"]
+
+[ext_resource type="Script" uid="uid://bmgqyhb2kt30n" path="res://window_nodes_config.gd" id="1_1ugmr"]
+
+[node name="Window Config" type="Window" unique_id=482414457]
+oversampling_override = 1.0
+title = "Configuração do Node"
+position = Vector2i(50, 50)
+size = Vector2i(800, 100)
+unresizable = true
+unfocusable = true
+popup_window = true
+minimize_disabled = true
+maximize_disabled = true
+script = ExtResource("1_1ugmr")
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
