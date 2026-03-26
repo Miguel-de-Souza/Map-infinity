@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://di7oqrwfyddru"]
 
 [ext_resource type="Script" uid="uid://b1frqmyqglxuq" path="res://Scripts/graph_node_Image.gd" id="1_j7muo"]
-[ext_resource type="PackedScene" uid="uid://ctuvef7kihup8" path="res://tscn/button_exit.tscn" id="2_4iwyn"]
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="2_fcwth"]
 [ext_resource type="Texture2D" uid="uid://bdtbfaqxn5emc" path="res://icons/no-image.jpg" id="2_pj3d8"]
 
@@ -75,10 +74,6 @@ text = "Manter Tamanho O riginal"
 
 [node name="Check Size" type="CheckBox" parent="Container/Container Size" unique_id=2003499002]
 layout_mode = 2
-
-[node name="Button Exit" parent="Container" unique_id=198738323 node_paths=PackedStringArray("node_Graph") instance=ExtResource("2_4iwyn")]
-layout_mode = 2
-node_Graph = NodePath("../..")
 
 [node name="Container color custom" type="HBoxContainer" parent="." unique_id=1055127660]
 layout_mode = 2

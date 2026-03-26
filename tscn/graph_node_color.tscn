@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dbdw60boboltf"]
 
 [ext_resource type="Script" uid="uid://kid0ouwfay50" path="res://Scripts/graph_node_color.gd" id="1_mktjo"]
-[ext_resource type="PackedScene" uid="uid://ctuvef7kihup8" path="res://tscn/button_exit.tscn" id="2_nuh5h"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("title_line", "size_fonts", "button_color", "line_hex", "line_r", "line_g", "line_b")]
 anchors_preset = 8
@@ -100,10 +99,6 @@ layout_mode = 2
 min_value = 1.0
 max_value = 80.0
 value = 16.0
-
-[node name="Button Exit" parent="Container" unique_id=198738323 node_paths=PackedStringArray("node_Graph") instance=ExtResource("2_nuh5h")]
-layout_mode = 2
-node_Graph = NodePath("../..")
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="." unique_id=1795591820]
 clip_contents = true

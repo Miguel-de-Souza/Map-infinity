@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bje5q4v3if27r" path="res://Scripts/graph_node_URL.gd" id="1_lo1fl"]
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="2_7wd0v"]
-[ext_resource type="PackedScene" uid="uid://ctuvef7kihup8" path="res://tscn/button_exit.tscn" id="2_plr0o"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("url", "size_fonts", "linkButotn")]
 anchors_preset = 8
@@ -85,10 +84,6 @@ layout_mode = 2
 min_value = 1.0
 max_value = 80.0
 value = 16.0
-
-[node name="Button Exit" parent="Container" unique_id=198738323 node_paths=PackedStringArray("node_Graph") instance=ExtResource("2_plr0o")]
-layout_mode = 2
-node_Graph = NodePath("../..")
 
 [node name="Container custom color" type="HBoxContainer" parent="." unique_id=1207928514]
 layout_mode = 2
