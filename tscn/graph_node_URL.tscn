@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bje5q4v3if27r" path="res://Scripts/graph_node_URL.gd" id="1_lo1fl"]
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="2_7wd0v"]
+[ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_plr0o"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("url", "size_fonts", "linkButotn")]
 anchors_preset = 8
@@ -12,7 +13,7 @@ anchor_bottom = 0.5
 offset_left = -635.0
 offset_top = -360.0
 offset_right = -195.0
-offset_bottom = -137.0
+offset_bottom = -203.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
@@ -53,18 +54,9 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
-slot/4/left_enabled = false
-slot/4/left_type = 0
-slot/4/left_color = Color(1, 1, 1, 1)
-slot/4/left_icon = null
-slot/4/right_enabled = false
-slot/4/right_type = 0
-slot/4/right_color = Color(1, 1, 1, 1)
-slot/4/right_icon = null
-slot/4/draw_stylebox = true
 script = ExtResource("1_lo1fl")
 url = NodePath("HBoxContainer/URL")
-size_fonts = NodePath("Container/Container Size/Container Size Title/Font Size Title")
+size_fonts = NodePath("Window Config/VBoxContainer/Container Size Title/Font Size Title")
 linkButotn = NodePath("LinkButton")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
@@ -75,36 +67,6 @@ theme_override_constants/separation = 257
 
 [node name="Container Size" type="VBoxContainer" parent="Container" unique_id=958391021]
 layout_mode = 2
-
-[node name="Container Size Title" type="HBoxContainer" parent="Container/Container Size" unique_id=2122979325]
-layout_mode = 2
-
-[node name="Font Size Title" type="SpinBox" parent="Container/Container Size/Container Size Title" unique_id=397914048]
-layout_mode = 2
-min_value = 1.0
-max_value = 80.0
-value = 16.0
-
-[node name="Container custom color" type="HBoxContainer" parent="." unique_id=1207928514]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/separation = 30
-
-[node name="Label Color" type="Label" parent="Container custom color" unique_id=1947229263]
-layout_mode = 2
-text = "Cor de Fundo"
-
-[node name="Container" type="HBoxContainer" parent="Container custom color" unique_id=1970244651]
-layout_mode = 2
-
-[node name="ColorButton Back" type="ColorPickerButton" parent="Container custom color/Container" unique_id=837226541]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "11111111111"
-
-[node name="Reset" parent="Container custom color/Container" unique_id=1733640759 node_paths=PackedStringArray("node_pai") instance=ExtResource("2_7wd0v")]
-layout_mode = 2
-node_pai = NodePath("../../..")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2072020754]
 layout_mode = 2
@@ -142,8 +104,60 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "-"
 
-[connection signal="value_changed" from="Container/Container Size/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
-[connection signal="color_changed" from="Container custom color/Container/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
-[connection signal="pressed" from="Container custom color/Container/Reset" to="." method="_on_reset_pressed"]
+[node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("2_plr0o")]
+size = Vector2i(337, 89)
+visible = false
+graphnod = NodePath("..")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window Config" unique_id=191403129]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Container Size Title" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=392622064]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Window Config/VBoxContainer/Container Size Title" unique_id=457362628]
+layout_mode = 2
+text = "Tamanho do Texto URL"
+
+[node name="Font Size Title" type="SpinBox" parent="Window Config/VBoxContainer/Container Size Title" unique_id=743219487]
+layout_mode = 2
+min_value = 1.0
+max_value = 80.0
+value = 16.0
+
+[node name="Container custom color" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=241566761]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="Label Color" type="Label" parent="Window Config/VBoxContainer/Container custom color" unique_id=2054499348]
+layout_mode = 2
+text = "Cor de Fundo"
+
+[node name="Container" type="HBoxContainer" parent="Window Config/VBoxContainer/Container custom color" unique_id=420809550]
+layout_mode = 2
+
+[node name="ColorButton Back" type="ColorPickerButton" parent="Window Config/VBoxContainer/Container custom color/Container" unique_id=150877011]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "11111111111"
+
+[node name="Reset" parent="Window Config/VBoxContainer/Container custom color/Container" unique_id=1733640759 node_paths=PackedStringArray("node_pai") instance=ExtResource("2_7wd0v")]
+layout_mode = 2
+node_pai = NodePath("../../../../..")
+
+[connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
+[connection signal="node_selected" from="." to="." method="_on_node_selected"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
+[connection signal="color_changed" from="Window Config/VBoxContainer/Container custom color/Container/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
+[connection signal="pressed" from="Window Config/VBoxContainer/Container custom color/Container/Reset" to="." method="_on_reset_pressed"]

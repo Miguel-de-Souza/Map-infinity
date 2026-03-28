@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b1frqmyqglxuq" path="res://Scripts/graph_node_Image.gd" id="1_j7muo"]
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="2_fcwth"]
 [ext_resource type="Texture2D" uid="uid://bdtbfaqxn5emc" path="res://icons/no-image.jpg" id="2_pj3d8"]
+[ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="3_fcwth"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("open_image", "texture_node", "check")]
 anchors_preset = 8
@@ -45,54 +46,16 @@ slot/2/right_type = 0
 slot/2/right_color = Color(1, 1, 1, 1)
 slot/2/right_icon = null
 slot/2/draw_stylebox = true
-slot/3/left_enabled = false
-slot/3/left_type = 0
-slot/3/left_color = Color(1, 1, 1, 1)
-slot/3/left_icon = null
-slot/3/right_enabled = false
-slot/3/right_type = 0
-slot/3/right_color = Color(1, 1, 1, 1)
-slot/3/right_icon = null
-slot/3/draw_stylebox = true
 script = ExtResource("1_j7muo")
 open_image = NodePath("Open Image")
 texture_node = NodePath("Button Image")
-check = NodePath("Container/Container Size/Check Size")
+check = NodePath("Window Config/VBoxContainer/Container Size/Check Size")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
 [node name="Container" type="HBoxContainer" parent="." unique_id=1614242062]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 140
-
-[node name="Container Size" type="HBoxContainer" parent="Container" unique_id=963762433]
-layout_mode = 2
-
-[node name="Size Label" type="Label" parent="Container/Container Size" unique_id=1886954870]
-layout_mode = 2
-text = "Manter Tamanho O riginal"
-
-[node name="Check Size" type="CheckBox" parent="Container/Container Size" unique_id=2003499002]
-layout_mode = 2
-
-[node name="Container color custom" type="HBoxContainer" parent="." unique_id=1055127660]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/separation = 30
-
-[node name="Label Color" type="Label" parent="Container color custom" unique_id=923294777]
-layout_mode = 2
-text = "Cor de Fundo"
-
-[node name="Container Color" type="HBoxContainer" parent="Container color custom" unique_id=121538318]
-layout_mode = 2
-
-[node name="ColorButton Back" type="ColorPickerButton" parent="Container color custom/Container Color" unique_id=415310983]
-layout_mode = 2
-text = "11111111111"
-
-[node name="Reset" parent="Container color custom/Container Color" unique_id=1733640759 instance=ExtResource("2_fcwth")]
-layout_mode = 2
 
 [node name="Button Image" type="TextureButton" parent="." unique_id=581091718]
 clip_contents = true
@@ -129,10 +92,54 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "-"
 
-[connection signal="pressed" from="Container/Container Size/Check Size" to="." method="_on_check_size_pressed"]
-[connection signal="color_changed" from="Container color custom/Container Color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
-[connection signal="pressed" from="Container color custom/Container Color/Reset" to="." method="_on_reset_pressed"]
+[node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("3_fcwth")]
+size = Vector2i(386, 73)
+visible = false
+graphnod = NodePath("..")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window Config" unique_id=1027945645]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container Size" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=1119489245]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Size Label" type="Label" parent="Window Config/VBoxContainer/Container Size" unique_id=1658213863]
+layout_mode = 2
+text = "Manter Tamanho O riginal"
+
+[node name="Check Size" type="CheckBox" parent="Window Config/VBoxContainer/Container Size" unique_id=2028989930]
+layout_mode = 2
+
+[node name="Container color custom" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=1071587880]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+
+[node name="Label Color" type="Label" parent="Window Config/VBoxContainer/Container color custom" unique_id=191363692]
+layout_mode = 2
+text = "Cor de Fundo"
+
+[node name="Container Color" type="HBoxContainer" parent="Window Config/VBoxContainer/Container color custom" unique_id=394695015]
+layout_mode = 2
+
+[node name="ColorButton Back" type="ColorPickerButton" parent="Window Config/VBoxContainer/Container color custom/Container Color" unique_id=1500571526]
+layout_mode = 2
+text = "11111111111"
+
+[node name="Reset" parent="Window Config/VBoxContainer/Container color custom/Container Color" unique_id=1733640759 instance=ExtResource("2_fcwth")]
+layout_mode = 2
+
+[connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
+[connection signal="node_selected" from="." to="." method="_on_node_selected"]
 [connection signal="pressed" from="Button Image" to="." method="_on_texture_rect_pressed"]
 [connection signal="file_selected" from="Open Image" to="." method="_on_open_image_file_selected"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
+[connection signal="pressed" from="Window Config/VBoxContainer/Container Size/Check Size" to="." method="_on_check_size_pressed"]
+[connection signal="color_changed" from="Window Config/VBoxContainer/Container color custom/Container Color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
+[connection signal="pressed" from="Window Config/VBoxContainer/Container color custom/Container Color/Reset" to="." method="_on_reset_pressed"]

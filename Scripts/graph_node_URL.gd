@@ -173,3 +173,10 @@ func _on_reset_pressed() -> void:
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 	
 	Global.alteraction()
+
+func _on_node_selected() -> void:
+	Global.selected_nodes += 1
+
+
+func _on_node_deselected() -> void:
+	Global.selected_nodes -= 1

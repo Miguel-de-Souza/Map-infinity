@@ -143,3 +143,10 @@ func _on_color_picker_button_color_changed(color: Color) -> void:
 	line_hex.text = str(button_color.color.to_html(false))
 	
 	Global.alteraction()
+
+func _on_node_selected() -> void:
+	Global.selected_nodes += 1
+
+
+func _on_node_deselected() -> void:
+	Global.selected_nodes -= 1

@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="6_pvawi"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("note", "title_line", "size_fonts", "font_size", "size_content")]
-offset_right = 900.0
-offset_bottom = 352.0
+offset_right = 700.0
+offset_bottom = 300.0
 theme_override_constants/separation = 4
 resizable = true
 slot/0/left_enabled = false
@@ -79,7 +79,8 @@ layout_mode = 2
 text = "-"
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("6_pvawi")]
-size = Vector2i(831, 100)
+size = Vector2i(827, 100)
+visible = false
 graphnod = NodePath("..")
 
 [node name="Container Left" type="VBoxContainer" parent="Window Config" unique_id=675921557]
@@ -189,4 +190,5 @@ layout_mode = 2
 [connection signal="pressed" from="Window Config/Container Left/Container Down/Container List/Button List" to="." method="_on_button_list_pressed"]
 [connection signal="pressed" from="Window Config/Container Left/Container Down/Container List/Button List Num" to="." method="_on_button_list_num_pressed"]
 [connection signal="color_changed" from="Window Config/Container Left/Container Down/Container color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
+[connection signal="pressed" from="Window Config/Container Left/Container Down/Container color/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="Window Config/Container Left/Container Down/Container Content/Check Ajust" to="." method="_on_check_ajust_pressed"]

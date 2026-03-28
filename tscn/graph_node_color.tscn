@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dbdw60boboltf"]
 
 [ext_resource type="Script" uid="uid://kid0ouwfay50" path="res://Scripts/graph_node_color.gd" id="1_mktjo"]
+[ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_nuh5h"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("title_line", "size_fonts", "button_color", "line_hex", "line_r", "line_g", "line_b")]
 anchors_preset = 8
@@ -11,7 +12,7 @@ anchor_bottom = 0.5
 offset_left = -635.0
 offset_top = -360.0
 offset_right = -185.0
-offset_bottom = 133.0
+offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
@@ -63,9 +64,9 @@ slot/4/right_icon = null
 slot/4/draw_stylebox = true
 script = ExtResource("1_mktjo")
 title_line = NodePath("Ttle")
-size_fonts = NodePath("Container/Container Size/Container Size Title/Font Size Title")
+size_fonts = NodePath("Window Config/VBoxContainer/Container Size Title/Font Size Title")
 button_color = NodePath("ColorPickerButton")
-line_hex = NodePath("Container Info Color/Info Hex/LineEdit Hex")
+line_hex = NodePath("Window Config/VBoxContainer/Info Hex/LineEdit Hex")
 line_r = NodePath("Container Info Color/Info RGB/Container R/LineEdit R")
 line_g = NodePath("Container Info Color/Info RGB/Container G/LineEdit G")
 line_b = NodePath("Container Info Color/Info RGB/Container B/LineEdit B")
@@ -84,21 +85,6 @@ theme_override_constants/separation = 248
 
 [node name="Container Size" type="VBoxContainer" parent="Container" unique_id=958391021]
 layout_mode = 2
-
-[node name="Container Size Title" type="HBoxContainer" parent="Container/Container Size" unique_id=2122979325]
-layout_mode = 2
-
-[node name="Title" type="Label" parent="Container/Container Size/Container Size Title" unique_id=854777974]
-layout_mode = 2
-text = "Título"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Font Size Title" type="SpinBox" parent="Container/Container Size/Container Size Title" unique_id=397914048]
-layout_mode = 2
-min_value = 1.0
-max_value = 80.0
-value = 16.0
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="." unique_id=1795591820]
 clip_contents = true
@@ -153,22 +139,6 @@ layout_mode = 2
 placeholder_text = "Color B"
 editable = false
 
-[node name="Info Hex" type="HBoxContainer" parent="Container Info Color" unique_id=1083625206]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/separation = 10
-
-[node name="Label Hex" type="Label" parent="Container Info Color/Info Hex" unique_id=1811247184]
-layout_mode = 2
-text = "Hex"
-
-[node name="LineEdit Hex" type="LineEdit" parent="Container Info Color/Info Hex" unique_id=151746654]
-clip_contents = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-placeholder_text = "Color Hex"
-editable = false
-
 [node name="Container Slots" type="HBoxContainer" parent="." unique_id=1512169561]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -186,7 +156,55 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "-"
 
-[connection signal="value_changed" from="Container/Container Size/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
+[node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("2_nuh5h")]
+size = Vector2i(391, 82)
+visible = false
+graphnod = NodePath("..")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window Config" unique_id=1103332977]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Container Size Title" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=1383342509]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Title" type="Label" parent="Window Config/VBoxContainer/Container Size Title" unique_id=743390116]
+layout_mode = 2
+text = "Título"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Font Size Title" type="SpinBox" parent="Window Config/VBoxContainer/Container Size Title" unique_id=1445826764]
+layout_mode = 2
+min_value = 1.0
+max_value = 80.0
+value = 16.0
+
+[node name="Info Hex" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=731941568]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="Label Hex" type="Label" parent="Window Config/VBoxContainer/Info Hex" unique_id=454513264]
+layout_mode = 2
+text = "Hex"
+
+[node name="LineEdit Hex" type="LineEdit" parent="Window Config/VBoxContainer/Info Hex" unique_id=1566164582]
+clip_contents = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+placeholder_text = "Color Hex"
+editable = false
+
+[connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
+[connection signal="node_selected" from="." to="." method="_on_node_selected"]
 [connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
+[connection signal="value_changed" from="Window Config/VBoxContainer/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
