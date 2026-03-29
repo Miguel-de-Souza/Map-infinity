@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://djcd2bpvg161x" path="res://Scripts/graph_node.gd" id="1_2yokc"]
 [ext_resource type="Texture2D" uid="uid://bdlb6rurlr5e3" path="res://icons/List.png" id="2_1iaox"]
+[ext_resource type="PackedScene" uid="uid://dyxn2spfd3ra7" path="res://tscn/ttle.tscn" id="2_pvawi"]
 [ext_resource type="Texture2D" uid="uid://bowxmek6m67o0" path="res://icons/List Num.png" id="3_jbsip"]
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="4_jbsip"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="6_pvawi"]
@@ -46,11 +47,8 @@ font_size = NodePath("Window Config/Container Left/Container Size/Container Size
 size_content = NodePath("Window Config/Container Left/Container Down/Container Content/Check Ajust")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
-[node name="Ttle" type="LineEdit" parent="." unique_id=577137378]
+[node name="Ttle" parent="." unique_id=294100434 instance=ExtResource("2_pvawi")]
 layout_mode = 2
-placeholder_text = "Título"
-alignment = 1
-expand_to_text_length = true
 
 [node name="Notepad" type="TextEdit" parent="." unique_id=1833819988]
 clip_contents = true
@@ -113,7 +111,7 @@ text = "Título"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Font Size Title" type="SpinBox" parent="Window Config/Container Left/Container Size/Container Size Camps/Container Size Title" unique_id=817963925]
+[node name="Font Size Title" type="SpinBox" parent="Window Config/Container Left/Container Size/Container Size Camps/Container Size Title" unique_id=1195911920]
 layout_mode = 2
 min_value = 1.0
 max_value = 80.0
@@ -181,7 +179,6 @@ layout_mode = 2
 
 [connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
 [connection signal="node_selected" from="." to="." method="_on_node_selected"]
-[connection signal="text_changed" from="Ttle" to="." method="_on_ttle_text_changed"]
 [connection signal="text_changed" from="Notepad" to="." method="_on_notepad_text_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

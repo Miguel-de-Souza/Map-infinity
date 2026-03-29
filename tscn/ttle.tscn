@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dyxn2spfd3ra7"]
+
+[ext_resource type="Script" uid="uid://dc0xw18nruv3m" path="res://Scripts/ttle.gd" id="1_vwbqg"]
+
+[node name="Ttle" type="LineEdit" unique_id=294100434]
+placeholder_text = "Título"
+alignment = 1
+expand_to_text_length = true
+script = ExtResource("1_vwbqg")
+
+[connection signal="text_changed" from="." to="." method="_on_text_changed"]

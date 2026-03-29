@@ -20,7 +20,6 @@ func _ready() -> void:
 	
 func _on_font_size_title_value_changed(value: float) -> void:
 	url.add_theme_font_size_override("font_size", int(value))
-	
 	Global.alteraction()
 
 func get_save_data() -> Dictionary:
@@ -66,6 +65,8 @@ func load_save_data(data: Dictionary) -> void:
 	url.text = data.get("title", "Node")
 	size_fonts.value = data.get("font_size", 14)
 
+	_on_font_size_title_value_changed(size_fonts.value)
+	
 	for child in get_children():
 		if child is ColorRect:
 			child.queue_free()
@@ -116,7 +117,7 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_pressed("ui_text_delete") and selected:
 		Global.alteraction()
-		
+		Global.selected_nodes -= 1
 		queue_free()
 
 var slots_add := 2

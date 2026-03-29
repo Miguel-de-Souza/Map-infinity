@@ -150,6 +150,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_text_delete") and selected:
 		if not title_line.has_focus() and not note.has_focus():
 			Global.alteraction()
+			Global.selected_nodes -= 1
 			queue_free()
 
 #Sistema para adicionar slots
@@ -210,7 +211,6 @@ var num_count := 1
 #O que realmente faz a desconexão (GraphEdit)
 func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	get_parent().disconnect_node(from_node, from_port, to_node, to_port)
-	
 	Global.alteraction()
 
 #Sistema para Adicionar Caracteres de listas
@@ -275,9 +275,6 @@ func _on_color_button_back_color_changed(color: Color) -> void:
 func _on_notepad_text_changed() -> void:
 	Global.alteraction()
 
-#Se alterar algum texto do Título
-func _on_ttle_text_changed(_new_text: String) -> void:
-	Global.alteraction()
 
 func _on_reset_pressed() -> void:
 	remove_theme_stylebox_override("panel")

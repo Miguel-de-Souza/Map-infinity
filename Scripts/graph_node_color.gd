@@ -88,19 +88,15 @@ func load_save_data(data: Dictionary) -> void:
 func _gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not selected:
-			
 			var shift_pressed = Input.is_key_pressed(KEY_SHIFT)
-			
 			if not shift_pressed:
 				get_parent().clear_selection()
-			
 			selected = true
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_text_delete") and selected:
-		
 		Global.alteraction()
-		
+		Global.selected_nodes -= 1
 		queue_free()
 
 var slots_add := 2
