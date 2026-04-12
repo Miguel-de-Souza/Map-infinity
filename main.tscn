@@ -16,23 +16,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackGround ToolBar" type="ColorRect" parent="." unique_id=1825417117]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 35.0
-grow_horizontal = 2
-color = Color(0.1, 0.1, 0.1, 1)
-
 [node name="GraphEdit" type="GraphEdit" parent="." unique_id=251952592 node_paths=PackedStringArray("file_dia", "file_load", "more", "poparquivo", "popMake", "label_diretorio", "text_more", "confirmation_version")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 35.0
+offset_top = 42.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1bvp3")
+scroll_offset = Vector2(0, -42)
 right_disconnects = true
 zoom_min = 0.05
 zoom_max = 3.0
@@ -46,6 +39,14 @@ popMake = NodePath("../Container Tool/MenuButton Insert")
 label_diretorio = NodePath("../Label Diretory")
 text_more = NodePath("../More Program/Container More/Text More")
 confirmation_version = NodePath("../Confirmation Version")
+
+[node name="BackGround ToolBar" type="ColorRect" parent="." unique_id=1825417117]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 44.0
+grow_horizontal = 2
+color = Color(0.1, 0.1, 0.1, 1)
 
 [node name="Window Config" type="Window" parent="." unique_id=1806257895 node_paths=PackedStringArray("Geapgh", "check_diretory", "check_ajust", "label_diretorio", "show_debug", "debug_label", "option_grid", "option_scroll", "option_camp", "option_title", "type_window", "mode_option", "min_op", "max_op", "option_BG", "option_Grides")]
 oversampling_override = 1.0
@@ -387,8 +388,8 @@ use_native_dialog = true
 [node name="Container Tool" type="HBoxContainer" parent="." unique_id=329935236]
 layout_mode = 0
 offset_right = 395.0
-offset_bottom = 35.0
-theme_override_constants/separation = 20
+offset_bottom = 44.0
+theme_override_constants/separation = 40
 
 [node name="Margin" type="MarginContainer" parent="Container Tool" unique_id=1338208039]
 layout_mode = 2
