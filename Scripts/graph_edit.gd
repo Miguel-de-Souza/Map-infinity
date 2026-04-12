@@ -8,6 +8,7 @@ extends GraphEdit
 @export var label_diretorio: Label
 @export var confirmation_version: ConfirmationDialog
 @export var descript_text: RichTextLabel
+@export var window_unsave: ConfirmationDialog
 
 var current_project_path: String = ""
 var posit:= Vector2(160,160)
@@ -17,13 +18,30 @@ var selected_mode_make:= false
 var numb := 0
 var description := str(ProjectSettings.get_setting("application/config/description"))
 var version := str(ProjectSettings.get_setting("application/config/version"))
-	
+
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		if icon_unsave == " *":
+			get_tree().set_auto_accept_quit(false)
+			window_unsave.popup()
+		else:
+			get_tree().quit()
+
+
 func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	disconnect_node(from_node, from_port, to_node, to_port)
 	
 	Global.alteraction()
 
+
+func _on_canceled_pressed():
+	window_unsave.hide()
+
 func _ready():
+	var extra_btn = window_unsave.add_button("Cancelar", true, "extra")
+	extra_btn.pressed.connect(_on_canceled_pressed)
+	
 	label_diretorio.text = ""
 	file_dia.current_dir = desktop
 	file_load.current_dir = desktop
@@ -49,6 +67,7 @@ func _process(_delta: float) -> void:
 		icon_unsave = " *"
 		label_diretorio. text += icon_unsave
 		Global.stop_unsave = true
+		
 
 	if not Global.stop_unsave:
 		icon_unsave = ""
@@ -417,3 +436,17 @@ func clear_selection():
 func _on_confirmation_version_confirmed() -> void:
 	unlock_load = true
 	load_project_from_path(caminho)
+
+
+func _on_unsave_exit_confirmed() -> void:
+	if current_project_path == "":
+		file_dia.popup()
+		
+	else:
+		save_project_to_path(current_project_path)
+		for conn in get_connection_list():
+			print(conn)
+			
+
+func _on_unsave_exit_canceled() -> void:
+	get_tree().quit()

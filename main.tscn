@@ -4,24 +4,10 @@
 [ext_resource type="Script" uid="uid://ctdfhgnwtrfac" path="res://Scripts/window_config.gd" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="3_1bvp3"]
 [ext_resource type="Script" uid="uid://bg0igw8fgmsth" path="res://Scripts/debuger.gd" id="3_h2yge"]
+[ext_resource type="Theme" uid="uid://b7fexesft3ps1" path="res://Palletas/Windows.tres" id="5_lquwl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
-bg_color = Color(0.19, 0.19, 0.19, 1)
-border_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
-shadow_size = 164
-
-[sub_resource type="Theme" id="Theme_7mycd"]
-AcceptDialog/constants/buttons_min_height = 40
-AcceptDialog/constants/buttons_min_width = 125
-AcceptDialog/styles/panel = SubResource("StyleBoxFlat_lquwl")
 
 [node name="Main" type="Control" unique_id=1440128229]
 layout_mode = 3
@@ -31,7 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GraphEdit" type="GraphEdit" parent="." unique_id=251952592 node_paths=PackedStringArray("file_dia", "file_load", "more", "poparquivo", "popMake", "label_diretorio", "confirmation_version", "descript_text")]
+[node name="GraphEdit" type="GraphEdit" parent="." unique_id=251952592 node_paths=PackedStringArray("file_dia", "file_load", "more", "poparquivo", "popMake", "label_diretorio", "confirmation_version", "descript_text", "window_unsave")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,7 +26,6 @@ offset_top = 42.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1bvp3")
-scroll_offset = Vector2(0, -42)
 right_disconnects = true
 zoom_min = 0.05
 zoom_max = 3.0
@@ -54,6 +39,7 @@ popMake = NodePath("../Container Tool/MenuButton Insert")
 label_diretorio = NodePath("../Label Diretory")
 confirmation_version = NodePath("../Confirmation Version")
 descript_text = NodePath("../SobreProgram/MarginContainer/VBoxContainer/DescritionText")
+window_unsave = NodePath("../UnsaveExit")
 
 [node name="BackGround ToolBar" type="ColorRect" parent="." unique_id=1825417117]
 layout_mode = 1
@@ -452,6 +438,7 @@ oversampling_override = 1.0
 title = "Versão Diferente"
 initial_position = 2
 size = Vector2i(744, 132)
+theme = ExtResource("5_lquwl")
 ok_button_text = "Abrir mesmo assim"
 dialog_text = "O arquivo foi feito em uma versão diferente do programa, tentar abri-lo pode resultar em erro
 Tem certeza que quer abrir?
@@ -465,7 +452,7 @@ initial_position = 1
 size = Vector2i(615, 335)
 unresizable = true
 always_on_top = true
-theme = SubResource("Theme_7mycd")
+theme = ExtResource("5_lquwl")
 theme_override_constants/buttons_separation = 10
 ok_button_text = "OK"
 
@@ -512,6 +499,17 @@ theme_override_colors/font_color = Color(0.6673333, 0.65999997, 0.88, 1)
 text = "Pagina do GitHub"
 uri = "https://github.com/Miguel-de-Souza/Map-infinity"
 
+[node name="UnsaveExit" type="ConfirmationDialog" parent="." unique_id=1693761587]
+oversampling_override = 1.0
+title = "Sair do Programa?"
+initial_position = 1
+size = Vector2i(545, 150)
+theme = ExtResource("5_lquwl")
+ok_button_text = "Salvar e Sair"
+dialog_text = "Foi registrado uma alteração no Projeto que não foi salvo. Se fechar o programa perderá tudo, tem certeza que quer sair?"
+dialog_autowrap = true
+cancel_button_text = "Sair e Não Salvar "
+
 [connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
 [connection signal="disconnection_request" from="GraphEdit" to="GraphEdit" method="_on_disconnection_request"]
 [connection signal="close_requested" from="Window Config" to="Window Config" method="_on_close_requested"]
@@ -533,3 +531,5 @@ uri = "https://github.com/Miguel-de-Souza/Map-infinity"
 [connection signal="pressed" from="Container Tool/MenuButton Config" to="Window Config" method="_on_menu_button_config_pressed"]
 [connection signal="pressed" from="Container Tool/MenuButton More" to="GraphEdit" method="_on_menu_button_more_pressed"]
 [connection signal="confirmed" from="Confirmation Version" to="GraphEdit" method="_on_confirmation_version_confirmed"]
+[connection signal="canceled" from="UnsaveExit" to="GraphEdit" method="_on_unsave_exit_canceled"]
+[connection signal="confirmed" from="UnsaveExit" to="GraphEdit" method="_on_unsave_exit_confirmed"]

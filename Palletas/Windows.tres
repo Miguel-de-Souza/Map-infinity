@@ -1,0 +1,16 @@
+[gd_resource type="Theme" format=3 uid="uid://b7fexesft3ps1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.19, 0.19, 0.19, 1)
+border_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+shadow_size = 164
+
+[resource]
+AcceptDialog/constants/buttons_min_height = 40
+AcceptDialog/constants/buttons_min_width = 125
+AcceptDialog/styles/panel = SubResource("StyleBoxFlat_lquwl")
