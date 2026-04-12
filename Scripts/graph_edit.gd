@@ -120,6 +120,14 @@ func _process(_delta: float) -> void:
 					
 		else:
 			criar_bloco_notas()
+			
+	elif Input.is_action_just_pressed("Add Bloco Calendar"):
+		if active_mode_node:
+			selected_mode_make = true
+			numb = 1
+					
+		else:
+			criar_bloco_notas(5)
 
 
 func _input(_event):
@@ -228,6 +236,9 @@ func criar_bloco_notas(id : int = 1) -> void:
 			
 		4:
 			nodesGraph = preload("uid://di7oqrwfyddru").instantiate() #Image
+			
+		5:
+			nodesGraph = preload("uid://bq1waeg8fv6q2").instantiate()
 	
 	nodesGraph.name = "Node_" + str(Time.get_ticks_usec())
 	
@@ -381,6 +392,15 @@ func _on_item_selected_insert(id: int) -> void:
 					
 			else:
 				criar_bloco_notas(4)
+				
+				
+		4:
+			if active_mode_node:
+				selected_mode_make = true
+				numb = 5
+					
+			else:
+				criar_bloco_notas(5)
 
 
 func _on_menu_button_more_pressed() -> void:
