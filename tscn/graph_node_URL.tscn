@@ -94,13 +94,13 @@ size_flags_vertical = 4
 
 [node name="Button Add" type="Button" parent="Container Slots" unique_id=1937745558]
 clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 text = "+"
 
 [node name="Button Sub" type="Button" parent="Container Slots" unique_id=466702399]
 clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 text = "-"
 
@@ -157,6 +157,7 @@ node_pai = NodePath("../../../../..")
 
 [connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
 [connection signal="node_selected" from="." to="." method="_on_node_selected"]
+[connection signal="position_offset_changed" from="." to="." method="_on_position_offset_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
 [connection signal="value_changed" from="Window Config/VBoxContainer/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]

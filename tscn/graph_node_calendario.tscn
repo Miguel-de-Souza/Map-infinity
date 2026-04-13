@@ -161,18 +161,19 @@ size_flags_vertical = 4
 
 [node name="Button Add" type="Button" parent="Container Slots" unique_id=364076581]
 clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 text = "+"
 
 [node name="Button Sub" type="Button" parent="Container Slots" unique_id=1875051094]
 clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 text = "-"
 
 [connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
 [connection signal="node_selected" from="." to="." method="_on_node_selected"]
+[connection signal="position_offset_changed" from="." to="." method="_on_position_offset_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button prev" to="." method="_on_button_prev_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button next" to="." method="_on_button_next_pressed"]
 [connection signal="value_changed" from="Window Config/VBoxContainer/Container Size Block/Font Size Campo" to="." method="_on_font_size_campo_value_changed"]
