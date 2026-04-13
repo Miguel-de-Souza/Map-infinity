@@ -58,54 +58,55 @@ visible = false
 unresizable = true
 script = ExtResource("2_0xm2m")
 Geapgh = NodePath("../GraphEdit")
-check_diretory = NodePath("Container Configure/Margin Conf/HBox Conf/Container Config/Container Diretory/Check Diretorio")
-check_ajust = NodePath("Container Configure/Margin Conf/HBox Conf/Container Config/Container Ajust/Check Ajust")
+check_diretory = NodePath("TabContainer/Avançado/MarginContainer/VBoxContainer/Container Diretory/Check Diretorio")
+check_ajust = NodePath("TabContainer/Nodes/MarginContainer/VBoxContainer/Container Ajust/Check Ajust")
 label_diretorio = NodePath("../Label Diretory")
-show_debug = NodePath("Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Debug/Check Debug")
+show_debug = NodePath("TabContainer/Avançado/MarginContainer/VBoxContainer/Container Debug/Check Debug")
 debug_label = NodePath("../Text Debug")
-option_grid = NodePath("Container Configure/Margin Conf/HBox Conf/Container Config/Container Grid/Option Grids")
-option_scroll = NodePath("Container Configure/Margin Conf/HBox Conf/Container Config/Container Scroll/Option Scroll")
-option_camp = NodePath("Container Configure/Margin Conf/HBox Conf/Container Config/Container Size/Option Size Camp")
-option_title = NodePath("Container Configure/Margin Conf/HBox Conf/Container Config/Container Size Title/Option Size Title")
-type_window = NodePath("Container Configure/Margin Conf/HBox Conf/Container Config/Container Mode/Type Window")
-mode_option = NodePath("Container Configure/Margin Conf/HBox Conf/Container Config/Container Make/Modo Option")
-min_op = NodePath("Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Min/Spin Min")
-max_op = NodePath("Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Max/Spin Max")
-option_BG = NodePath("Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Temas/Container BG/Option BG")
-option_Grides = NodePath("Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Temas/Container Grid/Option Grid")
+option_grid = NodePath("TabContainer/Interface/MarginContainer/VBoxContainer/Container Grid/Option Grids")
+option_scroll = NodePath("TabContainer/Interface/MarginContainer/VBoxContainer/Container Scroll/Option Scroll")
+option_camp = NodePath("TabContainer/Nodes/MarginContainer/VBoxContainer/Container Size/Option Size Camp")
+option_title = NodePath("TabContainer/Nodes/MarginContainer/VBoxContainer/Container Size Title/Option Size Title")
+type_window = NodePath("TabContainer/Interface/MarginContainer/VBoxContainer/Container Mode/Type Window")
+mode_option = NodePath("TabContainer/Nodes/MarginContainer/VBoxContainer/Container Make/Modo Option")
+min_op = NodePath("TabContainer/Aparência/MarginContainer/Container Right/Container Zoom/Container MM/Container Min/Spin Min")
+max_op = NodePath("TabContainer/Aparência/MarginContainer/Container Right/Container Zoom/Container MM/Container Max/Spin Max")
+option_BG = NodePath("TabContainer/Aparência/MarginContainer/Container Right/Container Temas/Container BG/Option BG")
+option_Grides = NodePath("TabContainer/Aparência/MarginContainer/Container Right/Container Temas/Container Grid/Option Grid")
 
-[node name="Container Configure" type="VBoxContainer" parent="Window Config" unique_id=2089540394]
+[node name="TabContainer" type="TabContainer" parent="Window Config" unique_id=436149474]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+current_tab = 3
 
-[node name="Margin Conf" type="MarginContainer" parent="Window Config/Container Configure" unique_id=2134513102]
+[node name="Interface" type="Control" parent="Window Config/TabContainer" unique_id=1468478609]
+visible = false
 layout_mode = 2
-theme_override_constants/margin_left = 7
-theme_override_constants/margin_top = 10
+metadata/_tab_index = 0
 
-[node name="HBox Conf" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf" unique_id=1715464594]
+[node name="MarginContainer" type="MarginContainer" parent="Window Config/TabContainer/Interface" unique_id=1632363824]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window Config/TabContainer/Interface/MarginContainer" unique_id=1769945098]
 layout_mode = 2
-size_flags_vertical = 4
+theme_override_constants/separation = 15
 
-[node name="Container Config" type="VBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf" unique_id=647695880]
+[node name="Container Grid" type="HBoxContainer" parent="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer" unique_id=1086933459]
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_constants/separation = 20
 
-[node name="Container Grid" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config" unique_id=1086933459]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Type Grid" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Grid" unique_id=920161610]
+[node name="Type Grid" type="Label" parent="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer/Container Grid" unique_id=920161610]
 layout_mode = 2
 text = "Tipo de Grade"
 
-[node name="Option Grids" type="OptionButton" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Grid" unique_id=1789191148]
+[node name="Option Grids" type="OptionButton" parent="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer/Container Grid" unique_id=1789191148]
 layout_mode = 2
 selected = 0
 item_count = 2
@@ -114,15 +115,15 @@ popup/item_0/id = 0
 popup/item_1/text = "Dots"
 popup/item_1/id = 1
 
-[node name="Container Scroll" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config" unique_id=946023233]
+[node name="Container Scroll" type="HBoxContainer" parent="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer" unique_id=946023233]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Type Scroll" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Scroll" unique_id=1334705798]
+[node name="Type Scroll" type="Label" parent="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer/Container Scroll" unique_id=1334705798]
 layout_mode = 2
 text = "Tipo de Scroll"
 
-[node name="Option Scroll" type="OptionButton" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Scroll" unique_id=396857958]
+[node name="Option Scroll" type="OptionButton" parent="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer/Container Scroll" unique_id=396857958]
 layout_mode = 2
 selected = 0
 item_count = 2
@@ -131,75 +132,15 @@ popup/item_0/id = 0
 popup/item_1/text = "Pans"
 popup/item_1/id = 1
 
-[node name="Container Size Title" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config" unique_id=1775673372]
+[node name="Container Mode" type="HBoxContainer" parent="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer" unique_id=172956295]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Type Size Ttitle" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size Title" unique_id=718274692]
-layout_mode = 2
-text = "Tamanho Padrão dos Títulos"
-
-[node name="Option Size Title" type="SpinBox" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size Title" unique_id=132651674]
-layout_mode = 2
-min_value = 1.0
-max_value = 80.0
-value = 16.0
-
-[node name="Reset" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size Title" unique_id=1604518478 node_paths=PackedStringArray("node_pai") instance=ExtResource("3_1bvp3")]
-layout_mode = 2
-node_pai = NodePath("../Option Size Title")
-valor = 16.0
-
-[node name="Container Size" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config" unique_id=61843572]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Type Size Camp" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size" unique_id=559483811]
-layout_mode = 2
-text = "Tamanho Padrão dos Campos"
-
-[node name="Option Size Camp" type="SpinBox" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size" unique_id=1830448274]
-layout_mode = 2
-min_value = 1.0
-max_value = 120.0
-value = 16.0
-
-[node name="Reset" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size" unique_id=1733640759 node_paths=PackedStringArray("node_pai") instance=ExtResource("3_1bvp3")]
-layout_mode = 2
-node_pai = NodePath("../Option Size Camp")
-valor = 16.0
-
-[node name="Container Diretory" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config" unique_id=433423033]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Type Grid" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Diretory" unique_id=1522040438]
-layout_mode = 2
-text = "Ocultar Diretório do Arquivo"
-
-[node name="Check Diretorio" type="CheckBox" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Diretory" unique_id=985224444]
-layout_mode = 2
-
-[node name="Container Ajust" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config" unique_id=1419024186]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Type Ajust" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Ajust" unique_id=1041724515]
-layout_mode = 2
-text = "Ajustar Tamanho do Campo Automaticamente"
-
-[node name="Check Ajust" type="CheckBox" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Ajust" unique_id=835167735]
-layout_mode = 2
-
-[node name="Container Mode" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config" unique_id=172956295]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Modo" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Mode" unique_id=978186425]
+[node name="Modo" type="Label" parent="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer/Container Mode" unique_id=978186425]
 layout_mode = 2
 text = "Modo"
 
-[node name="Type Window" type="OptionButton" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Mode" unique_id=1466644928]
+[node name="Type Window" type="OptionButton" parent="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer/Container Mode" unique_id=1466644928]
 layout_mode = 2
 alignment = 1
 selected = 0
@@ -209,15 +150,80 @@ popup/item_0/id = 0
 popup/item_1/text = "Tela Cheia"
 popup/item_1/id = 1
 
-[node name="Container Make" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config" unique_id=1723018699]
+[node name="Nodes" type="Control" parent="Window Config/TabContainer" unique_id=1773523402]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Window Config/TabContainer/Nodes" unique_id=1482769607]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window Config/TabContainer/Nodes/MarginContainer" unique_id=1173038511]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Container Size Title" type="HBoxContainer" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer" unique_id=1775673372]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Modo Make" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Make" unique_id=1794956381]
+[node name="Type Size Ttitle" type="Label" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Size Title" unique_id=718274692]
+layout_mode = 2
+text = "Tamanho Padrão dos Títulos"
+
+[node name="Option Size Title" type="SpinBox" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Size Title" unique_id=132651674]
+layout_mode = 2
+min_value = 1.0
+max_value = 80.0
+value = 16.0
+
+[node name="Reset" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Size Title" unique_id=1604518478 node_paths=PackedStringArray("node_pai") instance=ExtResource("3_1bvp3")]
+layout_mode = 2
+node_pai = NodePath("../Option Size Title")
+valor = 16.0
+
+[node name="Container Size" type="HBoxContainer" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer" unique_id=61843572]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Type Size Camp" type="Label" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Size" unique_id=559483811]
+layout_mode = 2
+text = "Tamanho Padrão dos Campos"
+
+[node name="Option Size Camp" type="SpinBox" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Size" unique_id=1830448274]
+layout_mode = 2
+min_value = 1.0
+max_value = 120.0
+value = 16.0
+
+[node name="Reset" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Size" unique_id=1733640759 node_paths=PackedStringArray("node_pai") instance=ExtResource("3_1bvp3")]
+layout_mode = 2
+node_pai = NodePath("../Option Size Camp")
+valor = 16.0
+
+[node name="Container Ajust" type="HBoxContainer" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer" unique_id=1419024186]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Type Ajust" type="Label" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Ajust" unique_id=1041724515]
+layout_mode = 2
+text = "Ajustar Tamanho do Campo Automaticamente"
+
+[node name="Check Ajust" type="CheckBox" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Ajust" unique_id=835167735]
+layout_mode = 2
+
+[node name="Container Make" type="HBoxContainer" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer" unique_id=1723018699]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Modo Make" type="Label" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Make" unique_id=1794956381]
 layout_mode = 2
 text = "Modo de criação de Bloco"
 
-[node name="Modo Option" type="OptionButton" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Make" unique_id=569970736]
+[node name="Modo Option" type="OptionButton" parent="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Make" unique_id=569970736]
 layout_mode = 2
 alignment = 1
 selected = 0
@@ -227,91 +233,86 @@ popup/item_0/id = 0
 popup/item_1/text = "No clicar na posição"
 popup/item_1/id = 1
 
-[node name="Separator" type="VSeparator" parent="Window Config/Container Configure/Margin Conf/HBox Conf" unique_id=545773786]
+[node name="Aparência" type="Control" parent="Window Config/TabContainer" unique_id=2046753866]
+visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
-[node name="Margin Right" type="MarginContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf" unique_id=868011463]
-layout_mode = 2
-theme_override_constants/margin_left = 10
+[node name="MarginContainer" type="MarginContainer" parent="Window Config/TabContainer/Aparência" unique_id=475866940]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
 
-[node name="Container Right" type="VBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right" unique_id=770630323]
+[node name="Container Right" type="VBoxContainer" parent="Window Config/TabContainer/Aparência/MarginContainer" unique_id=770630323]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Container Debug" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right" unique_id=622563755]
+[node name="Container Zoom" type="VBoxContainer" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right" unique_id=914304092]
 layout_mode = 2
 
-[node name="Text Debug C" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Debug" unique_id=118624694]
-layout_mode = 2
-text = "Mostrar Debug"
-
-[node name="Check Debug" type="CheckBox" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Debug" unique_id=1487422473]
-layout_mode = 2
-
-[node name="Container Zoom" type="VBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right" unique_id=914304092]
-layout_mode = 2
-
-[node name="Text Zoom" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom" unique_id=518827747]
+[node name="Text Zoom" type="Label" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Zoom" unique_id=518827747]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Zoom"
 
-[node name="Container MM" type="VBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom" unique_id=805843722]
+[node name="Container MM" type="VBoxContainer" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Zoom" unique_id=805843722]
 layout_mode = 2
 
-[node name="Container Min" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM" unique_id=1169692345]
+[node name="Container Min" type="HBoxContainer" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Zoom/Container MM" unique_id=1169692345]
 layout_mode = 2
 
-[node name="Label Min" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Min" unique_id=1811611588]
+[node name="Label Min" type="Label" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Zoom/Container MM/Container Min" unique_id=1811611588]
 layout_mode = 2
 text = "Mínimo "
 
-[node name="Spin Min" type="SpinBox" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Min" unique_id=971780079]
+[node name="Spin Min" type="SpinBox" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Zoom/Container MM/Container Min" unique_id=971780079]
 layout_mode = 2
 min_value = 5.0
 value = 5.0
 suffix = "%"
 
-[node name="Reset" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Min" unique_id=1627441685 node_paths=PackedStringArray("node_pai") instance=ExtResource("3_1bvp3")]
+[node name="Reset" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Zoom/Container MM/Container Min" unique_id=1627441685 node_paths=PackedStringArray("node_pai") instance=ExtResource("3_1bvp3")]
 layout_mode = 2
 node_pai = NodePath("../Spin Min")
 valor = 5.0
 
-[node name="Container Max" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM" unique_id=1593176953]
+[node name="Container Max" type="HBoxContainer" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Zoom/Container MM" unique_id=1593176953]
 layout_mode = 2
 
-[node name="Label Max" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Max" unique_id=394733144]
+[node name="Label Max" type="Label" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Zoom/Container MM/Container Max" unique_id=394733144]
 layout_mode = 2
 text = "Maximo"
 
-[node name="Spin Max" type="SpinBox" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Max" unique_id=223392540]
+[node name="Spin Max" type="SpinBox" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Zoom/Container MM/Container Max" unique_id=223392540]
 layout_mode = 2
 min_value = 100.0
 max_value = 500.0
 value = 300.0
 suffix = "%"
 
-[node name="Reset" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Max" unique_id=784778296 node_paths=PackedStringArray("node_pai") instance=ExtResource("3_1bvp3")]
+[node name="Reset" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Zoom/Container MM/Container Max" unique_id=784778296 node_paths=PackedStringArray("node_pai") instance=ExtResource("3_1bvp3")]
 layout_mode = 2
 node_pai = NodePath("../Spin Max")
 valor = 300.0
 
-[node name="Container Temas" type="VBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right" unique_id=1043763190]
+[node name="Container Temas" type="VBoxContainer" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right" unique_id=1043763190]
 layout_mode = 2
 
-[node name="Label Tema" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Temas" unique_id=2057501754]
+[node name="Label Tema" type="Label" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas" unique_id=2057501754]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Temas"
 
-[node name="Container BG" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Temas" unique_id=1741875537]
+[node name="Container BG" type="HBoxContainer" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas" unique_id=1741875537]
 layout_mode = 2
 
-[node name="Label BG" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Temas/Container BG" unique_id=1903296096]
+[node name="Label BG" type="Label" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas/Container BG" unique_id=1903296096]
 layout_mode = 2
 text = "Cor de Fundo"
 
-[node name="Option BG" type="HSlider" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Temas/Container BG" unique_id=1443160933]
+[node name="Option BG" type="HSlider" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas/Container BG" unique_id=1443160933]
 clip_contents = true
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
@@ -321,17 +322,17 @@ max_value = 1.0
 step = 0.0
 value = 0.1
 
-[node name="Container Grid" type="HBoxContainer" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Temas" unique_id=1857540758]
+[node name="Container Grid" type="HBoxContainer" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas" unique_id=1857540758]
 layout_mode = 2
 theme_override_constants/separation = 23
 
-[node name="Label Grid" type="Label" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Temas/Container Grid" unique_id=852326367]
+[node name="Label Grid" type="Label" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas/Container Grid" unique_id=852326367]
 layout_mode = 2
 text = "Opacidade
 da Grade"
 horizontal_alignment = 1
 
-[node name="Option Grid" type="HSlider" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Temas/Container Grid" unique_id=247179055]
+[node name="Option Grid" type="HSlider" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas/Container Grid" unique_id=247179055]
 clip_contents = true
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
@@ -339,9 +340,45 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 255.0
 
-[node name="Reset Themes" type="Button" parent="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Temas" unique_id=992288827]
+[node name="Reset Themes" type="Button" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas" unique_id=992288827]
 layout_mode = 2
 text = "Resetar Temas"
+
+[node name="Avançado" type="Control" parent="Window Config/TabContainer" unique_id=1094521888]
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Window Config/TabContainer/Avançado" unique_id=352247051]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window Config/TabContainer/Avançado/MarginContainer" unique_id=1639474262]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Container Diretory" type="HBoxContainer" parent="Window Config/TabContainer/Avançado/MarginContainer/VBoxContainer" unique_id=433423033]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Type Grid" type="Label" parent="Window Config/TabContainer/Avançado/MarginContainer/VBoxContainer/Container Diretory" unique_id=1522040438]
+layout_mode = 2
+text = "Ocultar Diretório do Arquivo"
+
+[node name="Check Diretorio" type="CheckBox" parent="Window Config/TabContainer/Avançado/MarginContainer/VBoxContainer/Container Diretory" unique_id=985224444]
+layout_mode = 2
+
+[node name="Container Debug" type="HBoxContainer" parent="Window Config/TabContainer/Avançado/MarginContainer/VBoxContainer" unique_id=622563755]
+layout_mode = 2
+
+[node name="Text Debug C" type="Label" parent="Window Config/TabContainer/Avançado/MarginContainer/VBoxContainer/Container Debug" unique_id=118624694]
+layout_mode = 2
+text = "Mostrar Debug"
+
+[node name="Check Debug" type="CheckBox" parent="Window Config/TabContainer/Avançado/MarginContainer/VBoxContainer/Container Debug" unique_id=1487422473]
+layout_mode = 2
 
 [node name="File Save" type="FileDialog" parent="." unique_id=2093349877]
 oversampling_override = 1.0
@@ -513,21 +550,21 @@ cancel_button_text = "Sair e Não Salvar "
 [connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
 [connection signal="disconnection_request" from="GraphEdit" to="GraphEdit" method="_on_disconnection_request"]
 [connection signal="close_requested" from="Window Config" to="Window Config" method="_on_close_requested"]
-[connection signal="item_selected" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Grid/Option Grids" to="Window Config" method="_on_option_grids_item_selected"]
-[connection signal="item_selected" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Scroll/Option Scroll" to="Window Config" method="_on_option_scroll_item_selected"]
-[connection signal="value_changed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size Title/Option Size Title" to="Window Config" method="_on_option_size_title_value_changed"]
-[connection signal="value_changed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Size/Option Size Camp" to="Window Config" method="_on_option_scroll_value_changed"]
-[connection signal="pressed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Diretory/Check Diretorio" to="Window Config" method="_on_check_diretorio_pressed"]
-[connection signal="pressed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Ajust/Check Ajust" to="Window Config" method="_on_check_ajust_pressed"]
-[connection signal="item_selected" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Mode/Type Window" to="Window Config" method="_on_type_window_item_selected"]
-[connection signal="item_selected" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Make/Modo Option" to="GraphEdit" method="_on_modo_option_item_selected"]
-[connection signal="item_selected" from="Window Config/Container Configure/Margin Conf/HBox Conf/Container Config/Container Make/Modo Option" to="Window Config" method="_on_modo_option_item_selected"]
-[connection signal="pressed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Debug/Check Debug" to="Window Config" method="_on_check_debug_pressed"]
-[connection signal="value_changed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Min/Spin Min" to="Window Config" method="_on_spin_min_value_changed"]
-[connection signal="value_changed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Zoom/Container MM/Container Max/Spin Max" to="Window Config" method="_on_spin_max_value_changed"]
-[connection signal="value_changed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Temas/Container BG/Option BG" to="Window Config" method="_on_option_bg_value_changed"]
-[connection signal="value_changed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Temas/Container Grid/Option Grid" to="Window Config" method="_on_option_grid_value_changed"]
-[connection signal="pressed" from="Window Config/Container Configure/Margin Conf/HBox Conf/Margin Right/Container Right/Container Temas/Reset Themes" to="Window Config" method="_on_reset_themes_pressed"]
+[connection signal="item_selected" from="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer/Container Grid/Option Grids" to="Window Config" method="_on_option_grids_item_selected"]
+[connection signal="item_selected" from="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer/Container Scroll/Option Scroll" to="Window Config" method="_on_option_scroll_item_selected"]
+[connection signal="item_selected" from="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer/Container Mode/Type Window" to="Window Config" method="_on_type_window_item_selected"]
+[connection signal="value_changed" from="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Size Title/Option Size Title" to="Window Config" method="_on_option_size_title_value_changed"]
+[connection signal="value_changed" from="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Size/Option Size Camp" to="Window Config" method="_on_option_scroll_value_changed"]
+[connection signal="pressed" from="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Ajust/Check Ajust" to="Window Config" method="_on_check_ajust_pressed"]
+[connection signal="item_selected" from="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Make/Modo Option" to="GraphEdit" method="_on_modo_option_item_selected"]
+[connection signal="item_selected" from="Window Config/TabContainer/Nodes/MarginContainer/VBoxContainer/Container Make/Modo Option" to="Window Config" method="_on_modo_option_item_selected"]
+[connection signal="value_changed" from="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Zoom/Container MM/Container Min/Spin Min" to="Window Config" method="_on_spin_min_value_changed"]
+[connection signal="value_changed" from="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Zoom/Container MM/Container Max/Spin Max" to="Window Config" method="_on_spin_max_value_changed"]
+[connection signal="value_changed" from="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas/Container BG/Option BG" to="Window Config" method="_on_option_bg_value_changed"]
+[connection signal="value_changed" from="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas/Container Grid/Option Grid" to="Window Config" method="_on_option_grid_value_changed"]
+[connection signal="pressed" from="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas/Reset Themes" to="Window Config" method="_on_reset_themes_pressed"]
+[connection signal="pressed" from="Window Config/TabContainer/Avançado/MarginContainer/VBoxContainer/Container Diretory/Check Diretorio" to="Window Config" method="_on_check_diretorio_pressed"]
+[connection signal="pressed" from="Window Config/TabContainer/Avançado/MarginContainer/VBoxContainer/Container Debug/Check Debug" to="Window Config" method="_on_check_debug_pressed"]
 [connection signal="pressed" from="Container Tool/MenuButton Config" to="Window Config" method="_on_menu_button_config_pressed"]
 [connection signal="pressed" from="Container Tool/MenuButton More" to="GraphEdit" method="_on_menu_button_more_pressed"]
 [connection signal="confirmed" from="Confirmation Version" to="GraphEdit" method="_on_confirmation_version_confirmed"]
