@@ -255,3 +255,6 @@ func _disconnect_slot(slot_index: int) -> void:
 			graph.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
 			
 	Global.alteraction()
+
+func _on_position_offset_changed() -> void:
+	Global.alteraction()

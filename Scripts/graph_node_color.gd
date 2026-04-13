@@ -146,3 +146,6 @@ func _on_node_selected() -> void:
 
 func _on_node_deselected() -> void:
 	Global.selected_nodes -= 1
+	
+func _on_position_offset_changed() -> void:
+	Global.alteraction()
