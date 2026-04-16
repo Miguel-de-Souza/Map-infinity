@@ -109,7 +109,8 @@ func _process(_delta: float) -> void:
 			numb = 2
 					
 		else:
-			criar_bloco_notas(2)
+			if Global.not_atalho == false:
+				criar_bloco_notas(2)
 		
 	elif Input.is_action_just_pressed("Add Bloco URL"):
 		if active_mode_node:
@@ -117,7 +118,8 @@ func _process(_delta: float) -> void:
 			numb = 3
 					
 		else:
-			criar_bloco_notas(3)
+			if Global.not_atalho == false:
+				criar_bloco_notas(3)
 		
 	elif Input.is_action_just_pressed("Add Bloco Imagem"):
 		if active_mode_node:
@@ -125,7 +127,8 @@ func _process(_delta: float) -> void:
 			numb = 4
 
 		else:
-			criar_bloco_notas(4)
+			if Global.not_atalho == false:
+				criar_bloco_notas(4)
 
 	elif Input.is_action_just_pressed("Add Bloco Notas"):
 		if active_mode_node:
@@ -133,7 +136,8 @@ func _process(_delta: float) -> void:
 			numb = 1
 					
 		else:
-			criar_bloco_notas()
+			if Global.not_atalho == false:
+				criar_bloco_notas()
 			
 	elif Input.is_action_just_pressed("Add Bloco Calendar"):
 		if active_mode_node:
@@ -141,7 +145,8 @@ func _process(_delta: float) -> void:
 			numb = 1
 					
 		else:
-			criar_bloco_notas(5)
+			if Global.not_atalho == false:
+				criar_bloco_notas(5)
 
 
 func _input(_event):

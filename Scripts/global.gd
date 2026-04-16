@@ -6,6 +6,7 @@ var var_check_ajust:= false
 var changed := false
 var stop_unsave := false
 var selected_nodes := 0
+var not_atalho := false
 
 func alteraction():
 	if not Global.changed:

@@ -6,4 +6,8 @@ func _on_text_changed() -> void:
 
 
 func _on_focus_entered() -> void:
-	print("Help")
+	Global.not_atalho = true
+
+
+func _on_focus_exited() -> void:
+	Global.not_atalho = false
