@@ -86,6 +86,7 @@ func _process(_delta: float) -> void:
 			selected_mode_make = false
 	
 	if Input.is_action_just_pressed("Novo"):
+		Global.selected_nodes = 0
 		get_tree().reload_current_scene()
 		
 	elif Input.is_action_just_pressed("Abrir"):
@@ -358,6 +359,7 @@ func _on_save_file_selected(path: String) -> void:
 
 var caminho : String 
 func _on_load_file_selected(path: String) -> void:
+	Global.selected_nodes = 0
 	load_project_from_path(path)
 	caminho = path
 
@@ -365,6 +367,7 @@ func _on_load_file_selected(path: String) -> void:
 func _on_item_selected(id: int) -> void:
 	match id:
 		0:
+			Global.selected_nodes = 0
 			get_tree().reload_current_scene()
 		1:
 			file_load.popup()
