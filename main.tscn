@@ -17,7 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GraphEdit" type="GraphEdit" parent="." unique_id=251952592 node_paths=PackedStringArray("file_dia", "file_load", "more", "poparquivo", "popMake", "label_diretorio", "confirmation_version", "descript_text", "window_unsave")]
+[node name="GraphEdit" type="GraphEdit" parent="." unique_id=251952592 node_paths=PackedStringArray("file_dia", "file_load", "more", "poparquivo", "popMake", "label_diretorio", "confirmation_version", "descript_text", "version_text", "window_unsave")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,6 +39,7 @@ popMake = NodePath("../Container Tool/MenuButton Insert")
 label_diretorio = NodePath("../Label Diretory")
 confirmation_version = NodePath("../Confirmation Version")
 descript_text = NodePath("../SobreProgram/MarginContainer/VBoxContainer/DescritionText")
+version_text = NodePath("../SobreProgram/MarginContainer/VBoxContainer/VersionText")
 window_unsave = NodePath("../UnsaveExit")
 
 [node name="BackGround ToolBar" type="ColorRect" parent="." unique_id=1825417117]
@@ -513,13 +514,13 @@ theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
 text = "[b]InfinityMap[/b]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="SobreProgram/MarginContainer/VBoxContainer" unique_id=918468028]
+[node name="VersionText" type="RichTextLabel" parent="SobreProgram/MarginContainer/VBoxContainer" unique_id=918468028]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.74978, 0.74978, 0.74977994, 1)
 theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
-text = "Versão 0.0.8"
+text = "Versão 0.0.0"
 
 [node name="DescritionText" type="RichTextLabel" parent="SobreProgram/MarginContainer/VBoxContainer" unique_id=266967288]
 custom_minimum_size = Vector2(0, 120)

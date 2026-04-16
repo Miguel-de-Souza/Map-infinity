@@ -8,6 +8,7 @@ extends GraphEdit
 @export var label_diretorio: Label
 @export var confirmation_version: ConfirmationDialog
 @export var descript_text: RichTextLabel
+@export var version_text: RichTextLabel
 @export var window_unsave: ConfirmationDialog
 
 var current_project_path: String = ""
@@ -46,6 +47,7 @@ func _ready():
 	file_dia.current_dir = desktop
 	file_load.current_dir = desktop
 	descript_text.text = description
+	version_text.text = "Versão " + version
 
 
 	connection_request.connect(_on_connection_request)

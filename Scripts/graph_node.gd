@@ -271,10 +271,6 @@ func _on_color_button_back_color_changed(color: Color) -> void:
 	
 	Global.alteraction()
 
-#Se alterar algum texto do Campo
-func _on_notepad_text_changed() -> void:
-	Global.alteraction()
-
 
 func _on_reset_pressed() -> void:
 	remove_theme_stylebox_override("panel")

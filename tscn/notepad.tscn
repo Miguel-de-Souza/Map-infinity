@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://boljte0boxxdk"]
+
+[ext_resource type="Script" uid="uid://bqynplacqw6vp" path="res://Scripts/notepad.gd" id="1_nxrjr"]
+
+[node name="Notepad" type="TextEdit" unique_id=2500004]
+clip_contents = true
+custom_minimum_size = Vector2(100, 150)
+size_flags_vertical = 3
+placeholder_text = "Campo"
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+script = ExtResource("1_nxrjr")
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="text_changed" from="." to="." method="_on_text_changed"]

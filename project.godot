@@ -13,7 +13,7 @@ config_version=5
 config/name="InfinityMap"
 config/description="Programa open-source de anotações e criação de mapa mental. Feito com a Godot 4.6
 Com ponto forte na total customização do programa, espaços e Nodes ilimitados de forma gratuita, sem planos."
-config/version="0.0.8"
+config/version="0.0.9"
 run/main_scene="uid://bu71l16qoa2dw"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/show_image=false

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bq1waeg8fv6q2"]
 
 [ext_resource type="Script" uid="uid://c2w6dp2a4flq" path="res://Scripts/graph_nodo_calendario.gd" id="1_rmxd2"]
+[ext_resource type="PackedScene" uid="uid://boljte0boxxdk" path="res://tscn/notepad.tscn" id="2_ffbfs"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_v35jj"]
 
 [node name="GraphNode" type="GraphNode" unique_id=56170215 node_paths=PackedStringArray("grid", "label_mes", "text_edit", "campo_spin", "checked_b")]
@@ -102,14 +103,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 7
 
-[node name="Notepad" type="TextEdit" parent="." unique_id=1890008799]
-clip_contents = true
-custom_minimum_size = Vector2(100, 150)
+[node name="Notepad" parent="." unique_id=2500004 instance=ExtResource("2_ffbfs")]
 layout_mode = 2
-size_flags_vertical = 3
-placeholder_text = "Campo"
-scroll_fit_content_height = true
-scroll_fit_content_width = true
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("2_v35jj")]
 size = Vector2i(298, 100)
