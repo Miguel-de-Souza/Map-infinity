@@ -70,6 +70,8 @@ func get_save_data() -> Dictionary:
 	],
 	
 	"slots_add": slots_add,
+	"sized_x": size.x,
+	"sized_y": size.y,
 	"slots": slots
 }
 
@@ -79,6 +81,7 @@ func load_save_data(data: Dictionary) -> void:
 	#Atualiza os valores de Title e Campo
 	title_line.text = data.get("title", "Node")
 	note.text = data.get("note_text", "")
+	size = Vector2(data.get("sized_x", 0), data.get("sized_y", 0))
 	
 	#Atualiza o fundo normal
 	var c = data.get("new_stylebox_color", [0,0,0,1])
@@ -294,4 +297,8 @@ func _on_node_deselected() -> void:
 
 
 func _on_position_offset_changed() -> void:
+	Global.alteraction()
+
+
+func _on_slot_sizes_changed() -> void:
 	Global.alteraction()

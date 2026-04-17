@@ -37,6 +37,8 @@ func get_save_data() -> Dictionary:
 		"font_size": size_fonts.value,
 		"slots_add": slots_add,
 		"slots": slots,
+		"sized_x": size.x,
+		"sized_y": size.y,
 		"new_stylebox_color": [
 		new_stylebox.bg_color.r,
 		new_stylebox.bg_color.g,
@@ -57,6 +59,7 @@ func load_save_data(data: Dictionary) -> void:
 
 	var c = data.get("new_stylebox_color", [0,0,0,1])
 	new_stylebox.bg_color = Color(c[0], c[1], c[2], c[3])
+	size = Vector2(data.get("sized_x", 0), data.get("sized_y", 0))
 	
 	var c_focus = data.get("new_stylebox_focus", [0,0,0,1])
 	new_stylebox_focus.bg_color = Color(c_focus[0], c_focus[1], c_focus[2], c_focus[3])

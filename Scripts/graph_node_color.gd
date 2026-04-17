@@ -38,6 +38,8 @@ func get_save_data() -> Dictionary:
 		"node_color": [button_color.color.r, button_color.color.g, button_color.color.b, button_color.color.a],
 		"slots_add": slots_add,
 		"slots": slots,
+		"sized_x": size.x,
+		"sized_y": size.y,
 		"info_color_r": line_r.text,
 		"info_color_g": line_g.text,
 		"info_color_b": line_b.text,
@@ -49,6 +51,7 @@ func load_save_data(data: Dictionary) -> void:
 
 	title_line.text = data.get("title", "Node")
 	size_fonts.value = data.get("font_size", 14)
+	size = Vector2(data.get("sized_x", 0), data.get("sized_y", 0))
 	
 	var saved_color = data.get("node_color", [1,1,1,1])
 	button_color.color = Color(saved_color[0], saved_color[1], saved_color[2], saved_color[3])

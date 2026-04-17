@@ -175,6 +175,7 @@ layout_mode = 2
 [connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
 [connection signal="node_selected" from="." to="." method="_on_node_selected"]
 [connection signal="position_offset_changed" from="." to="." method="_on_position_offset_changed"]
+[connection signal="slot_sizes_changed" from="." to="." method="_on_slot_sizes_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
 [connection signal="value_changed" from="Window Config/Container Left/Container Size/Container Size Camps/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
