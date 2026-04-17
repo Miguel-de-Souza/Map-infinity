@@ -349,6 +349,8 @@ func load_project_from_path(path: String):
 	
 	if data["version"] != version and not unlock_load:
 		confirmation_version.popup()
+		confirmation_version.dialog_text = "O arquivo foi feito em uma versão diferente do programa, tentar abri-lo pode resultar em erro
+Tem certeza que quer abrir? (Versão do Projeto: " + str(data["version"]) + ")"
 		DisplayServer.beep()
 		
 	Global.sem_alteraction()

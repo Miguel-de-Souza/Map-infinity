@@ -7,5 +7,6 @@ func _process(_delta: float) -> void:
 	text = str("Scroll Offset: ",Graph.scroll_offset,
 	"\nContagem de Nodes: ", Graph.get_child_count() - 1,
 	"\nFPS: ", Engine.get_frames_per_second(),
-	"\nNodes Selecionados: ", Global.selected_nodes
+	"\nNodes Selecionados: ", Global.selected_nodes,
+	"\nVersão do Programa: ", str(ProjectSettings.get_setting("application/config/version")) 
 	)
