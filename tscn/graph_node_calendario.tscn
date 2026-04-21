@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_v35jj"]
 [ext_resource type="PackedScene" uid="uid://dyxn2spfd3ra7" path="res://tscn/ttle.tscn" id="2_yyry6"]
 [ext_resource type="PackedScene" uid="uid://xy0ns1155ldc" path="res://tscn/check_mini_ok.tscn" id="4_x7o7d"]
+[ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="6_ocirf"]
 
 [node name="GraphNode" type="GraphNode" unique_id=56170215 node_paths=PackedStringArray("grid", "label_mes", "text_edit", "campo_spin", "checked_b", "title_line", "font_size")]
 offset_right = 571.0
@@ -49,12 +50,12 @@ slot/3/right_icon = null
 slot/3/draw_stylebox = true
 script = ExtResource("1_rmxd2")
 grid = NodePath("VBoxContainer/GridContainer")
-label_mes = NodePath("VBoxContainer/HBoxContainer/Label")
+label_mes = NodePath("VBoxContainer/HBoxContainer/Mes")
 text_edit = NodePath("Notepad")
-campo_spin = NodePath("Window Config/VBoxContainer/Container Size Block/Font Size Campo")
-checked_b = NodePath("Window Config/VBoxContainer/Container Content/Check Ajust")
+campo_spin = NodePath("Window Config/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Container Size Block/Font Size Campo")
+checked_b = NodePath("Window Config/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer2/Container Content/Check Ajust")
 title_line = NodePath("Ttle")
-font_size = NodePath("Window Config/VBoxContainer/Container Size Title/Font Size Title")
+font_size = NodePath("Window Config/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Container Size Title/Font Size Title")
 
 [node name="Ttle" parent="." unique_id=294100434 instance=ExtResource("2_yyry6")]
 layout_mode = 2
@@ -66,132 +67,177 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Button prev" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1496051842]
+clip_contents = true
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 23
 text = "<"
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=404845072]
+[node name="Mes" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=404845072]
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 22
 text = "Fevereiro"
 
 [node name="Button next" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1403851351]
+clip_contents = true
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 23
 text = ">"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1239293102]
+[node name="Dias da Semana" type="HBoxContainer" parent="VBoxContainer" unique_id=1239293102]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 20
+theme_override_constants/separation = 25
 
-[node name="Domingo" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1568890460]
+[node name="Domingo" type="Label" parent="VBoxContainer/Dias da Semana" unique_id=1568890460]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "D"
 
-[node name="Segunda" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=728836376]
+[node name="Segunda" type="Label" parent="VBoxContainer/Dias da Semana" unique_id=728836376]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "S"
 
-[node name="Terca" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=296198546]
+[node name="Terca" type="Label" parent="VBoxContainer/Dias da Semana" unique_id=296198546]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "T"
 
-[node name="Quarta" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1221490742]
+[node name="Quarta" type="Label" parent="VBoxContainer/Dias da Semana" unique_id=1221490742]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "Q"
 
-[node name="Quinta" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1007574929]
+[node name="Quinta" type="Label" parent="VBoxContainer/Dias da Semana" unique_id=1007574929]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "Q"
 
-[node name="Sexta" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1778883282]
+[node name="Sexta" type="Label" parent="VBoxContainer/Dias da Semana" unique_id=1778883282]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "S"
 
-[node name="Sabado" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=163326059]
+[node name="Sabado" type="Label" parent="VBoxContainer/Dias da Semana" unique_id=163326059]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "S"
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=1453810442]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
 columns = 7
 
 [node name="Notepad" parent="." unique_id=2500004 instance=ExtResource("2_ffbfs")]
 layout_mode = 2
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("2_v35jj")]
-size = Vector2i(406, 150)
-visible = false
+size = Vector2i(575, 137)
 graphnod = NodePath("..")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Window Config" unique_id=84169199]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -122.0
-offset_top = -29.5
-offset_right = 122.0
-offset_bottom = 29.5
+[node name="MarginContainer" type="MarginContainer" parent="Window Config" unique_id=47021629]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Container Size Title" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=114936490]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window Config/MarginContainer" unique_id=84169199]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=783744685]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer" unique_id=629249878]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Container Size Title" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=114936490]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 14
 
-[node name="Title" type="Label" parent="Window Config/VBoxContainer/Container Size Title" unique_id=1394510786]
+[node name="Title" type="Label" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Container Size Title" unique_id=1394510786]
 layout_mode = 2
 text = "Título"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Font Size Title" type="SpinBox" parent="Window Config/VBoxContainer/Container Size Title" unique_id=1674177192]
+[node name="Font Size Title" type="SpinBox" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Container Size Title" unique_id=1674177192]
 layout_mode = 2
 min_value = 1.0
 max_value = 80.0
 value = 16.0
 
-[node name="Container Size Block" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=1764301730]
+[node name="Container Size Block" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1764301730]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Block" type="Label" parent="Window Config/VBoxContainer/Container Size Block" unique_id=1869873218]
+[node name="Block" type="Label" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Container Size Block" unique_id=1869873218]
 layout_mode = 2
 text = "Campo"
 
-[node name="Font Size Campo" type="SpinBox" parent="Window Config/VBoxContainer/Container Size Block" unique_id=1629795013]
+[node name="Font Size Campo" type="SpinBox" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Container Size Block" unique_id=1629795013]
 layout_mode = 2
 min_value = 1.0
 max_value = 120.0
 value = 16.0
 
-[node name="Container Content" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=1535384641]
+[node name="MarginContainer" type="MarginContainer" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1060017898]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1029160164]
+layout_mode = 2
+
+[node name="Container Content" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer2" unique_id=1535384641]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label Ajust" type="Label" parent="Window Config/VBoxContainer/Container Content" unique_id=2049060539]
+[node name="Label Ajust" type="Label" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer2/Container Content" unique_id=2049060539]
 layout_mode = 2
 text = "Ajustar Tamanho do Campo"
 
-[node name="Check Ajust" type="CheckBox" parent="Window Config/VBoxContainer/Container Content" unique_id=1680779984]
+[node name="Check Ajust" type="CheckBox" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer2/Container Content" unique_id=1680779984]
 layout_mode = 2
 
-[node name="Container Mini" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=1904907753]
+[node name="Container Mini" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer2" unique_id=1904907753]
 layout_mode = 2
 
-[node name="Label Ajust" type="Label" parent="Window Config/VBoxContainer/Container Mini" unique_id=358143436]
+[node name="Label Ajust" type="Label" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer2/Container Mini" unique_id=358143436]
 layout_mode = 2
 text = "Ajustar Tamanho do Node Automaticamente"
 
-[node name="Check mini ok" parent="Window Config/VBoxContainer/Container Mini" unique_id=813930896 node_paths=PackedStringArray("node") instance=ExtResource("4_x7o7d")]
+[node name="Check mini ok" parent="Window Config/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer2/Container Mini" unique_id=813930896 node_paths=PackedStringArray("node") instance=ExtResource("4_x7o7d")]
 layout_mode = 2
-node = NodePath("../../../..")
+node = NodePath("../../../../../../../..")
+
+[node name="Container color" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=406541563]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label Color" type="Label" parent="Window Config/MarginContainer/VBoxContainer/Container color" unique_id=1663817968]
+layout_mode = 2
+text = "Cor de Fundo"
+
+[node name="ColorButton Back" type="ColorPickerButton" parent="Window Config/MarginContainer/VBoxContainer/Container color" unique_id=1430590948]
+layout_mode = 2
+text = "11111111111"
+
+[node name="Reset" parent="Window Config/MarginContainer/VBoxContainer/Container color" unique_id=1733640759 node_paths=PackedStringArray("node_pai") instance=ExtResource("6_ocirf")]
+layout_mode = 2
+node_pai = NodePath("../../../../..")
 
 [node name="Container Slots" type="HBoxContainer" parent="." unique_id=1220437624]
 layout_mode = 2
@@ -215,8 +261,10 @@ text = "-"
 [connection signal="position_offset_changed" from="." to="." method="_on_position_offset_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button prev" to="." method="_on_button_prev_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button next" to="." method="_on_button_next_pressed"]
-[connection signal="value_changed" from="Window Config/VBoxContainer/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
-[connection signal="value_changed" from="Window Config/VBoxContainer/Container Size Block/Font Size Campo" to="." method="_on_font_size_campo_value_changed"]
-[connection signal="pressed" from="Window Config/VBoxContainer/Container Content/Check Ajust" to="." method="_on_check_ajust_pressed"]
+[connection signal="value_changed" from="Window Config/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
+[connection signal="value_changed" from="Window Config/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Container Size Block/Font Size Campo" to="." method="_on_font_size_campo_value_changed"]
+[connection signal="pressed" from="Window Config/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer2/Container Content/Check Ajust" to="." method="_on_check_ajust_pressed"]
+[connection signal="color_changed" from="Window Config/MarginContainer/VBoxContainer/Container color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
+[connection signal="pressed" from="Window Config/MarginContainer/VBoxContainer/Container color/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

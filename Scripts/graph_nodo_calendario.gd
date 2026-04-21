@@ -9,6 +9,10 @@ extends GraphNode
 @export var title_line: LineEdit
 @export var font_size: SpinBox
 
+var new_stylebox = get_theme_stylebox("panel").duplicate()
+var new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
+
+
 var mes : int
 var ano : int
 var eventos := {}
@@ -25,6 +29,9 @@ func _ready():
 	
 	ano = agora.year
 	mes = agora.month
+	
+	add_theme_stylebox_override("panel", new_stylebox)
+	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 	
 	_on_font_size_campo_value_changed(campo_spin.value)
 	_on_font_size_title_value_changed(font_size.value)
@@ -72,7 +79,8 @@ func atualizar_calendario():
 	for dia in range(1, dias_no_mes + 1):
 		var btn = Button.new()
 		btn.text = str(dia)
-		
+		btn.custom_minimum_size = Vector2(30,0)
+		btn.add_theme_font_size_override("font_size", 20)
 		btn.pressed.connect(_on_dia_clicado.bind(dia))
 		
 		grid.add_child(btn)
@@ -174,6 +182,19 @@ func get_save_data() -> Dictionary:
 		"dia_selecionado": dia_selecionado,
 		"texto_atual": text_edit.text,
 		"title": title_line.text,
+		"new_stylebox_color": [
+		new_stylebox.bg_color.r,
+		new_stylebox.bg_color.g,
+		new_stylebox.bg_color.b,
+		new_stylebox.bg_color.a
+		],
+
+	"new_stylebox_focus": [
+		new_stylebox_focus.bg_color.r,
+		new_stylebox_focus.bg_color.g,
+		new_stylebox_focus.bg_color.b,
+		new_stylebox_focus.bg_color.a,
+	],
 	}
 
 func load_save_data(data: Dictionary) -> void:
@@ -185,6 +206,15 @@ func load_save_data(data: Dictionary) -> void:
 	dia_selecionado = data.get("dia_selecionado", 0)
 
 	text_edit.text = data.get("texto_atual", "")
+	
+	#Atualiza o fundo normal
+	var c = data.get("new_stylebox_color", [0,0,0,1])
+	new_stylebox.bg_color = Color(c[0], c[1], c[2], c[3])
+	
+	#Atualiza o fundo quando focado
+	var c_focus = data.get("new_stylebox_focus", [0,0,0,1])
+	new_stylebox_focus.bg_color = Color(c_focus[0], c_focus[1], c_focus[2], c_focus[3])
+
 
 	campo_spin.value = data.get("font_size", 14)
 	font_size.value = data.get("title_font_size", 14)
@@ -279,4 +309,27 @@ func _on_position_offset_changed() -> void:
 
 func _on_font_size_title_value_changed(value: float) -> void:
 	title_line.add_theme_font_size_override("font_size", int(value))
+	Global.alteraction()
+
+
+func _on_color_button_back_color_changed(color: Color) -> void:
+	var sb = get_theme_stylebox("panel")
+	var sb_focus = get_theme_stylebox("panel_selected")
+
+	sb.bg_color = color
+	sb_focus.bg_color = color.darkened(0.5)
+	
+	Global.alteraction()
+
+
+func _on_reset_pressed() -> void:
+	remove_theme_stylebox_override("panel")
+	remove_theme_stylebox_override("panel_selected")
+	
+	new_stylebox = get_theme_stylebox("panel").duplicate()
+	new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
+	
+	add_theme_stylebox_override("panel", new_stylebox)
+	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
+
 	Global.alteraction()
