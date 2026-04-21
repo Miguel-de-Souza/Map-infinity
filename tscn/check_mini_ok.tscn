@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://xy0ns1155ldc"]
+
+[ext_resource type="Script" uid="uid://bgleq71mw04l" path="res://Scripts/check_mini_ok.gd" id="1_7eysb"]
+
+[node name="Check mini ok" type="CheckBox" unique_id=813930896]
+script = ExtResource("1_7eysb")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

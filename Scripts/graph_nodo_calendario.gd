@@ -5,6 +5,7 @@ extends GraphNode
 @export var text_edit: TextEdit
 @export var campo_spin: SpinBox
 @export var checked_b: CheckBox
+@export var Minimum_R := false
 
 var mes : int
 var ano : int

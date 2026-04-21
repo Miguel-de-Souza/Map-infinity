@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c2w6dp2a4flq" path="res://Scripts/graph_nodo_calendario.gd" id="1_rmxd2"]
 [ext_resource type="PackedScene" uid="uid://boljte0boxxdk" path="res://tscn/notepad.tscn" id="2_ffbfs"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_v35jj"]
+[ext_resource type="PackedScene" uid="uid://xy0ns1155ldc" path="res://tscn/check_mini_ok.tscn" id="4_x7o7d"]
 
 [node name="GraphNode" type="GraphNode" unique_id=56170215 node_paths=PackedStringArray("grid", "label_mes", "text_edit", "campo_spin", "checked_b")]
 offset_right = 571.0
@@ -69,31 +70,31 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1568890460]
+[node name="Domingo" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1568890460]
 layout_mode = 2
 text = "D"
 
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=728836376]
+[node name="Segunda" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=728836376]
 layout_mode = 2
 text = "S"
 
-[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=296198546]
+[node name="Terca" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=296198546]
 layout_mode = 2
 text = "T"
 
-[node name="Label4" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1221490742]
+[node name="Quarta" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1221490742]
 layout_mode = 2
 text = "Q"
 
-[node name="Label5" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1007574929]
+[node name="Quinta" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1007574929]
 layout_mode = 2
 text = "Q"
 
-[node name="Label6" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1778883282]
+[node name="Sexta" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1778883282]
 layout_mode = 2
 text = "S"
 
-[node name="Label7" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=163326059]
+[node name="Sabado" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=163326059]
 layout_mode = 2
 text = "S"
 
@@ -107,7 +108,7 @@ columns = 7
 layout_mode = 2
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("2_v35jj")]
-size = Vector2i(298, 100)
+size = Vector2i(406, 100)
 visible = false
 graphnod = NodePath("..")
 
@@ -148,6 +149,17 @@ text = "Ajustar Tamanho do Campo"
 
 [node name="Check Ajust" type="CheckBox" parent="Window Config/VBoxContainer/Container Content" unique_id=1680779984]
 layout_mode = 2
+
+[node name="Container Mini" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=1904907753]
+layout_mode = 2
+
+[node name="Label Ajust" type="Label" parent="Window Config/VBoxContainer/Container Mini" unique_id=358143436]
+layout_mode = 2
+text = "Ajustar Tamanho do Node Automaticamente"
+
+[node name="Check mini ok" parent="Window Config/VBoxContainer/Container Mini" unique_id=813930896 node_paths=PackedStringArray("node") instance=ExtResource("4_x7o7d")]
+layout_mode = 2
+node = NodePath("../../../..")
 
 [node name="Container Slots" type="HBoxContainer" parent="." unique_id=1220437624]
 layout_mode = 2

@@ -5,6 +5,7 @@ extends GraphNode
 @export var size_fonts: SpinBox
 @export var font_size: SpinBox
 @export var size_content: CheckBox
+@export var Minimum_R := false
 
 #Pega stylebox do GraphNode
 var new_stylebox = get_theme_stylebox("panel").duplicate()
