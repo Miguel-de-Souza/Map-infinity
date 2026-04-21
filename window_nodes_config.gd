@@ -9,7 +9,7 @@ func _process(_delta: float) -> void:
 
 func _ready() -> void:
 	if graphnod == null:
-		print("HRAPH NULLO!")
+		return
 		
 	else:
 		hide()
@@ -23,7 +23,6 @@ func _node_selected():
 	
 func _node_deselected():
 	hide()
-
 
 func _on_close_requested() -> void:
 	hide()
