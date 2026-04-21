@@ -47,7 +47,6 @@ title_line = NodePath("Ttle")
 size_fonts = NodePath("Window Config/MarginContainer/Container Left/HBoxContainer/Container Size Camps/Container Size Block/Font Size Campo")
 font_size = NodePath("Window Config/MarginContainer/Container Left/HBoxContainer/Container Size Camps/Container Size Title/Font Size Title")
 size_content = NodePath("Window Config/MarginContainer/Container Left/HBoxContainer/MarginContainer/VBoxContainer/Container Content/Check Ajust")
-Minimum_R = true
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
 [node name="Ttle" parent="." unique_id=294100434 instance=ExtResource("2_pvawi")]

@@ -6,6 +6,8 @@ extends GraphNode
 @export var campo_spin: SpinBox
 @export var checked_b: CheckBox
 @export var Minimum_R := false
+@export var title_line: LineEdit
+@export var font_size: SpinBox
 
 var mes : int
 var ano : int
@@ -14,6 +16,8 @@ var dia_selecionado := 0
 const SAVE_PATH = "user://eventos.json"
 
 func _ready():
+	
+	font_size.value = Global.font_size_title_default
 	campo_spin.value = Global.font_size_default
 	
 	_on_font_size_campo_value_changed(campo_spin.value)
@@ -22,12 +26,17 @@ func _ready():
 	ano = agora.year
 	mes = agora.month
 	
+	_on_font_size_campo_value_changed(campo_spin.value)
+	_on_font_size_title_value_changed(font_size.value)
+	
 	atualizar_calendario()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_text_delete") and selected:
-		Global.alteraction()
-		queue_free()
+		if not title_line.has_focus() and not text_edit.has_focus():
+			Global.alteraction()
+			Global.selected_nodes -= 1
+			queue_free()
 
 func _gui_input(event):
 	if event is InputEventMouseButton:
@@ -158,14 +167,18 @@ func gerar_chave(dia):
 func get_save_data() -> Dictionary:
 	return {
 		"font_size": campo_spin.value,
+		"title_font_size": font_size.value,
 		"mes": mes,
 		"ano": ano,
 		"eventos": eventos,
 		"dia_selecionado": dia_selecionado,
-		"texto_atual": text_edit.text
+		"texto_atual": text_edit.text,
+		"title": title_line.text,
 	}
 
 func load_save_data(data: Dictionary) -> void:
+	
+	title_line.text = data.get("title", "Node")
 	mes = data.get("mes", mes)
 	ano = data.get("ano", ano)
 	eventos = data.get("eventos", {})
@@ -174,7 +187,10 @@ func load_save_data(data: Dictionary) -> void:
 	text_edit.text = data.get("texto_atual", "")
 
 	campo_spin.value = data.get("font_size", 14)
+	font_size.value = data.get("title_font_size", 14)
+	
 	_on_font_size_campo_value_changed(campo_spin.value)
+	_on_font_size_title_value_changed(font_size.value)
 	
 	atualizar_calendario()
 	
@@ -258,4 +274,9 @@ func _disconnect_slot(slot_index: int) -> void:
 	Global.alteraction()
 
 func _on_position_offset_changed() -> void:
+	Global.alteraction()
+
+
+func _on_font_size_title_value_changed(value: float) -> void:
+	title_line.add_theme_font_size_override("font_size", int(value))
 	Global.alteraction()

@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://c2w6dp2a4flq" path="res://Scripts/graph_nodo_calendario.gd" id="1_rmxd2"]
 [ext_resource type="PackedScene" uid="uid://boljte0boxxdk" path="res://tscn/notepad.tscn" id="2_ffbfs"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_v35jj"]
+[ext_resource type="PackedScene" uid="uid://dyxn2spfd3ra7" path="res://tscn/ttle.tscn" id="2_yyry6"]
 [ext_resource type="PackedScene" uid="uid://xy0ns1155ldc" path="res://tscn/check_mini_ok.tscn" id="4_x7o7d"]
 
-[node name="GraphNode" type="GraphNode" unique_id=56170215 node_paths=PackedStringArray("grid", "label_mes", "text_edit", "campo_spin", "checked_b")]
+[node name="GraphNode" type="GraphNode" unique_id=56170215 node_paths=PackedStringArray("grid", "label_mes", "text_edit", "campo_spin", "checked_b", "title_line", "font_size")]
 offset_right = 571.0
 offset_bottom = 277.0
 theme_override_constants/separation = 10
@@ -37,12 +38,26 @@ slot/2/right_type = 0
 slot/2/right_color = Color(1, 1, 1, 1)
 slot/2/right_icon = null
 slot/2/draw_stylebox = true
+slot/3/left_enabled = false
+slot/3/left_type = 0
+slot/3/left_color = Color(1, 1, 1, 1)
+slot/3/left_icon = null
+slot/3/right_enabled = false
+slot/3/right_type = 0
+slot/3/right_color = Color(1, 1, 1, 1)
+slot/3/right_icon = null
+slot/3/draw_stylebox = true
 script = ExtResource("1_rmxd2")
 grid = NodePath("VBoxContainer/GridContainer")
 label_mes = NodePath("VBoxContainer/HBoxContainer/Label")
 text_edit = NodePath("Notepad")
 campo_spin = NodePath("Window Config/VBoxContainer/Container Size Block/Font Size Campo")
 checked_b = NodePath("Window Config/VBoxContainer/Container Content/Check Ajust")
+title_line = NodePath("Ttle")
+font_size = NodePath("Window Config/VBoxContainer/Container Size Title/Font Size Title")
+
+[node name="Ttle" parent="." unique_id=294100434 instance=ExtResource("2_yyry6")]
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=304190397]
 layout_mode = 2
@@ -108,7 +123,7 @@ columns = 7
 layout_mode = 2
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("2_v35jj")]
-size = Vector2i(406, 100)
+size = Vector2i(406, 150)
 visible = false
 graphnod = NodePath("..")
 
@@ -124,6 +139,23 @@ offset_right = 122.0
 offset_bottom = 29.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Container Size Title" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=114936490]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Window Config/VBoxContainer/Container Size Title" unique_id=1394510786]
+layout_mode = 2
+text = "Título"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Font Size Title" type="SpinBox" parent="Window Config/VBoxContainer/Container Size Title" unique_id=1674177192]
+layout_mode = 2
+min_value = 1.0
+max_value = 80.0
+value = 16.0
 
 [node name="Container Size Block" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=1764301730]
 layout_mode = 2
@@ -183,6 +215,7 @@ text = "-"
 [connection signal="position_offset_changed" from="." to="." method="_on_position_offset_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button prev" to="." method="_on_button_prev_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button next" to="." method="_on_button_next_pressed"]
+[connection signal="value_changed" from="Window Config/VBoxContainer/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
 [connection signal="value_changed" from="Window Config/VBoxContainer/Container Size Block/Font Size Campo" to="." method="_on_font_size_campo_value_changed"]
 [connection signal="pressed" from="Window Config/VBoxContainer/Container Content/Check Ajust" to="." method="_on_check_ajust_pressed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
