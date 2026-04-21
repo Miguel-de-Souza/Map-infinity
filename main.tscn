@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://ctdfhgnwtrfac" path="res://Scripts/window_config.gd" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="3_1bvp3"]
 [ext_resource type="Script" uid="uid://bg0igw8fgmsth" path="res://Scripts/debuger.gd" id="3_h2yge"]
+[ext_resource type="Theme" uid="uid://sgcgr4eubafd" path="res://Palletas/poppup.tres" id="4_7mycd"]
+[ext_resource type="Theme" uid="uid://cr4tbkb21vqvu" path="res://Palletas/poppubFILE.tres" id="4_272bh"]
 [ext_resource type="Theme" uid="uid://b7fexesft3ps1" path="res://Palletas/Windows.tres" id="5_lquwl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
@@ -409,6 +411,7 @@ theme_override_constants/margin_left = 15
 
 [node name="MenuButton File" type="MenuButton" parent="Container Tool" unique_id=1623260776]
 layout_mode = 2
+theme = ExtResource("4_272bh")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Arquivo"
 item_count = 4
@@ -423,6 +426,7 @@ popup/item_3/id = 3
 
 [node name="MenuButton Insert" type="MenuButton" parent="Container Tool" unique_id=1374439090]
 layout_mode = 2
+theme = ExtResource("4_272bh")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Inserir"
 item_count = 5
@@ -439,11 +443,13 @@ popup/item_4/id = 4
 
 [node name="MenuButton Config" type="MenuButton" parent="Container Tool" unique_id=461255740]
 layout_mode = 2
+theme = ExtResource("4_7mycd")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Configurações"
 
 [node name="MenuButton More" type="MenuButton" parent="Container Tool" unique_id=1957305224]
 layout_mode = 2
+theme = ExtResource("4_7mycd")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Sobre"
 
