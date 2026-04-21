@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://xy0ns1155ldc" path="res://tscn/check_mini_ok.tscn" id="5_iadxg"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="6_pvawi"]
 
-[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("note", "title_line", "size_fonts", "font_size", "size_content")]
+[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("note", "title_line", "size_fonts", "font_size", "size_content", "mini_spix")]
 offset_right = 700.0
 offset_bottom = 300.0
 theme_override_constants/separation = 4
@@ -47,6 +47,7 @@ title_line = NodePath("Ttle")
 size_fonts = NodePath("Window Config/MarginContainer/Container Left/HBoxContainer/Container Size Camps/Container Size Block/Font Size Campo")
 font_size = NodePath("Window Config/MarginContainer/Container Left/HBoxContainer/Container Size Camps/Container Size Title/Font Size Title")
 size_content = NodePath("Window Config/MarginContainer/Container Left/HBoxContainer/MarginContainer/VBoxContainer/Container Content/Check Ajust")
+mini_spix = NodePath("Window Config/MarginContainer/Container Left/HBoxContainer/MarginContainer/VBoxContainer/Container Mini/Check mini ok")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
 [node name="Ttle" parent="." unique_id=294100434 instance=ExtResource("2_pvawi")]
@@ -74,7 +75,6 @@ text = "-"
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("6_pvawi")]
 size = Vector2i(575, 137)
-visible = false
 unfocusable = false
 graphnod = NodePath("..")
 

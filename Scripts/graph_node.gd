@@ -6,6 +6,7 @@ extends GraphNode
 @export var font_size: SpinBox
 @export var size_content: CheckBox
 @export var Minimum_R := false
+@export var mini_spix: CheckBox
 
 #Pega stylebox do GraphNode
 var new_stylebox = get_theme_stylebox("panel").duplicate()
@@ -22,11 +23,17 @@ func _ready() -> void:
 	#Valores padrão das Configurações (Ex: Config Title Size = 10, então )
 	size_fonts.value = Global.font_size_default
 	font_size.value = Global.font_size_title_default
+	
 	size_content.button_pressed = Global.var_check_ajust
-
+	mini_spix.button_pressed = Global.var_mini_check_ajust
+	
 	#atualiza os valores para o padrões das Configuações
 	_on_font_size_campo_value_changed(size_fonts.value)
 	_on_font_size_title_value_changed(font_size.value)
+	
+	mini_spix.on_button_press()
+	mini_spix.verification_pls()
+	
 	_on_check_ajust_pressed()
 
 #Mexer no SpinBox correspondnete ao tamanho do Texto do Campo
@@ -56,6 +63,7 @@ func get_save_data() -> Dictionary:
 	"font_size": size_fonts.value,
 	"title_font_size": font_size.value,
 	"pressed_ajust": size_content.button_pressed,
+	"mini_ajust_size": mini_spix.button_pressed,
 	"new_stylebox_color": [
 		new_stylebox.bg_color.r,
 		new_stylebox.bg_color.g,
@@ -98,6 +106,7 @@ func load_save_data(data: Dictionary) -> void:
 	
 	#Atualiza o CheckBox "Ajustar Tamanho do Campo"
 	size_content.button_pressed = data.get("pressed_ajust", false)
+	mini_spix.button_pressed = data.get("mini_ajust_size", false)
 	
 	#Chama os métodos presicos para atualizar os objetos
 	_on_check_ajust_pressed()
