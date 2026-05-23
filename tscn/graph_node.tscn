@@ -74,8 +74,8 @@ layout_mode = 2
 text = "-"
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("6_pvawi")]
-size = Vector2i(575, 137)
-unfocusable = false
+size = Vector2i(568, 127)
+visible = false
 graphnod = NodePath("..")
 
 [node name="MarginContainer" type="MarginContainer" parent="Window Config" unique_id=1187398147]

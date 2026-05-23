@@ -11,6 +11,9 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+bg_color = Color(0.0885599, 0.08855992, 0.08855986, 1)
+
 [node name="Main" type="Control" unique_id=1440128229]
 layout_mode = 3
 anchors_preset = 15
@@ -44,13 +47,13 @@ descript_text = NodePath("../SobreProgram/MarginContainer/VBoxContainer/Descriti
 version_text = NodePath("../SobreProgram/MarginContainer/VBoxContainer/VersionText")
 window_unsave = NodePath("../UnsaveExit")
 
-[node name="BackGround ToolBar" type="ColorRect" parent="." unique_id=1825417117]
+[node name="BackGround ToolBar" type="PanelContainer" parent="." unique_id=127205887]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 44.0
 grow_horizontal = 2
-color = Color(0.1, 0.1, 0.1, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_272bh")
 
 [node name="Window Config" type="Window" parent="." unique_id=1806257895 node_paths=PackedStringArray("Geapgh", "check_diretory", "check_ajust", "label_diretorio", "show_debug", "debug_label", "option_grid", "option_scroll", "option_camp", "option_title", "type_window", "mode_option", "min_op", "max_op", "option_BG", "option_Grides")]
 oversampling_override = 1.0
@@ -83,10 +86,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 3
+current_tab = 0
 
 [node name="Interface" type="Control" parent="Window Config/TabContainer" unique_id=1468478609]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -348,6 +350,7 @@ layout_mode = 2
 text = "Resetar Temas"
 
 [node name="Avançado" type="Control" parent="Window Config/TabContainer" unique_id=1094521888]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 

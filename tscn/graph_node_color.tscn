@@ -65,9 +65,9 @@ slot/4/right_icon = null
 slot/4/draw_stylebox = true
 script = ExtResource("1_mktjo")
 title_line = NodePath("Ttle")
-size_fonts = NodePath("Window Config/VBoxContainer/Container Size Title/Font Size Title")
+size_fonts = NodePath("Window Config/MarginContainer/VBoxContainer/Container Size Title/Font Size Title")
 button_color = NodePath("ColorPickerButton")
-line_hex = NodePath("Window Config/VBoxContainer/Info Hex/LineEdit Hex")
+line_hex = NodePath("Window Config/MarginContainer/VBoxContainer/Info Hex/LineEdit Hex")
 line_r = NodePath("Container Info Color/Info RGB/Container R/LineEdit R")
 line_g = NodePath("Container Info Color/Info RGB/Container G/LineEdit G")
 line_b = NodePath("Container Info Color/Info RGB/Container B/LineEdit B")
@@ -155,46 +155,48 @@ layout_mode = 2
 text = "-"
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("2_nuh5h")]
-size = Vector2i(391, 82)
+size = Vector2i(362, 92)
 visible = false
-unfocusable = false
 graphnod = NodePath("..")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Window Config" unique_id=1103332977]
+[node name="MarginContainer" type="MarginContainer" parent="Window Config" unique_id=1750415796]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window Config/MarginContainer" unique_id=1103332977]
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Container Size Title" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=1383342509]
+[node name="Container Size Title" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=1383342509]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Title" type="Label" parent="Window Config/VBoxContainer/Container Size Title" unique_id=743390116]
+[node name="Title" type="Label" parent="Window Config/MarginContainer/VBoxContainer/Container Size Title" unique_id=743390116]
 layout_mode = 2
 text = "Título"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Font Size Title" type="SpinBox" parent="Window Config/VBoxContainer/Container Size Title" unique_id=1445826764]
+[node name="Font Size Title" type="SpinBox" parent="Window Config/MarginContainer/VBoxContainer/Container Size Title" unique_id=1445826764]
 layout_mode = 2
 min_value = 1.0
 max_value = 80.0
 value = 16.0
 
-[node name="Info Hex" type="HBoxContainer" parent="Window Config/VBoxContainer" unique_id=731941568]
+[node name="Info Hex" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=731941568]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 10
 
-[node name="Label Hex" type="Label" parent="Window Config/VBoxContainer/Info Hex" unique_id=454513264]
+[node name="Label Hex" type="Label" parent="Window Config/MarginContainer/VBoxContainer/Info Hex" unique_id=454513264]
 layout_mode = 2
 text = "Hex"
 
-[node name="LineEdit Hex" type="LineEdit" parent="Window Config/VBoxContainer/Info Hex" unique_id=1566164582]
+[node name="LineEdit Hex" type="LineEdit" parent="Window Config/MarginContainer/VBoxContainer/Info Hex" unique_id=1566164582]
 clip_contents = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -207,4 +209,4 @@ editable = false
 [connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
-[connection signal="value_changed" from="Window Config/VBoxContainer/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
+[connection signal="value_changed" from="Window Config/MarginContainer/VBoxContainer/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
