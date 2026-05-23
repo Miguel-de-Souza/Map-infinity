@@ -12,8 +12,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -635.0
 offset_top = -360.0
-offset_right = -185.0
-offset_bottom = 61.0
+offset_right = -235.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
@@ -54,23 +54,14 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
-slot/4/left_enabled = false
-slot/4/left_type = 0
-slot/4/left_color = Color(1, 1, 1, 1)
-slot/4/left_icon = null
-slot/4/right_enabled = false
-slot/4/right_type = 0
-slot/4/right_color = Color(1, 1, 1, 1)
-slot/4/right_icon = null
-slot/4/draw_stylebox = true
 script = ExtResource("1_mktjo")
 title_line = NodePath("Ttle")
 size_fonts = NodePath("Window Config/MarginContainer/VBoxContainer/Container Size Title/Font Size Title")
 button_color = NodePath("ColorPickerButton")
 line_hex = NodePath("Window Config/MarginContainer/VBoxContainer/Info Hex/LineEdit Hex")
-line_r = NodePath("Container Info Color/Info RGB/Container R/LineEdit R")
-line_g = NodePath("Container Info Color/Info RGB/Container G/LineEdit G")
-line_b = NodePath("Container Info Color/Info RGB/Container B/LineEdit B")
+line_r = NodePath("Window Config/MarginContainer/VBoxContainer/Container R/LineEdit R")
+line_g = NodePath("Window Config/MarginContainer/VBoxContainer/Container G/LineEdit G")
+line_b = NodePath("Window Config/MarginContainer/VBoxContainer/Container B/LineEdit B")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
 [node name="Ttle" parent="." unique_id=294100434 instance=ExtResource("2_0fooi")]
@@ -88,54 +79,6 @@ layout_mode = 2
 clip_contents = true
 custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
-
-[node name="Container Info Color" type="VBoxContainer" parent="." unique_id=391217995]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Info RGB" type="HBoxContainer" parent="Container Info Color" unique_id=204835613]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 100
-
-[node name="Container R" type="VBoxContainer" parent="Container Info Color/Info RGB" unique_id=568585795]
-layout_mode = 2
-
-[node name="R" type="Label" parent="Container Info Color/Info RGB/Container R" unique_id=41835506]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "R"
-
-[node name="LineEdit R" type="LineEdit" parent="Container Info Color/Info RGB/Container R" unique_id=28329913]
-layout_mode = 2
-placeholder_text = "Color R"
-editable = false
-
-[node name="Container G" type="VBoxContainer" parent="Container Info Color/Info RGB" unique_id=1159698988]
-layout_mode = 2
-
-[node name="G" type="Label" parent="Container Info Color/Info RGB/Container G" unique_id=509038637]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "G"
-
-[node name="LineEdit G" type="LineEdit" parent="Container Info Color/Info RGB/Container G" unique_id=314351605]
-layout_mode = 2
-placeholder_text = "Color G"
-editable = false
-
-[node name="Container B" type="VBoxContainer" parent="Container Info Color/Info RGB" unique_id=1853430930]
-layout_mode = 2
-
-[node name="B" type="Label" parent="Container Info Color/Info RGB/Container B" unique_id=1558661263]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "B"
-
-[node name="LineEdit B" type="LineEdit" parent="Container Info Color/Info RGB/Container B" unique_id=147000282]
-layout_mode = 2
-placeholder_text = "Color B"
-editable = false
 
 [node name="Container Slots" type="HBoxContainer" parent="." unique_id=1512169561]
 layout_mode = 2
@@ -155,7 +98,7 @@ layout_mode = 2
 text = "-"
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("2_nuh5h")]
-size = Vector2i(362, 92)
+size = Vector2i(362, 191)
 visible = false
 graphnod = NodePath("..")
 
@@ -201,6 +144,51 @@ clip_contents = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 placeholder_text = "Color Hex"
+editable = false
+
+[node name="Container R" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=223102287]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="R" type="Label" parent="Window Config/MarginContainer/VBoxContainer/Container R" unique_id=41835506]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "R"
+
+[node name="LineEdit R" type="LineEdit" parent="Window Config/MarginContainer/VBoxContainer/Container R" unique_id=28329913]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Color R"
+editable = false
+
+[node name="Container G" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=627838198]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="G" type="Label" parent="Window Config/MarginContainer/VBoxContainer/Container G" unique_id=509038637]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "G"
+
+[node name="LineEdit G" type="LineEdit" parent="Window Config/MarginContainer/VBoxContainer/Container G" unique_id=314351605]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Color G"
+editable = false
+
+[node name="Container B" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=119237305]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="B" type="Label" parent="Window Config/MarginContainer/VBoxContainer/Container B" unique_id=1558661263]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "B"
+
+[node name="LineEdit B" type="LineEdit" parent="Window Config/MarginContainer/VBoxContainer/Container B" unique_id=147000282]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Color B"
 editable = false
 
 [connection signal="node_deselected" from="." to="." method="_on_node_deselected"]

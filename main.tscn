@@ -43,11 +43,11 @@ poparquivo = NodePath("../Container Tool/MenuButton File")
 popMake = NodePath("../Container Tool/MenuButton Insert")
 label_diretorio = NodePath("../Label Diretory")
 confirmation_version = NodePath("../Confirmation Version")
-descript_text = NodePath("../SobreProgram/MarginContainer/VBoxContainer/DescritionText")
-version_text = NodePath("../SobreProgram/MarginContainer/VBoxContainer/VersionText")
+descript_text = NodePath("../SobreProgram/Margin/VContainer/Descrition")
+version_text = NodePath("../SobreProgram/Margin/VContainer/Version")
 window_unsave = NodePath("../UnsaveExit")
 
-[node name="BackGround ToolBar" type="PanelContainer" parent="." unique_id=127205887]
+[node name="ToolBar" type="PanelContainer" parent="." unique_id=127205887]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -470,7 +470,6 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Text Debug" type="Label" parent="." unique_id=1581848323 node_paths=PackedStringArray("Graph")]
-visible = false
 layout_mode = 0
 offset_left = 20.0
 offset_top = 95.0
@@ -496,14 +495,14 @@ cancel_button_text = "Não"
 oversampling_override = 1.0
 title = "Sobre o Programa"
 initial_position = 1
-size = Vector2i(615, 335)
+size = Vector2i(615, 328)
 unresizable = true
 always_on_top = true
 theme = ExtResource("5_lquwl")
 theme_override_constants/buttons_separation = 10
 ok_button_text = "OK"
 
-[node name="MarginContainer" type="MarginContainer" parent="SobreProgram" unique_id=627128915]
+[node name="Margin" type="MarginContainer" parent="SobreProgram" unique_id=627128915]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -512,18 +511,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SobreProgram/MarginContainer" unique_id=705473176]
+[node name="VContainer" type="VBoxContainer" parent="SobreProgram/Margin" unique_id=705473176]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="SobreProgram/MarginContainer/VBoxContainer" unique_id=850608956]
+[node name="Title" type="RichTextLabel" parent="SobreProgram/Margin/VContainer" unique_id=850608956]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
 text = "[b]InfinityMap[/b]"
 
-[node name="VersionText" type="RichTextLabel" parent="SobreProgram/MarginContainer/VBoxContainer" unique_id=918468028]
+[node name="Version" type="RichTextLabel" parent="SobreProgram/Margin/VContainer" unique_id=918468028]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.74978, 0.74978, 0.74977994, 1)
@@ -531,14 +531,15 @@ theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
 text = "Versão 0.0.0"
 
-[node name="DescritionText" type="RichTextLabel" parent="SobreProgram/MarginContainer/VBoxContainer" unique_id=266967288]
+[node name="Descrition" type="RichTextLabel" parent="SobreProgram/Margin/VContainer" unique_id=266967288]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 bbcode_enabled = true
 text = "Programa open-source de anotações e criação de mapa mental feito com a Godot 4.6
 Com forte ponto na total customização, espaços e Nodes ilimitados de forma gratuita, sem planos."
+horizontal_alignment = 3
 
-[node name="LinkButton" type="LinkButton" parent="SobreProgram/MarginContainer/VBoxContainer" unique_id=910223406]
+[node name="Github" type="LinkButton" parent="SobreProgram/Margin/VContainer" unique_id=910223406]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

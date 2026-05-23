@@ -5,6 +5,8 @@ extends GraphNode
 @export var check: CheckBox
 @export var title_line: LineEdit
 @export var font_size: SpinBox
+@export var label_dir: Label
+@export var check_dir: CheckBox
 
 var current_image_path := ""
 
@@ -41,6 +43,7 @@ func get_save_data() -> Dictionary:
 		"sized_x": size.x,
 		"sized_y": size.y,
 		"check_pressed": check.button_pressed,
+		"check_pressed_dir": check_dir.button_pressed,
 		"new_stylebox_color": [
 		new_stylebox.bg_color.r,
 		new_stylebox.bg_color.g,
@@ -118,6 +121,9 @@ func load_save_data(data: Dictionary) -> void:
 			
 	var check_state = data.get("check_pressed", false)
 	check.button_pressed = check_state
+	
+	var check_state_dir = data.get("check_pressed_dir", false)
+	check_dir.button_pressed = check_state_dir
 
 	_on_check_size_pressed()
 
@@ -162,7 +168,7 @@ func _on_open_image_file_selected(path: String) -> void:
 
 	var imagem_textura = ImageTexture.create_from_image(imagem)
 	texture_node.texture_normal = imagem_textura
-	
+	label_dir.text = current_image_path
 	Global.alteraction()
 
 
@@ -237,3 +243,12 @@ func _on_node_deselected() -> void:
 
 func _on_position_offset_changed() -> void:
 	Global.alteraction()
+
+
+func _on_check_dir_pressed() -> void:
+	if check_dir.button_pressed:
+		label_dir.hide()
+		
+	else:
+		label_dir.show()
+	

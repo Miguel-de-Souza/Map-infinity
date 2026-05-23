@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="2_7wd0v"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_plr0o"]
 
-[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("url", "size_fonts", "linkButotn")]
+[node name="Node URL" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("url", "size_fonts", "linkButotn")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -45,34 +45,13 @@ slot/2/right_type = 0
 slot/2/right_color = Color(1, 1, 1, 1)
 slot/2/right_icon = null
 slot/2/draw_stylebox = true
-slot/3/left_enabled = false
-slot/3/left_type = 0
-slot/3/left_color = Color(1, 1, 1, 1)
-slot/3/left_icon = null
-slot/3/right_enabled = false
-slot/3/right_type = 0
-slot/3/right_color = Color(1, 1, 1, 1)
-slot/3/right_icon = null
-slot/3/draw_stylebox = true
 script = ExtResource("1_lo1fl")
-url = NodePath("HBoxContainer/URL")
-size_fonts = NodePath("Window Config/MarginContainer/VBoxContainer/Container Size Title/Font Size Title")
-linkButotn = NodePath("LinkButton")
+url = NodePath("URL")
+size_fonts = NodePath("Window Config/Margin/VContainer/Container Size Title/Font Size Title")
+linkButotn = NodePath("Link")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
-[node name="Container" type="HBoxContainer" parent="." unique_id=1614242062]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 257
-
-[node name="Container Size" type="VBoxContainer" parent="Container" unique_id=958391021]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2072020754]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="URL" type="LineEdit" parent="HBoxContainer" unique_id=577137378]
+[node name="URL" type="LineEdit" parent="." unique_id=577137378]
 clip_contents = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -80,7 +59,7 @@ placeholder_text = "URL:"
 alignment = 1
 expand_to_text_length = true
 
-[node name="LinkButton" type="LinkButton" parent="." unique_id=960081145]
+[node name="Link" type="LinkButton" parent="." unique_id=960081145]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.616, 0.6424, 0.88, 1)
@@ -105,58 +84,55 @@ layout_mode = 2
 text = "-"
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("2_plr0o")]
-size = Vector2i(296, 89)
+title = "Node URL"
+size = Vector2i(254, 89)
 visible = false
 unfocusable = false
 graphnod = NodePath("..")
 
-[node name="MarginContainer" type="MarginContainer" parent="Window Config" unique_id=1962698449]
+[node name="Margin" type="MarginContainer" parent="Window Config" unique_id=1962698449]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Window Config/MarginContainer" unique_id=191403129]
+[node name="VContainer" type="VBoxContainer" parent="Window Config/Margin" unique_id=191403129]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 15
 
-[node name="Container Size Title" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=392622064]
+[node name="Container Size Title" type="HBoxContainer" parent="Window Config/Margin/VContainer" unique_id=392622064]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="Window Config/MarginContainer/VBoxContainer/Container Size Title" unique_id=457362628]
+[node name="Label" type="Label" parent="Window Config/Margin/VContainer/Container Size Title" unique_id=457362628]
 layout_mode = 2
-text = "Tamanho do Texto URL"
+text = "Tamanho do Texto"
 
-[node name="Font Size Title" type="SpinBox" parent="Window Config/MarginContainer/VBoxContainer/Container Size Title" unique_id=743219487]
+[node name="Font Size Title" type="SpinBox" parent="Window Config/Margin/VContainer/Container Size Title" unique_id=743219487]
 layout_mode = 2
 min_value = 1.0
 max_value = 80.0
 value = 16.0
 
-[node name="Container custom color" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=241566761]
+[node name="Container custom color" type="HBoxContainer" parent="Window Config/Margin/VContainer" unique_id=241566761]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 30
 
-[node name="Label Color" type="Label" parent="Window Config/MarginContainer/VBoxContainer/Container custom color" unique_id=2054499348]
-layout_mode = 2
-text = "Cor de Fundo"
-
-[node name="Container" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer/Container custom color" unique_id=420809550]
+[node name="Container" type="HBoxContainer" parent="Window Config/Margin/VContainer/Container custom color" unique_id=420809550]
 layout_mode = 2
 
-[node name="ColorButton Back" type="ColorPickerButton" parent="Window Config/MarginContainer/VBoxContainer/Container custom color/Container" unique_id=150877011]
+[node name="ColorButton Back" type="ColorPickerButton" parent="Window Config/Margin/VContainer/Container custom color/Container" unique_id=150877011]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "11111111111"
 
-[node name="Reset" parent="Window Config/MarginContainer/VBoxContainer/Container custom color/Container" unique_id=1733640759 node_paths=PackedStringArray("node_pai") instance=ExtResource("2_7wd0v")]
+[node name="Reset" parent="Window Config/Margin/VContainer/Container custom color/Container" unique_id=1733640759 node_paths=PackedStringArray("node_pai") instance=ExtResource("2_7wd0v")]
 layout_mode = 2
 node_pai = NodePath("../../../../../..")
 
@@ -165,6 +141,6 @@ node_pai = NodePath("../../../../../..")
 [connection signal="position_offset_changed" from="." to="." method="_on_position_offset_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
-[connection signal="value_changed" from="Window Config/MarginContainer/VBoxContainer/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
-[connection signal="color_changed" from="Window Config/MarginContainer/VBoxContainer/Container custom color/Container/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
-[connection signal="pressed" from="Window Config/MarginContainer/VBoxContainer/Container custom color/Container/Reset" to="." method="_on_reset_pressed"]
+[connection signal="value_changed" from="Window Config/Margin/VContainer/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
+[connection signal="color_changed" from="Window Config/Margin/VContainer/Container custom color/Container/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
+[connection signal="pressed" from="Window Config/Margin/VContainer/Container custom color/Container/Reset" to="." method="_on_reset_pressed"]
