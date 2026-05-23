@@ -28,23 +28,13 @@ func _ready() -> void:
 	mini_spix.button_pressed = Global.var_mini_check_ajust
 	
 	#atualiza os valores para o padrões das Configuações
-	_on_font_size_campo_value_changed(size_fonts.value)
-	_on_font_size_title_value_changed(font_size.value)
+	size_fonts._on_value_changed(size_fonts.value)
+	font_size._on_value_changed(font_size.value)
 	
 	mini_spix.on_button_press()
 	mini_spix.verification_pls()
 	
 	_on_check_ajust_pressed()
-
-#Mexer no SpinBox correspondnete ao tamanho do Texto do Campo
-func _on_font_size_campo_value_changed(value: float) -> void:
-	note.add_theme_font_size_override("font_size", int(value))
-	Global.alteraction()
-
-#Mexer no SpinBox correspondnete ao tamanho do Texto do Título
-func _on_font_size_title_value_changed(value: float) -> void:
-	title_line.add_theme_font_size_override("font_size", int(value))
-	Global.alteraction()
 
 #Método para salvar as propriedades do Node (o método é chamado em GraphEdit)
 func get_save_data() -> Dictionary:
@@ -108,10 +98,7 @@ func load_save_data(data: Dictionary) -> void:
 	size_content.button_pressed = data.get("pressed_ajust", false)
 	mini_spix.button_pressed = data.get("mini_ajust_size", false)
 	
-	#Chama os métodos presicos para atualizar os objetos
 	_on_check_ajust_pressed()
-	_on_font_size_campo_value_changed(size_fonts.value)
-	_on_font_size_title_value_changed(font_size.value)
 
 	#Coisa para slots
 	for child in get_children():
@@ -301,14 +288,11 @@ func _on_reset_pressed() -> void:
 func _on_node_selected() -> void:
 	Global.selected_nodes += 1
 
-
 func _on_node_deselected() -> void:
 	Global.selected_nodes -= 1
 
-
 func _on_position_offset_changed() -> void:
 	Global.alteraction()
-
 
 func _on_slot_sizes_changed() -> void:
 	Global.alteraction()

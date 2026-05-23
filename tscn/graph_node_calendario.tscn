@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_v35jj"]
 [ext_resource type="PackedScene" uid="uid://dyxn2spfd3ra7" path="res://tscn/ttle.tscn" id="2_yyry6"]
 [ext_resource type="PackedScene" uid="uid://xy0ns1155ldc" path="res://tscn/check_mini_ok.tscn" id="4_x7o7d"]
+[ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="5_cq758"]
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="6_ocirf"]
 
 [node name="GraphNode" type="GraphNode" unique_id=56170215 node_paths=PackedStringArray("grid", "label_mes", "text_edit", "campo_spin", "checked_b", "title_line", "font_size")]
@@ -52,10 +53,10 @@ script = ExtResource("1_rmxd2")
 grid = NodePath("VBoxContainer/Grid")
 label_mes = NodePath("VBoxContainer/HContainer/Mes")
 text_edit = NodePath("Notepad")
-campo_spin = NodePath("Window Config/Margin/VContainer/HContainer/VContainer/Container Size Block/Font Size Campo")
+campo_spin = NodePath("Window Config/Margin/VContainer/HContainer/VContainer/Container Size Block/Font Campo")
 checked_b = NodePath("Window Config/Margin/VContainer/HContainer/Margin/VContainer/Container Content/Check Ajust")
 title_line = NodePath("Ttle")
-font_size = NodePath("Window Config/Margin/VContainer/HContainer/VContainer/Container Size Title/Font Size Title")
+font_size = NodePath("Window Config/Margin/VContainer/HContainer/VContainer/Container Size Title/Font Title")
 
 [node name="Ttle" parent="." unique_id=294100434 instance=ExtResource("2_yyry6")]
 layout_mode = 2
@@ -143,7 +144,6 @@ layout_mode = 2
 title = "Node Calendário"
 size = Vector2i(575, 137)
 visible = false
-unfocusable = false
 graphnod = NodePath("..")
 
 [node name="Margin" type="MarginContainer" parent="Window Config" unique_id=47021629]
@@ -177,11 +177,9 @@ text = "Título"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Font Size Title" type="SpinBox" parent="Window Config/Margin/VContainer/HContainer/VContainer/Container Size Title" unique_id=1674177192]
+[node name="Font Title" parent="Window Config/Margin/VContainer/HContainer/VContainer/Container Size Title" unique_id=1608563863 node_paths=PackedStringArray("texts") instance=ExtResource("5_cq758")]
 layout_mode = 2
-min_value = 1.0
-max_value = 80.0
-value = 16.0
+texts = NodePath("../../../../../../../Ttle")
 
 [node name="Container Size Block" type="HBoxContainer" parent="Window Config/Margin/VContainer/HContainer/VContainer" unique_id=1764301730]
 layout_mode = 2
@@ -191,11 +189,9 @@ size_flags_horizontal = 4
 layout_mode = 2
 text = "Campo"
 
-[node name="Font Size Campo" type="SpinBox" parent="Window Config/Margin/VContainer/HContainer/VContainer/Container Size Block" unique_id=1629795013]
+[node name="Font Campo" parent="Window Config/Margin/VContainer/HContainer/VContainer/Container Size Block" unique_id=1718538432 node_paths=PackedStringArray("texts") instance=ExtResource("5_cq758")]
 layout_mode = 2
-min_value = 1.0
-max_value = 120.0
-value = 16.0
+texts = NodePath("../../../../../../../Notepad")
 
 [node name="Margin" type="MarginContainer" parent="Window Config/Margin/VContainer/HContainer" unique_id=1060017898]
 layout_mode = 2
@@ -230,7 +226,7 @@ node = NodePath("../../../../../../../..")
 
 [node name="Container color" type="HBoxContainer" parent="Window Config/Margin/VContainer" unique_id=406541563]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 
 [node name="ColorButton Back" type="ColorPickerButton" parent="Window Config/Margin/VContainer/Container color" unique_id=1430590948]
 layout_mode = 2
@@ -262,8 +258,6 @@ text = "-"
 [connection signal="position_offset_changed" from="." to="." method="_on_position_offset_changed"]
 [connection signal="pressed" from="VBoxContainer/HContainer/Button prev" to="." method="_on_button_prev_pressed"]
 [connection signal="pressed" from="VBoxContainer/HContainer/Button next" to="." method="_on_button_next_pressed"]
-[connection signal="value_changed" from="Window Config/Margin/VContainer/HContainer/VContainer/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
-[connection signal="value_changed" from="Window Config/Margin/VContainer/HContainer/VContainer/Container Size Block/Font Size Campo" to="." method="_on_font_size_campo_value_changed"]
 [connection signal="pressed" from="Window Config/Margin/VContainer/HContainer/Margin/VContainer/Container Content/Check Ajust" to="." method="_on_check_ajust_pressed"]
 [connection signal="color_changed" from="Window Config/Margin/VContainer/Container color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
 [connection signal="pressed" from="Window Config/Margin/VContainer/Container color/Reset" to="." method="_on_reset_pressed"]

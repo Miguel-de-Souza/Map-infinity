@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b34a5i1hiydtu"]
+
+[ext_resource type="Script" uid="uid://dccfxc7f5hdil" path="res://Scripts/fonts_size.gd" id="1_upokq"]
+
+[node name="Font Size Title" type="SpinBox" unique_id=1608563863]
+min_value = 1.0
+max_value = 80.0
+value = 16.0
+script = ExtResource("1_upokq")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

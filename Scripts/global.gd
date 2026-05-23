@@ -8,6 +8,7 @@ var changed := false
 var stop_unsave := false
 var selected_nodes := 0
 var not_atalho := false
+var yes_focus := false
 
 func alteraction():
 	if not Global.changed:

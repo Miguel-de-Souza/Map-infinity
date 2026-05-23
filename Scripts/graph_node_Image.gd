@@ -19,7 +19,6 @@ func _ready() -> void:
 
 	font_size.value = Global.font_size_title_default
 	
-	_on_font_size_title_value_changed(font_size.value)
 	add_theme_stylebox_override("panel", new_stylebox)
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 
@@ -73,8 +72,6 @@ func load_save_data(data: Dictionary) -> void:
 	new_stylebox_focus.bg_color = Color(c_focus[0], c_focus[1], c_focus[2], c_focus[3])
 
 	font_size.value = data.get("title_font_size", 14)
-	
-	_on_font_size_title_value_changed(font_size.value)
 	
 	for child in get_children():
 		if child is ColorRect:
@@ -227,11 +224,6 @@ func _on_reset_pressed() -> void:
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 	
 	Global.alteraction()
-
-func _on_font_size_title_value_changed(value: float) -> void:
-	title_line.add_theme_font_size_override("font_size", int(value))
-	Global.alteraction()
-
 
 func _on_node_selected() -> void:
 	Global.selected_nodes += 1

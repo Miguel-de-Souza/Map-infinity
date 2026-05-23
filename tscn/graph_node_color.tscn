@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://kid0ouwfay50" path="res://Scripts/graph_node_color.gd" id="1_mktjo"]
 [ext_resource type="PackedScene" uid="uid://dyxn2spfd3ra7" path="res://tscn/ttle.tscn" id="2_0fooi"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_nuh5h"]
+[ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="4_ey878"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("title_line", "size_fonts", "button_color", "line_hex", "line_r", "line_g", "line_b")]
 anchors_preset = 8
@@ -56,7 +57,7 @@ slot/3/right_icon = null
 slot/3/draw_stylebox = true
 script = ExtResource("1_mktjo")
 title_line = NodePath("Ttle")
-size_fonts = NodePath("Window Config/MarginContainer/VBoxContainer/Container Size Title/Font Size Title")
+size_fonts = NodePath("Window Config/MarginContainer/VBoxContainer/Container Size Title/Font Title")
 button_color = NodePath("ColorPickerButton")
 line_hex = NodePath("Window Config/MarginContainer/VBoxContainer/Info Hex/LineEdit Hex")
 line_r = NodePath("Window Config/MarginContainer/VBoxContainer/Container R/LineEdit R")
@@ -124,11 +125,9 @@ text = "Título"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Font Size Title" type="SpinBox" parent="Window Config/MarginContainer/VBoxContainer/Container Size Title" unique_id=1445826764]
+[node name="Font Title" parent="Window Config/MarginContainer/VBoxContainer/Container Size Title" unique_id=1608563863 node_paths=PackedStringArray("texts") instance=ExtResource("4_ey878")]
 layout_mode = 2
-min_value = 1.0
-max_value = 80.0
-value = 16.0
+texts = NodePath("../../../../../Ttle")
 
 [node name="Info Hex" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=731941568]
 layout_mode = 2
@@ -197,4 +196,3 @@ editable = false
 [connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
-[connection signal="value_changed" from="Window Config/MarginContainer/VBoxContainer/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]

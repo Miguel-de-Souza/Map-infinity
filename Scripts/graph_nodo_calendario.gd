@@ -12,7 +12,6 @@ extends GraphNode
 var new_stylebox = get_theme_stylebox("panel").duplicate()
 var new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
 
-
 var mes : int
 var ano : int
 var eventos := {}
@@ -24,7 +23,6 @@ func _ready():
 	font_size.value = Global.font_size_title_default
 	campo_spin.value = Global.font_size_default
 	
-	_on_font_size_campo_value_changed(campo_spin.value)
 	var agora = Time.get_datetime_dict_from_system()
 	
 	ano = agora.year
@@ -32,9 +30,6 @@ func _ready():
 	
 	add_theme_stylebox_override("panel", new_stylebox)
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
-	
-	_on_font_size_campo_value_changed(campo_spin.value)
-	_on_font_size_title_value_changed(font_size.value)
 	
 	atualizar_calendario()
 
@@ -219,9 +214,6 @@ func load_save_data(data: Dictionary) -> void:
 	campo_spin.value = data.get("font_size", 14)
 	font_size.value = data.get("title_font_size", 14)
 	
-	_on_font_size_campo_value_changed(campo_spin.value)
-	_on_font_size_title_value_changed(font_size.value)
-	
 	atualizar_calendario()
 	
 	
@@ -231,12 +223,6 @@ func _on_node_selected() -> void:
 
 func _on_node_deselected() -> void:
 	Global.selected_nodes -= 1
-
-
-func _on_font_size_campo_value_changed(value: float) -> void:
-	text_edit.add_theme_font_size_override("font_size", int(value))
-	Global.alteraction()
-
 
 func _on_check_ajust_pressed() -> void:
 	if checked_b.button_pressed:
@@ -304,11 +290,6 @@ func _disconnect_slot(slot_index: int) -> void:
 	Global.alteraction()
 
 func _on_position_offset_changed() -> void:
-	Global.alteraction()
-
-
-func _on_font_size_title_value_changed(value: float) -> void:
-	title_line.add_theme_font_size_override("font_size", int(value))
 	Global.alteraction()
 
 

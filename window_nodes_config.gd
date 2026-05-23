@@ -5,6 +5,12 @@ extends Window
 func _process(_delta: float) -> void:
 	if Global.selected_nodes > 1:
 		hide()
+		
+	if Global.yes_focus:
+		unfocusable = false
+		
+	else:
+		unfocusable = true
 
 
 func _ready() -> void:

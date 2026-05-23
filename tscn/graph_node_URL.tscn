@@ -87,7 +87,6 @@ text = "-"
 title = "Node URL"
 size = Vector2i(254, 89)
 visible = false
-unfocusable = false
 graphnod = NodePath("..")
 
 [node name="Margin" type="MarginContainer" parent="Window Config" unique_id=1962698449]

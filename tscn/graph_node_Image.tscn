@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="2_fcwth"]
 [ext_resource type="Texture2D" uid="uid://bdtbfaqxn5emc" path="res://icons/no-image.jpg" id="2_pj3d8"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="3_fcwth"]
+[ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="5_4s04q"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("open_image", "texture_node", "check", "title_line", "font_size", "label_dir", "check_dir")]
 anchors_preset = 8
@@ -61,7 +62,7 @@ open_image = NodePath("Open Image")
 texture_node = NodePath("Button Image")
 check = NodePath("Window Config/Margin/VContainer/Container Size/Check Size")
 title_line = NodePath("Ttle")
-font_size = NodePath("Window Config/Margin/VContainer/Container Size Title/Font Size Title")
+font_size = NodePath("Window Config/Margin/VContainer/Container Size Title/Font Title")
 label_dir = NodePath("Diretorio")
 check_dir = NodePath("Window Config/Margin/VContainer/Container Dir/Check Dir")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
@@ -112,7 +113,6 @@ text = "-"
 title = "Node Imagem"
 size = Vector2i(249, 168)
 visible = false
-unfocusable = false
 graphnod = NodePath("..")
 
 [node name="Margin" type="MarginContainer" parent="Window Config" unique_id=1840880025]
@@ -138,12 +138,9 @@ text = "Título"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Font Size Title" type="SpinBox" parent="Window Config/Margin/VContainer/Container Size Title" unique_id=1081166543]
+[node name="Font Title" parent="Window Config/Margin/VContainer/Container Size Title" unique_id=1608563863 node_paths=PackedStringArray("texts") instance=ExtResource("5_4s04q")]
 layout_mode = 2
-size_flags_horizontal = 0
-min_value = 1.0
-max_value = 80.0
-value = 16.0
+texts = NodePath("../../../../../Ttle")
 
 [node name="Container Size" type="HBoxContainer" parent="Window Config/Margin/VContainer" unique_id=1119489245]
 layout_mode = 2
@@ -189,7 +186,6 @@ layout_mode = 2
 [connection signal="file_selected" from="Open Image" to="." method="_on_open_image_file_selected"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
-[connection signal="value_changed" from="Window Config/Margin/VContainer/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
 [connection signal="pressed" from="Window Config/Margin/VContainer/Container Size/Check Size" to="." method="_on_check_size_pressed"]
 [connection signal="pressed" from="Window Config/Margin/VContainer/Container Dir/Check Dir" to="." method="_on_check_dir_pressed"]
 [connection signal="color_changed" from="Window Config/Margin/VContainer/Container color custom/Container Color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
