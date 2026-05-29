@@ -214,39 +214,48 @@ func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	get_parent().disconnect_node(from_node, from_port, to_node, to_port)
 	Global.alteraction()
 
-#Sistema para Adicionar Caracteres de listas
-func _input(event):
-	if note.has_focus():
-		if type_list == "ponto":
-			if event is InputEventKey and event.pressed:
-				if event.keycode == KEY_ENTER:
-					var line = note.get_line(note.get_caret_line())
+# Usar Enum é mais seguro e organizado que Strings
+enum ListType { NONE, BULLET, NUMBERED }
+var current_list_type = ListType.NONE
 
-					if line.begins_with("• "):
-						await get_tree().process_frame
-						note.insert_text_at_caret("• ")
-						
-		elif type_list == "num":
-			if event is InputEventKey and event.pressed:
-				if event.keycode == KEY_ENTER:
-					var line = note.get_line(note.get_caret_line())
+func _input(event: InputEvent):
+	if note.has_focus() and event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ENTER:
+			_handle_list_continuation()
 
-					if line.begins_with(str(num_count)):
-						await get_tree().process_frame
-						num_count += 1
-						note.insert_text_at_caret(str(num_count) + ". ")
+func _handle_list_continuation():
+	# Pegamos a linha onde o cursor ESTAVA antes do Enter processar
+	var current_line_index = note.get_caret_line()
+	var line_text = note.get_line(current_line_index)
+	
+	# Aguarda o frame para o TextEdit processar a nova linha
+	await get_tree().process_frame
+	
+	match current_list_type:
+		ListType.BULLET:
+			if line_text.strip_edges().begins_with("•"):
+				note.insert_text_at_caret("• ")
+		
+		ListType.NUMBERED:
+			# Verifica se a linha anterior tinha um padrão de número "1. "
+			if "." in line_text:
+				var parts = line_text.split(".")
+				if parts[0].is_valid_int():
+					num_count = parts[0].to_int() + 1
+					note.insert_text_at_caret(str(num_count) + ". ")
 
+# --- Sinais dos Botões ---
 
-#Quando apertar o botão, insere o caracter e altera a variavel type_list
 func _on_button_list_pressed() -> void:
+	current_list_type = ListType.BULLET
 	note.insert_text_at_caret("• ")
-	type_list = "ponto"
+	note.grab_focus()
 
-#Quando apertar o botão, insere o caracter e altera a variavel type_list
 func _on_button_list_num_pressed() -> void:
+	current_list_type = ListType.NUMBERED
 	num_count = 1
-	note.insert_text_at_caret(str(num_count) + ". ")
-	type_list = "num"
+	note.insert_text_at_caret("1. ")
+	note.grab_focus()
 
 #CheckBox de Ajustar Campo, quando verdadeiro mantém o tamanho do Campo
 func _on_check_ajust_pressed() -> void:
