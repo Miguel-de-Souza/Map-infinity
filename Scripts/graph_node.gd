@@ -99,6 +99,7 @@ func load_save_data(data: Dictionary) -> void:
 	mini_spix.button_pressed = data.get("mini_ajust_size", false)
 	
 	_on_check_ajust_pressed()
+	mini_spix.on_button_press()
 
 	#Coisa para slots
 	for child in get_children():

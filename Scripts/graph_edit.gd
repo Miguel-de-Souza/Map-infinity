@@ -104,6 +104,15 @@ func _process(_delta: float) -> void:
 			for conn in get_connection_list():
 				print(conn)
 
+	elif Input.is_action_just_pressed("Add Bloco Excel"):
+		if active_mode_node:
+			selected_mode_make = true
+			numb = 1
+					
+		else:
+			if Global.not_atalho == false:
+				criar_bloco_notas(6)
+
 	elif Input.is_action_just_pressed("Add Bloco Color"):
 		if active_mode_node:
 			selected_mode_make = true
@@ -148,6 +157,7 @@ func _process(_delta: float) -> void:
 		else:
 			if Global.not_atalho == false:
 				criar_bloco_notas(5)
+				
 
 
 func _input(_event):
@@ -259,6 +269,10 @@ func criar_bloco_notas(id : int = 1) -> void:
 			
 		5:
 			nodesGraph = preload("uid://bq1waeg8fv6q2").instantiate()
+			
+		6:
+			nodesGraph = preload("uid://c6rpky7ymxtrx").instantiate() #Tabela
+
 	
 	nodesGraph.name = "Node_" + str(Time.get_ticks_usec())
 	
@@ -425,6 +439,14 @@ func _on_item_selected_insert(id: int) -> void:
 					
 			else:
 				criar_bloco_notas(5)
+				
+		5:
+			if active_mode_node:
+				selected_mode_make = true
+				numb = 5
+					
+			else:
+				criar_bloco_notas(6)
 
 
 func _on_menu_button_more_pressed() -> void:

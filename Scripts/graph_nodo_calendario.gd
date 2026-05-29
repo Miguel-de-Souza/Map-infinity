@@ -8,6 +8,7 @@ extends GraphNode
 @export var Minimum_R := false
 @export var title_line: LineEdit
 @export var font_size: SpinBox
+@export var mini_spix: CheckBox
 
 var new_stylebox = get_theme_stylebox("panel").duplicate()
 var new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
@@ -214,6 +215,7 @@ func load_save_data(data: Dictionary) -> void:
 	campo_spin.value = data.get("font_size", 14)
 	font_size.value = data.get("title_font_size", 14)
 	
+	mini_spix.on_button_press()
 	atualizar_calendario()
 	
 	

@@ -76,6 +76,7 @@ text = "-"
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("6_pvawi")]
 title = "Node Texto"
+position = Vector2i(50, 100)
 size = Vector2i(568, 127)
 visible = false
 graphnod = NodePath("..")

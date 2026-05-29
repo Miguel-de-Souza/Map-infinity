@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://c6rpky7ymxtrx"]
+
+[ext_resource type="Script" uid="uid://c4unwpgnu3t6f" path="res://Scripts/excel(demo).gd" id="1_cjbmx"]
+
+[node name="GraphNode" type="GraphNode" unique_id=248520913]
+offset_right = 555.0
+offset_bottom = 295.0
+resizable = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_cjbmx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=303279720]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=2033949166]
+layout_mode = 2
+
+[node name="BtnAddLinha" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1604291800]
+layout_mode = 2
+text = "+"
+
+[node name="BtnAddColuna" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=288852608]
+layout_mode = 2
+text = "-"
+
+[node name="ScrollTopo" type="ScrollContainer" parent="VBoxContainer" unique_id=986400521]
+layout_mode = 2
+
+[node name="HeaderLetras" type="HBoxContainer" parent="VBoxContainer/ScrollTopo" unique_id=1569736142]
+layout_mode = 2
+
+[node name="ScrollBase" type="ScrollContainer" parent="VBoxContainer" unique_id=510440487]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ContainerPlanilha" type="HBoxContainer" parent="VBoxContainer/ScrollBase" unique_id=1708358817]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Container Slots" type="HBoxContainer" parent="." unique_id=874656054]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Button Add" type="Button" parent="Container Slots" unique_id=1665548022]
+clip_contents = true
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "+"
+
+[node name="Button Sub" type="Button" parent="Container Slots" unique_id=917497666]
+clip_contents = true
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "-"
+
+[connection signal="position_offset_changed" from="." to="." method="_on_position_offset_changed"]
+[connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
+[connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
