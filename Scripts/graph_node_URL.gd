@@ -17,10 +17,6 @@ func _ready() -> void:
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 
 	size_fonts.value = Global.font_size_default
-	
-func _on_font_size_title_value_changed(value: float) -> void:
-	url.add_theme_font_size_override("font_size", int(value))
-	Global.alteraction()
 
 func get_save_data() -> Dictionary:
 	var slots := []
@@ -67,8 +63,6 @@ func load_save_data(data: Dictionary) -> void:
 
 	url.text = data.get("title", "Node")
 	size_fonts.value = data.get("font_size", 14)
-
-	_on_font_size_title_value_changed(size_fonts.value)
 	
 	for child in get_children():
 		if child is ColorRect:

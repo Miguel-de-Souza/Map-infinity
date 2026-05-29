@@ -396,6 +396,9 @@ func _on_item_selected(id: int) -> void:
 				
 		3:
 			file_dia.popup()
+			
+		4:
+			get_tree().quit()
 
 func _on_item_selected_insert(id: int) -> void:
 	match id:

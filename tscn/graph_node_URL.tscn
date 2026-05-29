@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bje5q4v3if27r" path="res://Scripts/graph_node_URL.gd" id="1_lo1fl"]
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="2_7wd0v"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_plr0o"]
+[ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="3_b303e"]
+[ext_resource type="Theme" uid="uid://bdak4yflm3gw0" path="res://Palletas/spinboxes.tres" id="4_lknpe"]
 
 [node name="Node URL" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("url", "size_fonts", "linkButotn")]
 anchors_preset = 8
@@ -47,7 +49,7 @@ slot/2/right_icon = null
 slot/2/draw_stylebox = true
 script = ExtResource("1_lo1fl")
 url = NodePath("URL")
-size_fonts = NodePath("Window Config/Margin/VContainer/Container Size Title/Font Size Title")
+size_fonts = NodePath("")
 linkButotn = NodePath("Link")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
@@ -111,11 +113,10 @@ size_flags_vertical = 4
 layout_mode = 2
 text = "Tamanho do Texto"
 
-[node name="Font Size Title" type="SpinBox" parent="Window Config/Margin/VContainer/Container Size Title" unique_id=743219487]
+[node name="Font Size Title" parent="Window Config/Margin/VContainer/Container Size Title" unique_id=1608563863 node_paths=PackedStringArray("texts") instance=ExtResource("3_b303e")]
 layout_mode = 2
-min_value = 1.0
-max_value = 80.0
-value = 16.0
+theme = ExtResource("4_lknpe")
+texts = NodePath("../../../../../URL")
 
 [node name="Container custom color" type="HBoxContainer" parent="Window Config/Margin/VContainer" unique_id=241566761]
 layout_mode = 2
@@ -140,6 +141,5 @@ node_pai = NodePath("../../../../../..")
 [connection signal="position_offset_changed" from="." to="." method="_on_position_offset_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
-[connection signal="value_changed" from="Window Config/Margin/VContainer/Container Size Title/Font Size Title" to="." method="_on_font_size_title_value_changed"]
 [connection signal="color_changed" from="Window Config/Margin/VContainer/Container custom color/Container/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
 [connection signal="pressed" from="Window Config/Margin/VContainer/Container custom color/Container/Reset" to="." method="_on_reset_pressed"]

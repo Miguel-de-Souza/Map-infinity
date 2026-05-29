@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bdtbfaqxn5emc" path="res://icons/no-image.jpg" id="2_pj3d8"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="3_fcwth"]
 [ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="5_4s04q"]
+[ext_resource type="Theme" uid="uid://bdak4yflm3gw0" path="res://Palletas/spinboxes.tres" id="6_gynfw"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("open_image", "texture_node", "check", "title_line", "font_size", "label_dir", "check_dir")]
 anchors_preset = 8
@@ -111,7 +112,7 @@ text = "-"
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("3_fcwth")]
 title = "Node Imagem"
-size = Vector2i(249, 168)
+size = Vector2i(216, 165)
 visible = false
 graphnod = NodePath("..")
 
@@ -134,12 +135,14 @@ size_flags_horizontal = 6
 [node name="Title" type="Label" parent="Window Config/Margin/VContainer/Container Size Title" unique_id=1364350741]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
 text = "Título"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Font Title" parent="Window Config/Margin/VContainer/Container Size Title" unique_id=1608563863 node_paths=PackedStringArray("texts") instance=ExtResource("5_4s04q")]
 layout_mode = 2
+theme = ExtResource("6_gynfw")
 texts = NodePath("../../../../../Ttle")
 
 [node name="Container Size" type="HBoxContainer" parent="Window Config/Margin/VContainer" unique_id=1119489245]
@@ -148,6 +151,7 @@ size_flags_horizontal = 4
 
 [node name="Size Label" type="Label" parent="Window Config/Margin/VContainer/Container Size" unique_id=1658213863]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Manter Tamanho Original"
 
 [node name="Check Size" type="CheckBox" parent="Window Config/Margin/VContainer/Container Size" unique_id=2028989930]
@@ -159,6 +163,7 @@ size_flags_horizontal = 4
 
 [node name="Dir Label" type="Label" parent="Window Config/Margin/VContainer/Container Dir" unique_id=1892231743]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Ocultar Diretório"
 
 [node name="Check Dir" type="CheckBox" parent="Window Config/Margin/VContainer/Container Dir" unique_id=667581777]

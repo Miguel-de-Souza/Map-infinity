@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="4_jbsip"]
 [ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="5_ekrqo"]
 [ext_resource type="PackedScene" uid="uid://xy0ns1155ldc" path="res://tscn/check_mini_ok.tscn" id="5_iadxg"]
+[ext_resource type="Theme" uid="uid://bdak4yflm3gw0" path="res://Palletas/spinboxes.tres" id="6_p5kfh"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="6_pvawi"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("note", "title_line", "size_fonts", "font_size", "size_content", "mini_spix")]
@@ -77,7 +78,7 @@ text = "-"
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("6_pvawi")]
 title = "Node Texto"
 position = Vector2i(50, 100)
-size = Vector2i(568, 127)
+size = Vector2i(494, 127)
 visible = false
 graphnod = NodePath("..")
 
@@ -87,6 +88,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 4
 
 [node name="Container" type="VBoxContainer" parent="Window Config/Margin" unique_id=675921557]
 layout_mode = 2
@@ -108,12 +110,15 @@ theme_override_constants/separation = 14
 
 [node name="Title" type="Label" parent="Window Config/Margin/Container/HContainer/Container Size Camps/Container Size Title" unique_id=1896916133]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Título"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Font Title" parent="Window Config/Margin/Container/HContainer/Container Size Camps/Container Size Title" unique_id=1608563863 node_paths=PackedStringArray("texts") instance=ExtResource("5_ekrqo")]
 layout_mode = 2
+theme = ExtResource("6_p5kfh")
+alignment = 1
 texts = NodePath("../../../../../../../Ttle")
 
 [node name="Container Size Block" type="HBoxContainer" parent="Window Config/Margin/Container/HContainer/Container Size Camps" unique_id=1153163932]
@@ -121,10 +126,13 @@ layout_mode = 2
 
 [node name="Block" type="Label" parent="Window Config/Margin/Container/HContainer/Container Size Camps/Container Size Block" unique_id=1570112640]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Campo"
 
 [node name="Font Campo" parent="Window Config/Margin/Container/HContainer/Container Size Camps/Container Size Block" unique_id=1043625274 node_paths=PackedStringArray("texts") instance=ExtResource("5_ekrqo")]
 layout_mode = 2
+theme = ExtResource("6_p5kfh")
+alignment = 1
 texts = NodePath("../../../../../../../Notepad")
 
 [node name="Margin Ajust" type="MarginContainer" parent="Window Config/Margin/Container/HContainer" unique_id=637036536]
@@ -141,6 +149,7 @@ layout_mode = 2
 
 [node name="Label Ajust" type="Label" parent="Window Config/Margin/Container/HContainer/Margin Ajust/VContainer/Container Content" unique_id=1342014060]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Ajustar Tamanho do Campo"
 
 [node name="Check Ajust" type="CheckBox" parent="Window Config/Margin/Container/HContainer/Margin Ajust/VContainer/Container Content" unique_id=894357618]
@@ -151,6 +160,7 @@ layout_mode = 2
 
 [node name="Label Ajust" type="Label" parent="Window Config/Margin/Container/HContainer/Margin Ajust/VContainer/Container Mini" unique_id=612009919]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Ajustar Tamanho do Node Automaticamente"
 
 [node name="Check mini ok" parent="Window Config/Margin/Container/HContainer/Margin Ajust/VContainer/Container Mini" unique_id=813930896 node_paths=PackedStringArray("node") instance=ExtResource("5_iadxg")]

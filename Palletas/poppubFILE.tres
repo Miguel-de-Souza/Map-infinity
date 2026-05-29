@@ -16,5 +16,6 @@ border_width_bottom = 4
 border_color = Color(0.18000498, 0.18000484, 0.18000486, 1)
 
 [resource]
+PopupMenu/font_sizes/font_size = 14
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_7mycd")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_lquwl")

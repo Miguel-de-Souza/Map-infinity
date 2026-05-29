@@ -2,6 +2,9 @@ extends SpinBox
 
 @export var texts: Control
 
+func _ready() -> void:
+	alignment = HORIZONTAL_ALIGNMENT_CENTER
+
 func _on_value_changed(_value: float) -> void:
 	texts.add_theme_font_size_override("font_size", int(_value))
 	Global.alteraction()

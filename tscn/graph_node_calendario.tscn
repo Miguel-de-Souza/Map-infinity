@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dyxn2spfd3ra7" path="res://tscn/ttle.tscn" id="2_yyry6"]
 [ext_resource type="PackedScene" uid="uid://xy0ns1155ldc" path="res://tscn/check_mini_ok.tscn" id="4_x7o7d"]
 [ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="5_cq758"]
+[ext_resource type="Theme" uid="uid://bdak4yflm3gw0" path="res://Palletas/spinboxes.tres" id="6_lrw2b"]
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="6_ocirf"]
 
 [node name="GraphNode" type="GraphNode" unique_id=56170215 node_paths=PackedStringArray("grid", "label_mes", "text_edit", "campo_spin", "checked_b", "title_line", "font_size", "mini_spix")]
@@ -143,7 +144,7 @@ layout_mode = 2
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("2_v35jj")]
 title = "Node Calendário"
-size = Vector2i(575, 137)
+size = Vector2i(492, 125)
 visible = false
 graphnod = NodePath("..")
 
@@ -174,12 +175,14 @@ theme_override_constants/separation = 14
 
 [node name="Title" type="Label" parent="Window Config/Margin/VContainer/HContainer/VContainer/Container Size Title" unique_id=1394510786]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Título"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Font Title" parent="Window Config/Margin/VContainer/HContainer/VContainer/Container Size Title" unique_id=1608563863 node_paths=PackedStringArray("texts") instance=ExtResource("5_cq758")]
 layout_mode = 2
+theme = ExtResource("6_lrw2b")
 texts = NodePath("../../../../../../../Ttle")
 
 [node name="Container Size Block" type="HBoxContainer" parent="Window Config/Margin/VContainer/HContainer/VContainer" unique_id=1764301730]
@@ -188,10 +191,12 @@ size_flags_horizontal = 4
 
 [node name="Block" type="Label" parent="Window Config/Margin/VContainer/HContainer/VContainer/Container Size Block" unique_id=1869873218]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Campo"
 
 [node name="Font Campo" parent="Window Config/Margin/VContainer/HContainer/VContainer/Container Size Block" unique_id=1718538432 node_paths=PackedStringArray("texts") instance=ExtResource("5_cq758")]
 layout_mode = 2
+theme = ExtResource("6_lrw2b")
 texts = NodePath("../../../../../../../Notepad")
 
 [node name="Margin" type="MarginContainer" parent="Window Config/Margin/VContainer/HContainer" unique_id=1060017898]
@@ -209,6 +214,7 @@ size_flags_horizontal = 0
 
 [node name="Label Ajust" type="Label" parent="Window Config/Margin/VContainer/HContainer/Margin/VContainer/Container Content" unique_id=2049060539]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Ajustar Tamanho do Campo"
 
 [node name="Check Ajust" type="CheckBox" parent="Window Config/Margin/VContainer/HContainer/Margin/VContainer/Container Content" unique_id=1680779984]
@@ -219,6 +225,7 @@ layout_mode = 2
 
 [node name="Label Ajust" type="Label" parent="Window Config/Margin/VContainer/HContainer/Margin/VContainer/Container Mini" unique_id=358143436]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Ajustar Tamanho do Node Automaticamente"
 
 [node name="Check mini ok" parent="Window Config/Margin/VContainer/HContainer/Margin/VContainer/Container Mini" unique_id=813930896 node_paths=PackedStringArray("node") instance=ExtResource("4_x7o7d")]

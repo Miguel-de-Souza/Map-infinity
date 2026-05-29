@@ -27,10 +27,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 42.0
+offset_top = 34.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1bvp3")
+scroll_offset = Vector2(0, -236)
 right_disconnects = true
 zoom_min = 0.05
 zoom_max = 3.0
@@ -51,9 +52,81 @@ window_unsave = NodePath("../UnsaveExit")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 44.0
+offset_bottom = 34.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_272bh")
+
+[node name="Container Tool" type="HBoxContainer" parent="." unique_id=329935236]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 3.0
+offset_right = 577.0
+offset_bottom = 31.0
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="MenuButton File" type="MenuButton" parent="Container Tool" unique_id=1623260776]
+layout_mode = 2
+theme = ExtResource("4_272bh")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Arquivo"
+item_count = 5
+popup/item_0/text = "Novo (Ctrl + N)"
+popup/item_0/id = 0
+popup/item_1/text = "Abrir (Ctrl + O)"
+popup/item_1/id = 1
+popup/item_2/text = "Salvar (Ctrl + S)"
+popup/item_2/id = 2
+popup/item_3/text = "Salvar Como... (Ctrl + Shit + S)"
+popup/item_3/id = 3
+popup/item_4/text = "Fechar (Alt + F4)"
+popup/item_4/id = 4
+
+[node name="MenuButton Insert" type="MenuButton" parent="Container Tool" unique_id=1374439090]
+layout_mode = 2
+theme = ExtResource("4_272bh")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Inserir Bloco"
+item_count = 6
+popup/item_0/text = "Bloco de Texto (Ctrl + A)"
+popup/item_0/id = 0
+popup/item_1/text = "Bloco de Cor (Ctrl + Shit + A)"
+popup/item_1/id = 1
+popup/item_2/text = "Bloco URL (Ctrl + Alt + A)"
+popup/item_2/id = 2
+popup/item_3/text = "Bloco de Imagem (Alt + A)"
+popup/item_3/id = 3
+popup/item_4/text = "Bloco de Calendário (Shit + A)"
+popup/item_4/id = 4
+popup/item_5/text = "Bloco Tabela (Ctrl + Shit + Alt + A)"
+popup/item_5/id = 5
+
+[node name="MenuButton Config" type="MenuButton" parent="Container Tool" unique_id=461255740]
+layout_mode = 2
+theme = ExtResource("4_7mycd")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Configurações"
+
+[node name="MenuButton More" type="MenuButton" parent="Container Tool" unique_id=1957305224]
+layout_mode = 2
+theme = ExtResource("4_7mycd")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Sobre"
+
+[node name="Label Diretory" type="Label" parent="." unique_id=1657462741]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 1240.0
+offset_bottom = 27.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 14
+text = "Diretory: C"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="Window Config" type="Window" parent="." unique_id=1806257895 node_paths=PackedStringArray("Geapgh", "check_diretory", "check_ajust", "label_diretorio", "show_debug", "debug_label", "option_grid", "option_scroll", "option_camp", "option_title", "type_window", "mode_option", "min_op", "max_op", "option_BG", "option_Grides")]
 oversampling_override = 1.0
@@ -402,81 +475,13 @@ access = 2
 filters = PackedStringArray("*.json", "*.uxv")
 use_native_dialog = true
 
-[node name="Container Tool" type="HBoxContainer" parent="." unique_id=329935236]
-layout_mode = 0
-offset_right = 395.0
-offset_bottom = 44.0
-theme_override_constants/separation = 40
-
-[node name="Margin" type="MarginContainer" parent="Container Tool" unique_id=1338208039]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-
-[node name="MenuButton File" type="MenuButton" parent="Container Tool" unique_id=1623260776]
-layout_mode = 2
-theme = ExtResource("4_272bh")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Arquivo"
-item_count = 4
-popup/item_0/text = "Novo (Ctrl + N)"
-popup/item_0/id = 0
-popup/item_1/text = "Abrir (Ctrl + O)"
-popup/item_1/id = 1
-popup/item_2/text = "Salvar (Ctrl + S)"
-popup/item_2/id = 2
-popup/item_3/text = "Salvar Como... (Ctrl + Shit + S)"
-popup/item_3/id = 3
-
-[node name="MenuButton Insert" type="MenuButton" parent="Container Tool" unique_id=1374439090]
-layout_mode = 2
-theme = ExtResource("4_272bh")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Inserir Bloco"
-item_count = 6
-popup/item_0/text = "Bloco de Texto (Ctrl + A)"
-popup/item_0/id = 0
-popup/item_1/text = "Bloco de Cor (Ctrl + Shit + A)"
-popup/item_1/id = 1
-popup/item_2/text = "Bloco URL (Ctrl + Alt + A)"
-popup/item_2/id = 2
-popup/item_3/text = "Bloco de Imagem (Alt + A)"
-popup/item_3/id = 3
-popup/item_4/text = "Bloco de Calendário (Shit + A)"
-popup/item_4/id = 4
-popup/item_5/text = "Bloco Tabela (Ctrl + Shit + Alt + A)"
-popup/item_5/id = 5
-
-[node name="MenuButton Config" type="MenuButton" parent="Container Tool" unique_id=461255740]
-layout_mode = 2
-theme = ExtResource("4_7mycd")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Configurações"
-
-[node name="MenuButton More" type="MenuButton" parent="Container Tool" unique_id=1957305224]
-layout_mode = 2
-theme = ExtResource("4_7mycd")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Sobre"
-
-[node name="Label Diretory" type="Label" parent="." unique_id=1657462741]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -682.0
-offset_right = -11.0
-offset_bottom = 35.0
-grow_horizontal = 0
-text = "Diretory: C"
-horizontal_alignment = 2
-vertical_alignment = 1
-
 [node name="Text Debug" type="Label" parent="." unique_id=1581848323 node_paths=PackedStringArray("Graph")]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 95.0
 offset_right = 83.0
 offset_bottom = 118.0
+theme_override_font_sizes/font_size = 14
 text = "Debug"
 script = ExtResource("3_h2yge")
 Graph = NodePath("../GraphEdit")
@@ -562,6 +567,8 @@ cancel_button_text = "Sair e Não Salvar "
 
 [connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
 [connection signal="disconnection_request" from="GraphEdit" to="GraphEdit" method="_on_disconnection_request"]
+[connection signal="pressed" from="Container Tool/MenuButton Config" to="Window Config" method="_on_menu_button_config_pressed"]
+[connection signal="pressed" from="Container Tool/MenuButton More" to="GraphEdit" method="_on_menu_button_more_pressed"]
 [connection signal="close_requested" from="Window Config" to="Window Config" method="_on_close_requested"]
 [connection signal="item_selected" from="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer/Container Grid/Option Grids" to="Window Config" method="_on_option_grids_item_selected"]
 [connection signal="item_selected" from="Window Config/TabContainer/Interface/MarginContainer/VBoxContainer/Container Scroll/Option Scroll" to="Window Config" method="_on_option_scroll_item_selected"]
@@ -578,8 +585,6 @@ cancel_button_text = "Sair e Não Salvar "
 [connection signal="pressed" from="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas/Reset Themes" to="Window Config" method="_on_reset_themes_pressed"]
 [connection signal="pressed" from="Window Config/TabContainer/Avançado/MarginContainer/VBoxContainer/Container Diretory/Check Diretorio" to="Window Config" method="_on_check_diretorio_pressed"]
 [connection signal="pressed" from="Window Config/TabContainer/Avançado/MarginContainer/VBoxContainer/Container Debug/Check Debug" to="Window Config" method="_on_check_debug_pressed"]
-[connection signal="pressed" from="Container Tool/MenuButton Config" to="Window Config" method="_on_menu_button_config_pressed"]
-[connection signal="pressed" from="Container Tool/MenuButton More" to="GraphEdit" method="_on_menu_button_more_pressed"]
 [connection signal="confirmed" from="Confirmation Version" to="GraphEdit" method="_on_confirmation_version_confirmed"]
 [connection signal="canceled" from="UnsaveExit" to="GraphEdit" method="_on_unsave_exit_canceled"]
 [connection signal="confirmed" from="UnsaveExit" to="GraphEdit" method="_on_unsave_exit_confirmed"]

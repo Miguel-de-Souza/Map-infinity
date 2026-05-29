@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dyxn2spfd3ra7" path="res://tscn/ttle.tscn" id="2_0fooi"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_nuh5h"]
 [ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="4_ey878"]
+[ext_resource type="Theme" uid="uid://bdak4yflm3gw0" path="res://Palletas/spinboxes.tres" id="5_mnvow"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("title_line", "size_fonts", "button_color", "line_hex", "line_r", "line_g", "line_b")]
 anchors_preset = 8
@@ -121,12 +122,14 @@ size_flags_horizontal = 4
 
 [node name="Title" type="Label" parent="Window Config/MarginContainer/VBoxContainer/Container Size Title" unique_id=743390116]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Título"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Font Title" parent="Window Config/MarginContainer/VBoxContainer/Container Size Title" unique_id=1608563863 node_paths=PackedStringArray("texts") instance=ExtResource("4_ey878")]
 layout_mode = 2
+theme = ExtResource("5_mnvow")
 texts = NodePath("../../../../../Ttle")
 
 [node name="Info Hex" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=731941568]
@@ -136,6 +139,7 @@ theme_override_constants/separation = 10
 
 [node name="Label Hex" type="Label" parent="Window Config/MarginContainer/VBoxContainer/Info Hex" unique_id=454513264]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Hex"
 
 [node name="LineEdit Hex" type="LineEdit" parent="Window Config/MarginContainer/VBoxContainer/Info Hex" unique_id=1566164582]
@@ -147,11 +151,12 @@ editable = false
 
 [node name="Container R" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=223102287]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 28
 
 [node name="R" type="Label" parent="Window Config/MarginContainer/VBoxContainer/Container R" unique_id=41835506]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
 text = "R"
 
 [node name="LineEdit R" type="LineEdit" parent="Window Config/MarginContainer/VBoxContainer/Container R" unique_id=28329913]
@@ -162,11 +167,12 @@ editable = false
 
 [node name="Container G" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=627838198]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 26
 
 [node name="G" type="Label" parent="Window Config/MarginContainer/VBoxContainer/Container G" unique_id=509038637]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
 text = "G"
 
 [node name="LineEdit G" type="LineEdit" parent="Window Config/MarginContainer/VBoxContainer/Container G" unique_id=314351605]
@@ -177,11 +183,12 @@ editable = false
 
 [node name="Container B" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=119237305]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 26
 
 [node name="B" type="Label" parent="Window Config/MarginContainer/VBoxContainer/Container B" unique_id=1558661263]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
 text = "B"
 
 [node name="LineEdit B" type="LineEdit" parent="Window Config/MarginContainer/VBoxContainer/Container B" unique_id=147000282]
