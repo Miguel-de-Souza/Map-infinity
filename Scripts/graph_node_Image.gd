@@ -124,23 +124,6 @@ func load_save_data(data: Dictionary) -> void:
 
 	_on_check_size_pressed()
 
-func _gui_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and not selected:
-			
-			var shift_pressed = Input.is_key_pressed(KEY_SHIFT)
-			
-			if not shift_pressed:
-				get_parent().clear_selection()
-			
-			selected = true
-
-func _process(_delta: float) -> void:
-	if Input.is_action_pressed("ui_text_delete") and selected:
-		Global.alteraction()
-		Global.selected_nodes -= 1
-		queue_free()
-
 var slots_add := 2
 func _on_button_add_pressed() -> void:
 	var item = ColorRect.new()
@@ -224,23 +207,10 @@ func _on_reset_pressed() -> void:
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 	
 	Global.alteraction()
-
-func _on_node_selected() -> void:
-	Global.selected_nodes += 1
-
-
-func _on_node_deselected() -> void:
-	Global.selected_nodes -= 1
-
-
-func _on_position_offset_changed() -> void:
-	Global.alteraction()
-
-
+	
 func _on_check_dir_pressed() -> void:
 	if check_dir.button_pressed:
 		label_dir.hide()
 		
 	else:
 		label_dir.show()
-	

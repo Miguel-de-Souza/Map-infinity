@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dim3lkkwnewkj"]
+
+[ext_resource type="Script" uid="uid://dfgaji8sgiqba" path="res://Scripts/state.gd" id="1_t5wg2"]
+
+[node name="State" type="Control" unique_id=1853703314]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_t5wg2")

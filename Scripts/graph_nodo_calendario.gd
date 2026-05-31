@@ -31,23 +31,7 @@ func _ready():
 	
 	add_theme_stylebox_override("panel", new_stylebox)
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
-	
 	atualizar_calendario()
-
-func _process(_delta: float) -> void:
-	if Input.is_action_pressed("ui_text_delete") and selected:
-		if not title_line.has_focus() and not text_edit.has_focus():
-			Global.alteraction()
-			Global.selected_nodes -= 1
-			queue_free()
-
-func _gui_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and not selected:
-			var shift_pressed = Input.is_key_pressed(KEY_SHIFT)
-			if not shift_pressed:
-				get_parent().clear_selection()
-			selected = true
 
 func atualizar_calendario():
 	limpar_grid()
@@ -217,14 +201,6 @@ func load_save_data(data: Dictionary) -> void:
 	
 	mini_spix.on_button_press()
 	atualizar_calendario()
-	
-	
-func _on_node_selected() -> void:
-	Global.selected_nodes += 1
-
-
-func _on_node_deselected() -> void:
-	Global.selected_nodes -= 1
 
 func _on_check_ajust_pressed() -> void:
 	if checked_b.button_pressed:
@@ -277,7 +253,6 @@ func _on_button_sub_pressed() -> void:
 	set_slot(slots_add, false, 0, Color.WHITE, false, 0, Color.WHITE)
 
 	Global.alteraction()
-	
 
 
 func _disconnect_slot(slot_index: int) -> void:
@@ -290,10 +265,6 @@ func _disconnect_slot(slot_index: int) -> void:
 			graph.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
 			
 	Global.alteraction()
-
-func _on_position_offset_changed() -> void:
-	Global.alteraction()
-
 
 func _on_color_button_back_color_changed(color: Color) -> void:
 	var sb = get_theme_stylebox("panel")

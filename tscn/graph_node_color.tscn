@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://kid0ouwfay50" path="res://Scripts/graph_node_color.gd" id="1_mktjo"]
 [ext_resource type="PackedScene" uid="uid://dyxn2spfd3ra7" path="res://tscn/ttle.tscn" id="2_0fooi"]
+[ext_resource type="PackedScene" uid="uid://dim3lkkwnewkj" path="res://tscn/state.tscn" id="2_3rprm"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_nuh5h"]
 [ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="4_ey878"]
 [ext_resource type="Theme" uid="uid://bdak4yflm3gw0" path="res://Palletas/spinboxes.tres" id="5_mnvow"]
@@ -56,6 +57,15 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
+slot/4/left_enabled = false
+slot/4/left_type = 0
+slot/4/left_color = Color(1, 1, 1, 1)
+slot/4/left_icon = null
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color(1, 1, 1, 1)
+slot/4/right_icon = null
+slot/4/draw_stylebox = true
 script = ExtResource("1_mktjo")
 title_line = NodePath("Ttle")
 size_fonts = NodePath("Window Config/MarginContainer/VBoxContainer/Container Size Title/Font Title")
@@ -65,6 +75,10 @@ line_r = NodePath("Window Config/MarginContainer/VBoxContainer/Container R/LineE
 line_g = NodePath("Window Config/MarginContainer/VBoxContainer/Container G/LineEdit G")
 line_b = NodePath("Window Config/MarginContainer/VBoxContainer/Container B/LineEdit B")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
+
+[node name="State" parent="." unique_id=1853703314 node_paths=PackedStringArray("node_bloc") instance=ExtResource("2_3rprm")]
+layout_mode = 2
+node_bloc = NodePath("..")
 
 [node name="Ttle" parent="." unique_id=294100434 instance=ExtResource("2_0fooi")]
 layout_mode = 2
@@ -197,9 +211,6 @@ size_flags_horizontal = 3
 placeholder_text = "Color B"
 editable = false
 
-[connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
-[connection signal="node_selected" from="." to="." method="_on_node_selected"]
-[connection signal="position_offset_changed" from="." to="." method="_on_position_offset_changed"]
 [connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

@@ -9,6 +9,7 @@ extends GraphNode
 @export var line_g: LineEdit
 @export var line_b: LineEdit
 
+
 func _ready() -> void:
 	size_fonts.value = Global.font_size_default
 	line_r.text = str(int(button_color.color.r))
@@ -82,20 +83,6 @@ func load_save_data(data: Dictionary) -> void:
 
 		slots_add += 1
 
-func _gui_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and not selected:
-			var shift_pressed = Input.is_key_pressed(KEY_SHIFT)
-			if not shift_pressed:
-				get_parent().clear_selection()
-			selected = true
-
-func _process(_delta: float) -> void:
-	if Input.is_action_pressed("ui_text_delete") and selected:
-		Global.alteraction()
-		Global.selected_nodes -= 1
-		queue_free()
-
 var slots_add := 2
 func _on_button_add_pressed() -> void:
 	var item = ColorRect.new()
@@ -135,14 +122,4 @@ func _on_color_picker_button_color_changed(color: Color) -> void:
 	line_b.text = str(int(button_color.color.b * 255))
 	line_hex.text = str(button_color.color.to_html(false))
 	
-	Global.alteraction()
-
-func _on_node_selected() -> void:
-	Global.selected_nodes += 1
-
-
-func _on_node_deselected() -> void:
-	Global.selected_nodes -= 1
-	
-func _on_position_offset_changed() -> void:
 	Global.alteraction()

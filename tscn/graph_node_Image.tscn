@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dyxn2spfd3ra7" path="res://tscn/ttle.tscn" id="2_4iwyn"]
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="2_fcwth"]
 [ext_resource type="Texture2D" uid="uid://bdtbfaqxn5emc" path="res://icons/no-image.jpg" id="2_pj3d8"]
+[ext_resource type="PackedScene" uid="uid://dim3lkkwnewkj" path="res://tscn/state.tscn" id="2_x2d4r"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="3_fcwth"]
 [ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="5_4s04q"]
 [ext_resource type="Theme" uid="uid://bdak4yflm3gw0" path="res://Palletas/spinboxes.tres" id="6_gynfw"]
@@ -58,6 +59,15 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
+slot/4/left_enabled = false
+slot/4/left_type = 0
+slot/4/left_color = Color(1, 1, 1, 1)
+slot/4/left_icon = null
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color(1, 1, 1, 1)
+slot/4/right_icon = null
+slot/4/draw_stylebox = true
 script = ExtResource("1_j7muo")
 open_image = NodePath("Open Image")
 texture_node = NodePath("Button Image")
@@ -67,6 +77,10 @@ font_size = NodePath("Window Config/Margin/VContainer/Container Size Title/Font 
 label_dir = NodePath("Diretorio")
 check_dir = NodePath("Window Config/Margin/VContainer/Container Dir/Check Dir")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
+
+[node name="State" parent="." unique_id=1853703314 node_paths=PackedStringArray("node_bloc") instance=ExtResource("2_x2d4r")]
+layout_mode = 2
+node_bloc = NodePath("..")
 
 [node name="Ttle" parent="." unique_id=294100434 instance=ExtResource("2_4iwyn")]
 layout_mode = 2
@@ -184,9 +198,6 @@ text = "11111111111"
 [node name="Reset" parent="Window Config/Margin/VContainer/Container color custom/Container Color" unique_id=1733640759 instance=ExtResource("2_fcwth")]
 layout_mode = 2
 
-[connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
-[connection signal="node_selected" from="." to="." method="_on_node_selected"]
-[connection signal="position_offset_changed" from="." to="." method="_on_position_offset_changed"]
 [connection signal="pressed" from="Button Image" to="." method="_on_texture_rect_pressed"]
 [connection signal="file_selected" from="Open Image" to="." method="_on_open_image_file_selected"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]

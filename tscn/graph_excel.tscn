@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://c6rpky7ymxtrx"]
 
 [ext_resource type="Script" uid="uid://c4unwpgnu3t6f" path="res://Scripts/excel(demo).gd" id="1_cjbmx"]
+[ext_resource type="PackedScene" uid="uid://dim3lkkwnewkj" path="res://tscn/state.tscn" id="2_7r20x"]
 
-[node name="GraphNode" type="GraphNode" unique_id=248520913]
+[node name="GraphNode" type="GraphNode" unique_id=248520913 node_paths=PackedStringArray("btn_add_linha", "btn_add_coluna", "scroll_topo", "scroll_base", "header_letras", "container_planilha")]
 offset_right = 555.0
 offset_bottom = 295.0
 resizable = true
@@ -24,7 +25,26 @@ slot/1/right_type = 0
 slot/1/right_color = Color(1, 1, 1, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
 script = ExtResource("1_cjbmx")
+btn_add_linha = NodePath("VBoxContainer/HBoxContainer/BtnAddLinha")
+btn_add_coluna = NodePath("VBoxContainer/HBoxContainer/BtnAddColuna")
+scroll_topo = NodePath("VBoxContainer/ScrollTopo")
+scroll_base = NodePath("VBoxContainer/ScrollBase")
+header_letras = NodePath("VBoxContainer/ScrollTopo/HeaderLetras")
+container_planilha = NodePath("VBoxContainer/ScrollBase/ContainerPlanilha")
+
+[node name="State" parent="." unique_id=1853703314 node_paths=PackedStringArray("node_bloc") instance=ExtResource("2_7r20x")]
+layout_mode = 2
+node_bloc = NodePath("..")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=303279720]
 layout_mode = 2
@@ -72,6 +92,5 @@ custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 text = "-"
 
-[connection signal="position_offset_changed" from="." to="." method="_on_position_offset_changed"]
 [connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

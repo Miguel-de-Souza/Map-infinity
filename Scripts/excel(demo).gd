@@ -1,17 +1,19 @@
 extends GraphNode
 
-@onready var btn_add_linha: Button = $VBoxContainer/HBoxContainer/BtnAddLinha
-@onready var btn_add_coluna: Button = $VBoxContainer/HBoxContainer/BtnAddColuna
+@export var btn_add_linha: Button
+@export var btn_add_coluna: Button
 
-# Nossos novos containers de rolagem sincronizados
-@onready var scroll_topo: ScrollContainer = $VBoxContainer/ScrollTopo
-@onready var scroll_base: ScrollContainer = $VBoxContainer/ScrollBase
+@export var scroll_topo: ScrollContainer
+@export var scroll_base: ScrollContainer
 
-@onready var header_letras: HBoxContainer = $VBoxContainer/ScrollTopo/HeaderLetras
-@onready var container_planilha: HBoxContainer = $VBoxContainer/ScrollBase/ContainerPlanilha
+@export var header_letras: HBoxContainer
+@export var container_planilha: HBoxContainer
 
 @export var total_linhas: int = 5
 @export var total_colunas: int = 3
+
+@export var title_line: LineEdit
+@export var note: LineEdit
 
 var dados_planilha: Dictionary = {}
 
@@ -28,8 +30,6 @@ func _ready() -> void:
 	btn_add_linha.pressed.connect(_on_btn_add_linha_pressed)
 	btn_add_coluna.pressed.connect(_on_btn_add_coluna_pressed)
 	
-	# --- O TRUQUE DE SINCRONIZAÇÃO ATUALIZADO PARA GODOT 4 ---
-	# Acessa diretamente a barra de rolagem horizontal de ambos e as conecta
 	var barra_topo = scroll_topo.get_h_scroll_bar()
 	var barra_base = scroll_base.get_h_scroll_bar()
 	
@@ -68,12 +68,10 @@ func atualizar_planilha() -> void:
 	for child in container_planilha.get_children(): child.queue_free()
 	for child in header_letras.get_children(): child.queue_free()
 	
-	# --- 1. CANTO SUPERIOR ESQUERDO FIXO NO TOPO ---
 	var canto_vazio := Label.new()
 	canto_vazio.custom_minimum_size = Vector2(35, 30)
 	header_letras.add_child(canto_vazio)
 	
-	# --- 2. COLUNA DE NÚMEROS (ROLA JUNTO COM AS CÉLULAS) ---
 	var coluna_numeros := VBoxContainer.new()
 	coluna_numeros.custom_minimum_size = Vector2(35, 0)
 	coluna_numeros.add_theme_constant_override("separation", 5)
@@ -88,7 +86,6 @@ func atualizar_planilha() -> void:
 		
 	container_planilha.add_child(coluna_numeros)
 	
-	# --- 3. MONTAGEM DAS COLUNAS EM PARALELO ---
 	var split_topo_atual: Node = header_letras
 	var split_base_atual: Node = container_planilha
 	
@@ -103,38 +100,33 @@ func atualizar_planilha() -> void:
 		lbl_coluna.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		label_container.add_child(lbl_coluna)
 		
-		# Bloco das Células aqui embaixo
 		var coluna_vbox := VBoxContainer.new()
 		coluna_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		
-		# ... dentro do loop das colunas ...
+
 		for i in range(total_linhas):
-			var celula := LineEdit.new()
-			celula.alignment = HORIZONTAL_ALIGNMENT_CENTER
+			title_line = LineEdit.new()
+			title_line.alignment = HORIZONTAL_ALIGNMENT_CENTER
 			var chave = Vector2i(i, j)
-			celula.custom_minimum_size = Vector2(80, 30)
-			celula.placeholder_text = "%s%d" % [obter_letra_coluna(j + 1), i + 1]
+			title_line.custom_minimum_size = Vector2(80, 30)
+			title_line.placeholder_text = "%s%d" % [obter_letra_coluna(j + 1), i + 1]
 			
-			# === O TRECHO NOVO ENTRA BEM AQUI ===
 			if i == 0:
 				var estilo_titulo := StyleBoxFlat.new()
 				estilo_titulo.bg_color = Color("121212ff")
 				estilo_titulo.border_width_bottom = 2
 				estilo_titulo.border_color = Color("272727ff")
-				celula.add_theme_stylebox_override("normal", estilo_titulo)
-				celula.add_theme_stylebox_override("focus", estilo_titulo)
-				celula.add_theme_color_override("font_color", Color.WHITE)
-			# ====================================
+				title_line.add_theme_stylebox_override("normal", estilo_titulo)
+				title_line.add_theme_stylebox_override("focus", estilo_titulo)
+				title_line.add_theme_color_override("font_color", Color.WHITE)
 			
 			if dados_planilha.has(chave):
-				celula.text = dados_planilha[chave]
+				title_line.text = dados_planilha[chave]
 				
-			celula.text_changed.connect(func(novo_texto: String):
+			title_line.text_changed.connect(func(novo_texto: String):
 				dados_planilha[chave] = novo_texto
 			)
-			coluna_vbox.add_child(celula)
+			coluna_vbox.add_child(title_line)
 		
-		# Geração das réplicas de Splitters
 		if j < total_colunas - 1:
 			var splitter_topo := HSplitContainer.new()
 			var splitter_base := HSplitContainer.new()
@@ -142,7 +134,6 @@ func atualizar_planilha() -> void:
 			splitter_topo.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			splitter_base.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			
-			# Se redimensionar a coluna, redimensiona o cabeçalho também
 			splitter_base.dragged.connect(func(offset: int):
 				splitter_topo.split_offset = offset
 			)
@@ -158,6 +149,7 @@ func atualizar_planilha() -> void:
 			split_topo_atual.add_child(label_container)
 			split_base_atual.add_child(coluna_vbox)
 
+
 func _on_btn_add_linha_pressed() -> void:
 	total_linhas += 1
 	atualizar_planilha()
@@ -165,7 +157,6 @@ func _on_btn_add_linha_pressed() -> void:
 func _on_btn_add_coluna_pressed() -> void:
 	total_colunas += 1
 	atualizar_planilha()
-
 
 var slots_add := 2
 func _on_button_add_pressed() -> void:
@@ -215,7 +206,4 @@ func _disconnect_slot(slot_index: int) -> void:
 		if connection.to_node == name and connection.to_port == slot_index:
 			graph.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
 			
-	Global.alteraction()
-
-func _on_position_offset_changed() -> void:
 	Global.alteraction()

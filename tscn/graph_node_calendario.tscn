@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c2w6dp2a4flq" path="res://Scripts/graph_nodo_calendario.gd" id="1_rmxd2"]
 [ext_resource type="PackedScene" uid="uid://boljte0boxxdk" path="res://tscn/notepad.tscn" id="2_ffbfs"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_v35jj"]
+[ext_resource type="PackedScene" uid="uid://dim3lkkwnewkj" path="res://tscn/state.tscn" id="2_x5qfm"]
 [ext_resource type="PackedScene" uid="uid://dyxn2spfd3ra7" path="res://tscn/ttle.tscn" id="2_yyry6"]
 [ext_resource type="PackedScene" uid="uid://xy0ns1155ldc" path="res://tscn/check_mini_ok.tscn" id="4_x7o7d"]
 [ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="5_cq758"]
@@ -50,6 +51,15 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
+slot/4/left_enabled = false
+slot/4/left_type = 0
+slot/4/left_color = Color(1, 1, 1, 1)
+slot/4/left_icon = null
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color(1, 1, 1, 1)
+slot/4/right_icon = null
+slot/4/draw_stylebox = true
 script = ExtResource("1_rmxd2")
 grid = NodePath("VBoxContainer/Grid")
 label_mes = NodePath("VBoxContainer/HContainer/Mes")
@@ -59,6 +69,10 @@ checked_b = NodePath("Window Config/Margin/VContainer/HContainer/Margin/VContain
 title_line = NodePath("Ttle")
 font_size = NodePath("Window Config/Margin/VContainer/HContainer/VContainer/Container Size Title/Font Title")
 mini_spix = NodePath("Window Config/Margin/VContainer/HContainer/Margin/VContainer/Container Mini/Check mini ok")
+
+[node name="State" parent="." unique_id=1853703314 node_paths=PackedStringArray("node_bloc") instance=ExtResource("2_x5qfm")]
+layout_mode = 2
+node_bloc = NodePath("..")
 
 [node name="Ttle" parent="." unique_id=294100434 instance=ExtResource("2_yyry6")]
 layout_mode = 2
@@ -261,9 +275,6 @@ custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 text = "-"
 
-[connection signal="node_deselected" from="." to="." method="_on_node_deselected"]
-[connection signal="node_selected" from="." to="." method="_on_node_selected"]
-[connection signal="position_offset_changed" from="." to="." method="_on_position_offset_changed"]
 [connection signal="pressed" from="VBoxContainer/HContainer/Button prev" to="." method="_on_button_prev_pressed"]
 [connection signal="pressed" from="VBoxContainer/HContainer/Button next" to="." method="_on_button_next_pressed"]
 [connection signal="pressed" from="Window Config/Margin/VContainer/HContainer/Margin/VContainer/Container Content/Check Ajust" to="." method="_on_check_ajust_pressed"]

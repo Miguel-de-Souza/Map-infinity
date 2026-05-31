@@ -1,12 +1,11 @@
 extends GraphNode
 
-@export var url: LineEdit
+@export var title_line: LineEdit
 @export var size_fonts: SpinBox
 @export var linkButotn: LinkButton
 
 var new_stylebox = get_theme_stylebox("panel").duplicate()
 var new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
-#OS.shell_open(url.text)
 
 func _ready() -> void:
 	
@@ -29,7 +28,7 @@ func get_save_data() -> Dictionary:
 			})
 
 	return {
-		"title": url.text,
+		"title": title_line.text,
 		"font_size": size_fonts.value,
 		"slots_add": slots_add,
 		"slots": slots,
@@ -61,7 +60,7 @@ func load_save_data(data: Dictionary) -> void:
 	new_stylebox_focus.bg_color = Color(c_focus[0], c_focus[1], c_focus[2], c_focus[3])
 
 
-	url.text = data.get("title", "Node")
+	title_line.text = data.get("title", "Node")
 	size_fonts.value = data.get("font_size", 14)
 	
 	for child in get_children():
@@ -96,26 +95,9 @@ func load_save_data(data: Dictionary) -> void:
 
 		slots_add += 1
 
-func _gui_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and not selected:
-			
-			var shift_pressed = Input.is_key_pressed(KEY_SHIFT)
-			
-			if not shift_pressed:
-				get_parent().clear_selection()
-			
-			selected = true
-
 func _process(_delta: float) -> void:
-	
-	linkButotn.uri = url.text
-	linkButotn.text = url.text
-	
-	if Input.is_action_pressed("ui_text_delete") and selected:
-		Global.alteraction()
-		Global.selected_nodes -= 1
-		queue_free()
+	linkButotn.uri = title_line.text
+	linkButotn.text = title_line.text
 
 var slots_add := 2
 func _on_button_add_pressed() -> void:
@@ -170,15 +152,4 @@ func _on_reset_pressed() -> void:
 	add_theme_stylebox_override("panel", new_stylebox)
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 	
-	Global.alteraction()
-
-func _on_node_selected() -> void:
-	Global.selected_nodes += 1
-
-
-func _on_node_deselected() -> void:
-	Global.selected_nodes -= 1
-
-
-func _on_position_offset_changed() -> void:
 	Global.alteraction()
