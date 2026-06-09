@@ -162,6 +162,8 @@ func get_save_data() -> Dictionary:
 		"dia_selecionado": dia_selecionado,
 		"texto_atual": text_edit.text,
 		"title": title_line.text,
+		"che_ajus": checked_b.button_pressed,
+		"che_min": mini_spix.button_pressed,
 		"new_stylebox_color": [
 		new_stylebox.bg_color.r,
 		new_stylebox.bg_color.g,
@@ -195,6 +197,8 @@ func load_save_data(data: Dictionary) -> void:
 	var c_focus = data.get("new_stylebox_focus", [0,0,0,1])
 	new_stylebox_focus.bg_color = Color(c_focus[0], c_focus[1], c_focus[2], c_focus[3])
 
+	checked_b.button_pressed = data.set("che_ajus", false)
+	mini_spix.button_pressed = data.set("che_min", false)
 
 	campo_spin.value = data.get("font_size", 14)
 	font_size.value = data.get("title_font_size", 14)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dbdw60boboltf"]
 
 [ext_resource type="Script" uid="uid://kid0ouwfay50" path="res://Scripts/graph_node_color.gd" id="1_mktjo"]
-[ext_resource type="PackedScene" uid="uid://dyxn2spfd3ra7" path="res://tscn/ttle.tscn" id="2_0fooi"]
+[ext_resource type="PackedScene" uid="uid://dyxn2spfd3ra7" path="res://tscn/title.tscn" id="2_0fooi"]
 [ext_resource type="PackedScene" uid="uid://dim3lkkwnewkj" path="res://tscn/state.tscn" id="2_3rprm"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_nuh5h"]
 [ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="4_ey878"]
