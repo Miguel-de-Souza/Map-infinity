@@ -14,8 +14,10 @@ extends GraphNode
 
 @export var title_line: LineEdit
 @export var note: LineEdit
+@export var checks: CheckBox
 
 var dados_planilha: Dictionary = {}
+var titled = preload("uid://dyxn2spfd3ra7")
 
 var new_stylebox = get_theme_stylebox("panel").duplicate()
 var new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
@@ -36,6 +38,70 @@ func _ready() -> void:
 	barra_base.value_changed.connect(func(valor_scroll: float):
 		barra_topo.value = valor_scroll
 	)
+	
+	atualizar_planilha()
+
+func get_save_data() -> Dictionary:
+	# Convertemos o dicionário de dados da planilha para usar chaves em String (compatível com JSON)
+	var dados_salvamento_planilha: Dictionary = {}
+	for chave in dados_planilha:
+		if chave is Vector2i:
+			var chave_string = "%d,%d" % [chave.x, chave.y]
+			dados_salvamento_planilha[chave_string] = dados_planilha[chave]
+	
+	return {
+		"title": title_line.text if title_line else "",
+		"note": note.text if note else "",
+		"total_linhas": total_linhas,
+		"total_colunas": total_colunas,
+		"dados_planilha": dados_salvamento_planilha,
+		"slots_add": slots_add,
+		"sized_x": size.x,
+		"sized_y": size.y,
+		"active_siz": checks.button_pressed,
+		"new_stylebox_color": [
+		new_stylebox.bg_color.r,
+		new_stylebox.bg_color.g,
+		new_stylebox.bg_color.b,
+		new_stylebox.bg_color.a
+		],
+
+	"new_stylebox_focus": [
+		new_stylebox_focus.bg_color.r,
+		new_stylebox_focus.bg_color.g,
+		new_stylebox_focus.bg_color.b,
+		new_stylebox_focus.bg_color.a,
+	]
+	}
+
+func load_save_data(data: Dictionary) -> void:
+	if title_line:
+		title_line.text = data.get("title", "")
+	if note:
+		note.text = data.get("note", "")
+		
+	total_linhas = data.get("total_linhas", 5)
+	total_colunas = data.get("total_colunas", 3)
+	slots_add = data.get("slots_add", 2)
+	size = Vector2(data.get("sized_x", 0), data.get("sized_y", 0))
+	
+	#Atualiza o fundo normal
+	var c = data.get("new_stylebox_color", [0,0,0,1])
+	new_stylebox.bg_color = Color(c[0], c[1], c[2], c[3])
+	
+	#Atualiza o fundo quando focado
+	var c_focus = data.get("new_stylebox_focus", [0,0,0,1])
+	new_stylebox_focus.bg_color = Color(c_focus[0], c_focus[1], c_focus[2], c_focus[3])
+
+	checks.button_pressed = data.set("active_siz", false)
+	
+	dados_planilha.clear()
+	var dados_salvados = data.get("dados_planilha", {})
+	for chave_string in dados_salvados:
+		var partes = chave_string.split(",")
+		if partes.size() == 2:
+			var chave_vector = Vector2i(int(partes[0]), int(partes[1]))
+			dados_planilha[chave_vector] = dados_salvados[chave_string]
 	
 	atualizar_planilha()
 
@@ -68,7 +134,7 @@ func atualizar_planilha() -> void:
 	for child in container_planilha.get_children(): child.queue_free()
 	for child in header_letras.get_children(): child.queue_free()
 	
-	var canto_vazio := Label.new()
+	var canto_vazio := titled.instantiate() as LineEdit
 	canto_vazio.custom_minimum_size = Vector2(35, 30)
 	header_letras.add_child(canto_vazio)
 	
@@ -90,7 +156,6 @@ func atualizar_planilha() -> void:
 	var split_base_atual: Node = container_planilha
 	
 	for j in range(total_colunas):
-		# Bloco da Letra lá em cima
 		var label_container := MarginContainer.new()
 		label_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var lbl_coluna := Label.new()
@@ -104,7 +169,7 @@ func atualizar_planilha() -> void:
 		coluna_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 		for i in range(total_linhas):
-			title_line = LineEdit.new()
+			title_line = titled.instantiate() as LineEdit
 			title_line.alignment = HORIZONTAL_ALIGNMENT_CENTER
 			var chave = Vector2i(i, j)
 			title_line.custom_minimum_size = Vector2(80, 30)
@@ -207,3 +272,34 @@ func _disconnect_slot(slot_index: int) -> void:
 			graph.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
 			
 	Global.alteraction()
+
+
+func _on_color_button_back_color_changed(color: Color) -> void:
+	var sb = get_theme_stylebox("panel")
+	var sb_focus = get_theme_stylebox("panel_selected")
+
+	sb.bg_color = color
+	sb_focus.bg_color = color.darkened(0.5)
+	
+	Global.alteraction()
+
+
+func _on_reset_pressed() -> void:
+	remove_theme_stylebox_override("panel")
+	remove_theme_stylebox_override("panel_selected")
+	
+	new_stylebox = get_theme_stylebox("panel").duplicate()
+	new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
+	
+	add_theme_stylebox_override("panel", new_stylebox)
+	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
+
+	Global.alteraction()
+
+
+func _on_check_box_pressed() -> void:
+	if checks.button_pressed:
+		scroll_base.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		
+	else:
+		scroll_base.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
