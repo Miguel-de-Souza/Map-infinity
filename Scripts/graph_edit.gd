@@ -20,7 +20,6 @@ var numb := 0
 var description := str(ProjectSettings.get_setting("application/config/description"))
 var version := str(ProjectSettings.get_setting("application/config/version"))
 
-
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		if icon_unsave == " *":
@@ -40,6 +39,13 @@ func _on_canceled_pressed():
 	window_unsave.hide()
 
 func _ready():
+	
+	if FileAccess.file_exists(Global.setting_file):
+		Global.configuraction.load(Global.setting_file)
+		show_grid = Global.configuraction.get_value("gridd", "viewr", true)
+		snapping_enabled = Global.configuraction.get_value("snapp", "enad", true)
+		minimap_enabled = Global.configuraction.get_value("mini", "ampi", true)
+	
 	var extra_btn = window_unsave.add_button("Cancelar", true, "extra")
 	extra_btn.pressed.connect(_on_canceled_pressed)
 	
@@ -48,7 +54,6 @@ func _ready():
 	file_load.current_dir = desktop
 	descript_text.text = description
 	version_text.text = "Versão " + version
-
 
 	connection_request.connect(_on_connection_request)
 	file_dia.file_selected.connect(_on_save_file_selected)
@@ -64,6 +69,18 @@ func _ready():
 
 var icon_unsave:= ""
 func _process(_delta: float) -> void:
+	
+	if Global.grid_view != show_grid or Global.snapp_enad != snapping_enabled or Global.miniampi != minimap_enabled:
+		Global.grid_view = show_grid
+		Global.snapp_enad = snapping_enabled
+		Global.miniampi = minimap_enabled
+	
+		Global.configuraction.set_value("gridd", "viewr", show_grid)
+		Global.configuraction.set_value("snapp", "enad", snapping_enabled)
+		Global.configuraction.set_value("mini", "ampi", minimap_enabled)
+		
+		Global.configuraction.save(Global.setting_file)
+
 	
 	if Global.changed and not Global.stop_unsave:
 		icon_unsave = " *"

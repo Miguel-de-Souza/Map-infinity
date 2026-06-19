@@ -390,8 +390,8 @@ layout_mode = 2
 text = "Cor de Fundo"
 
 [node name="Option BG" type="HSlider" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas/Container BG" unique_id=1443160933]
-clip_contents = true
 custom_minimum_size = Vector2(180, 0)
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -410,8 +410,8 @@ da Grade"
 horizontal_alignment = 1
 
 [node name="Option Grid" type="HSlider" parent="Window Config/TabContainer/Aparência/MarginContainer/Container Right/Container Temas/Container Grid" unique_id=247179055]
-clip_contents = true
 custom_minimum_size = Vector2(180, 0)
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4

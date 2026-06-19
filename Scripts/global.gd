@@ -10,6 +10,13 @@ var selected_nodes := 0
 var not_atalho := false
 var yes_focus := false
 
+var grid_view := false
+var snapp_enad := false
+var miniampi := false
+
+var configuraction = ConfigFile.new()
+const setting_file = "user://settings.ini"
+
 func alteraction():
 	if not Global.changed:
 		Global.changed = true
