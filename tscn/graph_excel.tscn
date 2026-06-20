@@ -4,10 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://dim3lkkwnewkj" path="res://tscn/state.tscn" id="2_7r20x"]
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="3_wjm0y"]
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="4_a2wr5"]
+[ext_resource type="PackedScene" uid="uid://bgd138ytwcilv" path="res://tscn/edit_property_button.tscn" id="5_a2wr5"]
 
 [node name="GraphNode" type="GraphNode" unique_id=248520913 node_paths=PackedStringArray("btn_add_linha", "btn_add_coluna", "scroll_topo", "scroll_base", "header_letras", "container_planilha", "checks")]
-offset_right = 555.0
-offset_bottom = 295.0
+offset_right = 436.0
+offset_bottom = 412.0
 resizable = true
 slot/0/left_enabled = false
 slot/0/left_type = 0
@@ -27,76 +28,22 @@ slot/1/right_type = 0
 slot/1/right_color = Color(1, 1, 1, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
-slot/2/left_enabled = false
-slot/2/left_type = 0
-slot/2/left_color = Color(1, 1, 1, 1)
-slot/2/left_icon = null
-slot/2/right_enabled = false
-slot/2/right_type = 0
-slot/2/right_color = Color(1, 1, 1, 1)
-slot/2/right_icon = null
-slot/2/draw_stylebox = true
 script = ExtResource("1_cjbmx")
-btn_add_linha = NodePath("VBoxContainer/HBoxContainer/BtnAddLinha")
-btn_add_coluna = NodePath("VBoxContainer/HBoxContainer/BtnAddColuna")
-scroll_topo = NodePath("VBoxContainer/ScrollTopo")
-scroll_base = NodePath("VBoxContainer/ScrollBase")
-header_letras = NodePath("VBoxContainer/ScrollTopo/HeaderLetras")
-container_planilha = NodePath("VBoxContainer/ScrollBase/ContainerPlanilha")
+btn_add_linha = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/BtnAddLinha")
+btn_add_coluna = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/BtnAddColuna")
+scroll_topo = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/ScrollTopo")
+scroll_base = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/ScrollBase")
+header_letras = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/ScrollTopo/HeaderLetras")
+container_planilha = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/ScrollBase/ContainerPlanilha")
 checks = NodePath("Window Config/Margin/VBox/HBoxContainer/Active ModeScroll")
 
 [node name="State" parent="." unique_id=1853703314 node_paths=PackedStringArray("node_bloc") instance=ExtResource("2_7r20x")]
 layout_mode = 2
 node_bloc = NodePath("..")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=303279720]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=2033949166]
-layout_mode = 2
-
-[node name="BtnAddLinha" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1604291800]
-layout_mode = 2
-text = "+"
-
-[node name="BtnAddColuna" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=288852608]
-layout_mode = 2
-text = "-"
-
-[node name="ScrollTopo" type="ScrollContainer" parent="VBoxContainer" unique_id=986400521]
-layout_mode = 2
-
-[node name="HeaderLetras" type="HBoxContainer" parent="VBoxContainer/ScrollTopo" unique_id=1569736142]
-layout_mode = 2
-
-[node name="ScrollBase" type="ScrollContainer" parent="VBoxContainer" unique_id=510440487]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ContainerPlanilha" type="HBoxContainer" parent="VBoxContainer/ScrollBase" unique_id=1708358817]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Container Slots" type="HBoxContainer" parent="." unique_id=874656054]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Button Add" type="Button" parent="Container Slots" unique_id=1665548022]
-clip_contents = true
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-text = "+"
-
-[node name="Button Sub" type="Button" parent="Container Slots" unique_id=917497666]
-clip_contents = true
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-text = "-"
-
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("3_wjm0y")]
 size = Vector2i(229, 77)
+visible = false
 graphnod = NodePath("..")
 
 [node name="Margin" type="MarginContainer" parent="Window Config" unique_id=1957608828]
@@ -133,8 +80,70 @@ text = "11111111111"
 layout_mode = 2
 node_pai = NodePath("../../../../..")
 
-[connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
-[connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1292677983]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=2042798033]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=303279720]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer" unique_id=2033949166]
+layout_mode = 2
+
+[node name="BtnAddLinha" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1604291800]
+layout_mode = 2
+text = "+"
+
+[node name="BtnAddColuna" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=288852608]
+layout_mode = 2
+text = "-"
+
+[node name="ScrollTopo" type="ScrollContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer" unique_id=986400521]
+layout_mode = 2
+
+[node name="HeaderLetras" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer/ScrollTopo" unique_id=1569736142]
+layout_mode = 2
+
+[node name="ScrollBase" type="ScrollContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer" unique_id=510440487]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ContainerPlanilha" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer/ScrollBase" unique_id=1708358817]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Container Slots" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=874656054]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button Add" type="Button" parent="HBoxContainer/VBoxContainer/Container Slots" unique_id=1665548022]
+custom_minimum_size = Vector2(180, 0)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+"
+
+[node name="Button Sub" type="Button" parent="HBoxContainer/VBoxContainer/Container Slots" unique_id=917497666]
+custom_minimum_size = Vector2(180, 0)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "-"
+
+[node name="EditPropertyButton" parent="HBoxContainer" unique_id=1484879336 node_paths=PackedStringArray("propert") instance=ExtResource("5_a2wr5")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+propert = NodePath("../../Window Config")
+
 [connection signal="pressed" from="Window Config/Margin/VBox/HBoxContainer/Active ModeScroll" to="." method="_on_check_box_pressed"]
 [connection signal="color_changed" from="Window Config/Margin/VBox/Container color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
 [connection signal="pressed" from="Window Config/Margin/VBox/Container color/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Container Slots/Button Add" to="." method="_on_button_add_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

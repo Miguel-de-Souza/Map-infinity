@@ -25,7 +25,6 @@ func _ready() -> void:
 func _node_selected():
 	if Global.selected_nodes <= 1:
 		position = Vector2(200,70)
-		show()
 	
 func _node_deselected():
 	hide()

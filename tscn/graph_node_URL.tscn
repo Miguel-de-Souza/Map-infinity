@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="2_plr0o"]
 [ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="3_b303e"]
 [ext_resource type="Theme" uid="uid://bdak4yflm3gw0" path="res://Palletas/spinboxes.tres" id="4_lknpe"]
+[ext_resource type="PackedScene" uid="uid://bgd138ytwcilv" path="res://tscn/edit_property_button.tscn" id="7_wngqd"]
 
 [node name="Node URL" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("title_line", "size_fonts", "linkButotn")]
 anchors_preset = 8
@@ -39,65 +40,15 @@ slot/1/right_type = 0
 slot/1/right_color = Color(1, 1, 1, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
-slot/2/left_enabled = false
-slot/2/left_type = 0
-slot/2/left_color = Color(1, 1, 1, 1)
-slot/2/left_icon = null
-slot/2/right_enabled = false
-slot/2/right_type = 0
-slot/2/right_color = Color(1, 1, 1, 1)
-slot/2/right_icon = null
-slot/2/draw_stylebox = true
-slot/3/left_enabled = false
-slot/3/left_type = 0
-slot/3/left_color = Color(1, 1, 1, 1)
-slot/3/left_icon = null
-slot/3/right_enabled = false
-slot/3/right_type = 0
-slot/3/right_color = Color(1, 1, 1, 1)
-slot/3/right_icon = null
-slot/3/draw_stylebox = true
 script = ExtResource("1_lo1fl")
-title_line = NodePath("URL")
+title_line = NodePath("HBoxContainer/VBoxContainer/URL")
 size_fonts = NodePath("Window Config/Margin/VContainer/Container Size Title/Font Size Title")
-linkButotn = NodePath("Link")
+linkButotn = NodePath("HBoxContainer/VBoxContainer/Link")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
 [node name="State" parent="." unique_id=1853703314 node_paths=PackedStringArray("node_bloc") instance=ExtResource("2_lknpe")]
 layout_mode = 2
 node_bloc = NodePath("..")
-
-[node name="URL" type="LineEdit" parent="." unique_id=577137378]
-clip_contents = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-placeholder_text = "URL:"
-alignment = 1
-expand_to_text_length = true
-
-[node name="Link" type="LinkButton" parent="." unique_id=960081145]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.616, 0.6424, 0.88, 1)
-theme_override_font_sizes/font_size = 20
-text = "ccffsdfsd"
-
-[node name="Container Slots" type="HBoxContainer" parent="." unique_id=1260961243]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Button Add" type="Button" parent="Container Slots" unique_id=1937745558]
-clip_contents = true
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-text = "+"
-
-[node name="Button Sub" type="Button" parent="Container Slots" unique_id=466702399]
-clip_contents = true
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-text = "-"
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("2_plr0o")]
 title = "Node URL"
@@ -130,7 +81,7 @@ text = "Tamanho do Texto"
 [node name="Font Size Title" parent="Window Config/Margin/VContainer/Container Size Title" unique_id=1608563863 node_paths=PackedStringArray("texts") instance=ExtResource("3_b303e")]
 layout_mode = 2
 theme = ExtResource("4_lknpe")
-texts = NodePath("../../../../../URL")
+texts = NodePath("../../../../../HBoxContainer/VBoxContainer/URL")
 
 [node name="Container custom color" type="HBoxContainer" parent="Window Config/Margin/VContainer" unique_id=241566761]
 layout_mode = 2
@@ -150,7 +101,54 @@ text = "11111111111"
 layout_mode = 2
 node_pai = NodePath("../../../../../..")
 
-[connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
-[connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1272909679]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1609513612]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="URL" type="LineEdit" parent="HBoxContainer/VBoxContainer" unique_id=577137378]
+custom_minimum_size = Vector2(300, 0)
+clip_contents = true
+layout_mode = 2
+placeholder_text = "URL:"
+alignment = 1
+expand_to_text_length = true
+
+[node name="Link" type="LinkButton" parent="HBoxContainer/VBoxContainer" unique_id=960081145]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.616, 0.6424, 0.88, 1)
+theme_override_font_sizes/font_size = 20
+text = "ccffsdfsd"
+
+[node name="Container Slots" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=1260961243]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button Add" type="Button" parent="HBoxContainer/VBoxContainer/Container Slots" unique_id=1937745558]
+custom_minimum_size = Vector2(180, 0)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+"
+
+[node name="Button Sub" type="Button" parent="HBoxContainer/VBoxContainer/Container Slots" unique_id=466702399]
+custom_minimum_size = Vector2(180, 0)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "-"
+
+[node name="EditPropertyButton" parent="HBoxContainer" unique_id=1484879336 node_paths=PackedStringArray("propert") instance=ExtResource("7_wngqd")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+propert = NodePath("../../Window Config")
+
 [connection signal="color_changed" from="Window Config/Margin/VContainer/Container custom color/Container/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
 [connection signal="pressed" from="Window Config/Margin/VContainer/Container custom color/Container/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Container Slots/Button Add" to="." method="_on_button_add_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

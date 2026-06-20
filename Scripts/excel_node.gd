@@ -9,7 +9,7 @@ extends GraphNode
 @export var header_letras: HBoxContainer
 @export var container_planilha: HBoxContainer
 
-@export var total_linhas: int = 5
+@export var total_linhas: int = 8
 @export var total_colunas: int = 3
 
 @export var title_line: LineEdit
@@ -300,6 +300,8 @@ func _on_reset_pressed() -> void:
 func _on_check_box_pressed() -> void:
 	if checks.button_pressed:
 		scroll_base.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		scroll_base.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 		
 	else:
 		scroll_base.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+		scroll_base.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO

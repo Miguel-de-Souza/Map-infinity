@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d3x6md1kxy124" path="res://tscn/window_config.tscn" id="3_fcwth"]
 [ext_resource type="PackedScene" uid="uid://b34a5i1hiydtu" path="res://tscn/fonts_size.tscn" id="5_4s04q"]
 [ext_resource type="Theme" uid="uid://bdak4yflm3gw0" path="res://Palletas/spinboxes.tres" id="6_gynfw"]
+[ext_resource type="PackedScene" uid="uid://bgd138ytwcilv" path="res://tscn/edit_property_button.tscn" id="9_qw7w6"]
 
 [node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("open_image", "texture_node", "check", "title_line", "font_size", "label_dir", "check_dir")]
 anchors_preset = 8
@@ -41,88 +42,19 @@ slot/1/right_type = 0
 slot/1/right_color = Color(1, 1, 1, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
-slot/2/left_enabled = false
-slot/2/left_type = 0
-slot/2/left_color = Color(1, 1, 1, 1)
-slot/2/left_icon = null
-slot/2/right_enabled = false
-slot/2/right_type = 0
-slot/2/right_color = Color(1, 1, 1, 1)
-slot/2/right_icon = null
-slot/2/draw_stylebox = true
-slot/3/left_enabled = false
-slot/3/left_type = 0
-slot/3/left_color = Color(1, 1, 1, 1)
-slot/3/left_icon = null
-slot/3/right_enabled = false
-slot/3/right_type = 0
-slot/3/right_color = Color(1, 1, 1, 1)
-slot/3/right_icon = null
-slot/3/draw_stylebox = true
-slot/4/left_enabled = false
-slot/4/left_type = 0
-slot/4/left_color = Color(1, 1, 1, 1)
-slot/4/left_icon = null
-slot/4/right_enabled = false
-slot/4/right_type = 0
-slot/4/right_color = Color(1, 1, 1, 1)
-slot/4/right_icon = null
-slot/4/draw_stylebox = true
 script = ExtResource("1_j7muo")
 open_image = NodePath("Open Image")
-texture_node = NodePath("Button Image")
+texture_node = NodePath("HBoxContainer/VBoxContainer/Button Image")
 check = NodePath("Window Config/Margin/VContainer/Container Size/Check Size")
-title_line = NodePath("Ttle")
+title_line = NodePath("HBoxContainer/VBoxContainer/Ttle")
 font_size = NodePath("Window Config/Margin/VContainer/Container Size Title/Font Title")
-label_dir = NodePath("Diretorio")
+label_dir = NodePath("HBoxContainer/VBoxContainer/Diretorio")
 check_dir = NodePath("Window Config/Margin/VContainer/Container Dir/Check Dir")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
 [node name="State" parent="." unique_id=1853703314 node_paths=PackedStringArray("node_bloc") instance=ExtResource("2_x2d4r")]
 layout_mode = 2
 node_bloc = NodePath("..")
-
-[node name="Ttle" parent="." unique_id=294100434 instance=ExtResource("2_4iwyn")]
-layout_mode = 2
-
-[node name="Diretorio" type="Label" parent="." unique_id=920850379]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="Button Image" type="TextureButton" parent="." unique_id=581091718]
-clip_contents = true
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_vertical = 3
-texture_normal = ExtResource("2_pj3d8")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Open Image" type="FileDialog" parent="." unique_id=1539895728]
-oversampling_override = 1.0
-title = "Open a File"
-initial_position = 1
-file_mode = 0
-access = 2
-filters = PackedStringArray("*.png", "*.jpg")
-use_native_dialog = true
-
-[node name="Container Slots" type="HBoxContainer" parent="." unique_id=1049914161]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Button Add" type="Button" parent="Container Slots" unique_id=821757137]
-clip_contents = true
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-text = "+"
-
-[node name="Button Sub" type="Button" parent="Container Slots" unique_id=673791799]
-clip_contents = true
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-text = "-"
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("3_fcwth")]
 title = "Node Imagem"
@@ -157,7 +89,7 @@ vertical_alignment = 1
 [node name="Font Title" parent="Window Config/Margin/VContainer/Container Size Title" unique_id=1608563863 node_paths=PackedStringArray("texts") instance=ExtResource("5_4s04q")]
 layout_mode = 2
 theme = ExtResource("6_gynfw")
-texts = NodePath("../../../../../Ttle")
+texts = NodePath("../../../../../HBoxContainer/VBoxContainer/Ttle")
 
 [node name="Container Size" type="HBoxContainer" parent="Window Config/Margin/VContainer" unique_id=1119489245]
 layout_mode = 2
@@ -198,11 +130,68 @@ text = "11111111111"
 [node name="Reset" parent="Window Config/Margin/VContainer/Container color custom/Container Color" unique_id=1733640759 instance=ExtResource("2_fcwth")]
 layout_mode = 2
 
-[connection signal="pressed" from="Button Image" to="." method="_on_texture_rect_pressed"]
-[connection signal="file_selected" from="Open Image" to="." method="_on_open_image_file_selected"]
-[connection signal="pressed" from="Container Slots/Button Add" to="." method="_on_button_add_pressed"]
-[connection signal="pressed" from="Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]
+[node name="Open Image" type="FileDialog" parent="." unique_id=1539895728]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 1
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png", "*.jpg")
+use_native_dialog = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1994286431]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=209795984]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Ttle" parent="HBoxContainer/VBoxContainer" unique_id=294100434 instance=ExtResource("2_4iwyn")]
+layout_mode = 2
+
+[node name="Diretorio" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=920850379]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Button Image" type="TextureButton" parent="HBoxContainer/VBoxContainer" unique_id=581091718]
+custom_minimum_size = Vector2(0, 100)
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("2_pj3d8")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Container Slots" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=1049914161]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button Add" type="Button" parent="HBoxContainer/VBoxContainer/Container Slots" unique_id=821757137]
+custom_minimum_size = Vector2(180, 0)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+"
+
+[node name="Button Sub" type="Button" parent="HBoxContainer/VBoxContainer/Container Slots" unique_id=673791799]
+custom_minimum_size = Vector2(180, 0)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "-"
+
+[node name="EditPropertyButton" parent="HBoxContainer" unique_id=1484879336 node_paths=PackedStringArray("propert") instance=ExtResource("9_qw7w6")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+propert = NodePath("../../Window Config")
+
 [connection signal="pressed" from="Window Config/Margin/VContainer/Container Size/Check Size" to="." method="_on_check_size_pressed"]
 [connection signal="pressed" from="Window Config/Margin/VContainer/Container Dir/Check Dir" to="." method="_on_check_dir_pressed"]
 [connection signal="color_changed" from="Window Config/Margin/VContainer/Container color custom/Container Color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
 [connection signal="pressed" from="Window Config/Margin/VContainer/Container color custom/Container Color/Reset" to="." method="_on_reset_pressed"]
+[connection signal="file_selected" from="Open Image" to="." method="_on_open_image_file_selected"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Button Image" to="." method="_on_texture_rect_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Container Slots/Button Add" to="." method="_on_button_add_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

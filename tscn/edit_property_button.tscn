@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bgd138ytwcilv"]
+
+[ext_resource type="Texture2D" uid="uid://ddkomyt2axj7l" path="res://icons/lapisp.png" id="1_bsi0h"]
+[ext_resource type="Script" uid="uid://bgu1444rjlw1v" path="res://Scripts/edit_property_button.gd" id="2_bsi0h"]
+
+[node name="EditPropertyButton" type="Button" unique_id=1484879336]
+custom_minimum_size = Vector2(32, 32)
+propagate_maximum_size = true
+size_flags_horizontal = 0
+size_flags_vertical = 0
+icon = ExtResource("1_bsi0h")
+icon_alignment = 1
+script = ExtResource("2_bsi0h")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
