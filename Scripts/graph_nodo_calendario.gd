@@ -9,6 +9,7 @@ extends GraphNode
 @export var title_line: LineEdit
 @export var font_size: SpinBox
 @export var mini_spix: CheckBox
+@export var hide_title: CheckBox
 
 var new_stylebox = get_theme_stylebox("panel").duplicate()
 var new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
@@ -164,6 +165,7 @@ func get_save_data() -> Dictionary:
 		"title": title_line.text,
 		"che_ajus": checked_b.button_pressed,
 		"che_min": mini_spix.button_pressed,
+		"value_check_view": hide_title.button_pressed,
 		"new_stylebox_color": [
 		new_stylebox.bg_color.r,
 		new_stylebox.bg_color.g,
@@ -202,6 +204,9 @@ func load_save_data(data: Dictionary) -> void:
 
 	campo_spin.value = data.get("font_size", 14)
 	font_size.value = data.get("title_font_size", 14)
+	
+	hide_title.button_pressed = data.get("value_check_view", false)
+	title_line.visible = !hide_title.button_pressed
 	
 	mini_spix.on_button_press()
 	atualizar_calendario()
@@ -291,3 +296,7 @@ func _on_reset_pressed() -> void:
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 
 	Global.alteraction()
+
+
+func _on_hide_title_pressed() -> void:
+	title_line.visible = !hide_title.button_pressed

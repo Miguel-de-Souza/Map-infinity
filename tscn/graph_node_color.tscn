@@ -8,7 +8,7 @@
 [ext_resource type="Theme" uid="uid://bdak4yflm3gw0" path="res://Palletas/spinboxes.tres" id="5_mnvow"]
 [ext_resource type="PackedScene" uid="uid://bgd138ytwcilv" path="res://tscn/edit_property_button.tscn" id="7_ccxj3"]
 
-[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("title_line", "size_fonts", "button_color", "line_hex", "line_r", "line_g", "line_b")]
+[node name="GraphNode" type="GraphNode" unique_id=1672945934 node_paths=PackedStringArray("title_line", "size_fonts", "button_color", "line_hex", "line_r", "line_g", "line_b", "hide_title")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -48,6 +48,7 @@ line_hex = NodePath("Window Config/MarginContainer/VBoxContainer/Info Hex/LineEd
 line_r = NodePath("Window Config/MarginContainer/VBoxContainer/Container R/LineEdit R")
 line_g = NodePath("Window Config/MarginContainer/VBoxContainer/Container G/LineEdit G")
 line_b = NodePath("Window Config/MarginContainer/VBoxContainer/Container B/LineEdit B")
+hide_title = NodePath("Window Config/MarginContainer/VBoxContainer/ContainerHide/Hide Title")
 metadata/_edit_horizontal_guides_ = [-8.0, -8.0]
 
 [node name="State" parent="." unique_id=1853703314 node_paths=PackedStringArray("node_bloc") instance=ExtResource("2_3rprm")]
@@ -55,7 +56,7 @@ layout_mode = 2
 node_bloc = NodePath("..")
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("2_nuh5h")]
-size = Vector2i(362, 191)
+size = Vector2i(362, 210)
 visible = false
 graphnod = NodePath("..")
 
@@ -86,6 +87,18 @@ vertical_alignment = 1
 layout_mode = 2
 theme = ExtResource("5_mnvow")
 texts = NodePath("../../../../../HBoxContainer/VBoxContainer/Ttle")
+
+[node name="ContainerHide" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=297488298]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label Ajust" type="Label" parent="Window Config/MarginContainer/VBoxContainer/ContainerHide" unique_id=733170335]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Ocultar Título"
+
+[node name="Hide Title" type="CheckBox" parent="Window Config/MarginContainer/VBoxContainer/ContainerHide" unique_id=60198947]
+layout_mode = 2
 
 [node name="Info Hex" type="HBoxContainer" parent="Window Config/MarginContainer/VBoxContainer" unique_id=731941568]
 layout_mode = 2
@@ -192,6 +205,7 @@ layout_mode = 2
 size_flags_vertical = 1
 propert = NodePath("../../Window Config")
 
+[connection signal="pressed" from="Window Config/MarginContainer/VBoxContainer/ContainerHide/Hide Title" to="." method="_on_hide_title_pressed"]
 [connection signal="color_changed" from="HBoxContainer/VBoxContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Container Slots/Button Add" to="." method="_on_button_add_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Container Slots/Button Sub" to="." method="_on_button_sub_pressed"]

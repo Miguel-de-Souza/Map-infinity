@@ -8,6 +8,7 @@ extends GraphNode
 @export var line_r: LineEdit
 @export var line_g: LineEdit
 @export var line_b: LineEdit
+@export var hide_title: CheckBox
 
 
 func _ready() -> void:
@@ -38,7 +39,8 @@ func get_save_data() -> Dictionary:
 		"info_color_r": line_r.text,
 		"info_color_g": line_g.text,
 		"info_color_b": line_b.text,
-		"info_color_hex": line_hex.text
+		"info_color_hex": line_hex.text,
+		"value_check_view": hide_title.button_pressed
 	}
 
 
@@ -55,6 +57,9 @@ func load_save_data(data: Dictionary) -> void:
 	line_g.text = data.get("info_color_g",0)
 	line_b.text = data.get("info_color_b",0)
 	line_hex.text = data.get("info_color_hex",0)
+	
+	hide_title.button_pressed = data.get("value_check_view", false)
+	title_line.visible = !hide_title.button_pressed
 
 	for child in get_children():
 		if child is ColorRect:
@@ -123,3 +128,7 @@ func _on_color_picker_button_color_changed(color: Color) -> void:
 	line_hex.text = str(button_color.color.to_html(false))
 	
 	Global.alteraction()
+
+
+func _on_hide_title_pressed() -> void:
+	title_line.visible = !hide_title.button_pressed

@@ -7,6 +7,7 @@ extends GraphNode
 @export var size_content: CheckBox
 @export var Minimum_R := false
 @export var mini_spix: CheckBox
+@export var hide_title: CheckBox
 
 #Pega stylebox do GraphNode
 var new_stylebox = get_theme_stylebox("panel").duplicate()
@@ -54,6 +55,7 @@ func get_save_data() -> Dictionary:
 	"title_font_size": font_size.value,
 	"pressed_ajust": size_content.button_pressed,
 	"mini_ajust_size": mini_spix.button_pressed,
+	"value_check_view": hide_title.button_pressed,
 	"new_stylebox_color": [
 		new_stylebox.bg_color.r,
 		new_stylebox.bg_color.g,
@@ -97,6 +99,8 @@ func load_save_data(data: Dictionary) -> void:
 	#Atualiza o CheckBox "Ajustar Tamanho do Campo"
 	size_content.button_pressed = data.get("pressed_ajust", false)
 	mini_spix.button_pressed = data.get("mini_ajust_size", false)
+	hide_title.button_pressed = data.get("value_check_view", false)
+	title_line.visible = !hide_title.button_pressed
 	
 	_on_check_ajust_pressed()
 	mini_spix.on_button_press()
@@ -272,3 +276,7 @@ func _on_reset_pressed() -> void:
 	add_theme_stylebox_override("panel_selected", new_stylebox_focus)
 
 	Global.alteraction()
+
+
+func _on_hide_title_pressed() -> void:
+	title_line.visible = !hide_title.button_pressed
