@@ -209,7 +209,6 @@ layout_mode = 2
 size_flags_vertical = 1
 propert = NodePath("../../Window Config")
 
-[connection signal="value_changed" from="Window Config/Margin/Container/HContainer/Container Size Camps/Container Size Title/Font Title" to="." method="_on_font_size_title_value_changed"]
 [connection signal="pressed" from="Window Config/Margin/Container/HContainer/Margin Ajust/VContainer/Container Content/Check Ajust" to="." method="_on_check_ajust_pressed"]
 [connection signal="color_changed" from="Window Config/Margin/Container/Container Down/Container color/ColorButton Back" to="." method="_on_color_button_back_color_changed"]
 [connection signal="pressed" from="Window Config/Margin/Container/Container Down/Container color/Reset" to="." method="_on_reset_pressed"]

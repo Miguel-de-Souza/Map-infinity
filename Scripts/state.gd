@@ -33,15 +33,12 @@ func _gui_input(event):
 			
 #Sistema para apagar Node
 func _process(_delta: float) -> void:
+		
 	if Input.is_action_pressed("ui_text_delete") and node_bloc.selected:
+		if not Global.not_atalho:
+			delete_node()
 
-		if node_bloc.title_line != null or node_bloc.note != null:
-			if not node_bloc.title_line.has_focus():
-				Global.alteraction()
-				Global.selected_nodes -= 1
-				node_bloc.queue_free()
-				
-		else:
-			Global.alteraction()
-			Global.selected_nodes -= 1
-			node_bloc.queue_free()
+func delete_node():
+	Global.alteraction()
+	Global.selected_nodes -= 1
+	node_bloc.queue_free()

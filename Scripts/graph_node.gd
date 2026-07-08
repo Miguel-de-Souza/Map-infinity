@@ -252,7 +252,6 @@ func _on_check_ajust_pressed() -> void:
 
 #Sistemas de Cores
 func _on_color_button_back_color_changed(color: Color) -> void:
-
 	var sb = get_theme_stylebox("panel")
 	var sb_focus = get_theme_stylebox("panel_selected")
 

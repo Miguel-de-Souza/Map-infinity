@@ -10,6 +10,7 @@ extends GraphEdit
 @export var descript_text: RichTextLabel
 @export var version_text: RichTextLabel
 @export var window_unsave: ConfirmationDialog
+@export var popup_menu_insert: PopupMenu
 
 var current_project_path: String = ""
 var posit:= Vector2(160,160)
@@ -65,10 +66,16 @@ func _ready():
 	
 	var pop_inserir = popMake.get_popup()
 	pop_inserir.id_pressed.connect(_on_item_selected_insert)
+	
+	popup_menu_insert.id_pressed.connect(_on_item_selected_insert)
 
 
 var icon_unsave:= ""
 func _process(_delta: float) -> void:
+	
+	if Input.is_action_just_pressed("Click Direito") and !Global.not_atalho:
+		popup_menu_insert.popup()
+		popup_menu_insert.position = get_global_mouse_position()
 	
 	if Global.grid_view != show_grid or Global.snapp_enad != snapping_enabled or Global.miniampi != minimap_enabled:
 		Global.grid_view = show_grid

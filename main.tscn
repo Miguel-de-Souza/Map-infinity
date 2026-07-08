@@ -22,7 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GraphEdit" type="GraphEdit" parent="." unique_id=251952592 node_paths=PackedStringArray("file_dia", "file_load", "more", "poparquivo", "popMake", "label_diretorio", "confirmation_version", "descript_text", "version_text", "window_unsave")]
+[node name="GraphEdit" type="GraphEdit" parent="." unique_id=251952592 node_paths=PackedStringArray("file_dia", "file_load", "more", "poparquivo", "popMake", "label_diretorio", "confirmation_version", "descript_text", "version_text", "window_unsave", "popup_menu_insert")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,8 +44,9 @@ popMake = NodePath("../Container Tool/MenuButton Insert")
 label_diretorio = NodePath("../Label Diretory")
 confirmation_version = NodePath("../Confirmation Version")
 descript_text = NodePath("../SobreProgram/Margin/VContainer/Descrition")
-version_text = NodePath("../SobreProgram/Margin/VContainer/HContainer/Version")
+version_text = NodePath("../SobreProgram/Margin/VContainer/ContainerTitle/Version")
 window_unsave = NodePath("../UnsaveExit")
+popup_menu_insert = NodePath("../PopupMenu Insert")
 
 [node name="ToolBar" type="PanelContainer" parent="." unique_id=127205887]
 layout_mode = 1
@@ -54,6 +55,24 @@ anchor_right = 1.0
 offset_bottom = 34.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_272bh")
+
+[node name="PopupMenu Insert" type="PopupMenu" parent="." unique_id=1861288475]
+oversampling_override = 1.0
+size = Vector2i(295, 170)
+theme = ExtResource("4_272bh")
+item_count = 6
+item_0/text = "Bloco de Texto (Ctrl + A)"
+item_0/id = 0
+item_1/text = "Bloco de Cor (Ctrl + Shit + A)"
+item_1/id = 1
+item_2/text = "Bloco URL (Ctrl + Alt + A)"
+item_2/id = 2
+item_3/text = "Bloco de Imagem (Alt + A)"
+item_3/id = 3
+item_4/text = "Bloco de Calendário (Shit + A)"
+item_4/id = 4
+item_5/text = "Bloco Tabela (Ctrl + Shit + Alt + A)"
+item_5/id = 5
 
 [node name="Container Tool" type="HBoxContainer" parent="." unique_id=329935236]
 layout_mode = 0
@@ -502,7 +521,6 @@ oversampling_override = 1.0
 title = "Sobre o Programa"
 initial_position = 1
 size = Vector2i(615, 328)
-visible = true
 unresizable = true
 always_on_top = true
 theme = ExtResource("5_lquwl")
@@ -523,19 +541,21 @@ theme_override_constants/margin_right = 10
 [node name="VContainer" type="VBoxContainer" parent="SobreProgram/Margin" unique_id=705473176]
 layout_mode = 2
 
-[node name="HContainer" type="HBoxContainer" parent="SobreProgram/Margin/VContainer" unique_id=1032920424]
+[node name="ContainerTitle" type="VBoxContainer" parent="SobreProgram/Margin/VContainer" unique_id=1134311084]
 layout_mode = 2
 
-[node name="Title" type="RichTextLabel" parent="SobreProgram/Margin/VContainer/HContainer" unique_id=850608956]
+[node name="Title" type="RichTextLabel" parent="SobreProgram/Margin/VContainer/ContainerTitle" unique_id=850608956]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
 text = "[b]InfinityMap[/b]"
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Version" type="RichTextLabel" parent="SobreProgram/Margin/VContainer/HContainer" unique_id=918468028]
+[node name="Version" type="RichTextLabel" parent="SobreProgram/Margin/VContainer/ContainerTitle" unique_id=918468028]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -543,8 +563,7 @@ theme_override_colors/default_color = Color(0.74978, 0.74978, 0.74977994, 1)
 theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
 text = "Versão 0.0.0"
-horizontal_alignment = 2
-vertical_alignment = 1
+horizontal_alignment = 1
 
 [node name="Descrition" type="RichTextLabel" parent="SobreProgram/Margin/VContainer" unique_id=266967288]
 custom_minimum_size = Vector2(0, 120)
@@ -569,7 +588,7 @@ initial_position = 1
 size = Vector2i(545, 150)
 theme = ExtResource("5_lquwl")
 ok_button_text = "Salvar e Sair"
-dialog_text = "Foi registrado uma alteração no Projeto que não foi salvo. Se fechar o programa perderá tudo, tem certeza que quer sair?"
+dialog_text = "Foi registrado uma alteração no Projeto que não foi salvo. Se fechar o programa perderá todas as alterações, tem certeza que quer sair?"
 dialog_autowrap = true
 cancel_button_text = "Sair e Não Salvar "
 

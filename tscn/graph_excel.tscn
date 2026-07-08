@@ -19,18 +19,18 @@ slot/0/right_type = 0
 slot/0/right_color = Color(1, 1, 1, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
-slot/1/left_enabled = false
+slot/1/left_enabled = true
 slot/1/left_type = 0
 slot/1/left_color = Color(1, 1, 1, 1)
 slot/1/left_icon = null
-slot/1/right_enabled = false
+slot/1/right_enabled = true
 slot/1/right_type = 0
 slot/1/right_color = Color(1, 1, 1, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
 script = ExtResource("1_cjbmx")
-btn_add_linha = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/BtnAddLinha")
-btn_add_coluna = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/BtnAddColuna")
+btn_add_linha = NodePath("Window Config/Margin/VBox/HContainerAddsExcel/BtnAddLinha")
+btn_add_coluna = NodePath("Window Config/Margin/VBox/HContainerAddsExcel/BtnAddColuna")
 scroll_topo = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/ScrollTopo")
 scroll_base = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/ScrollBase")
 header_letras = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/ScrollTopo/HeaderLetras")
@@ -42,7 +42,7 @@ layout_mode = 2
 node_bloc = NodePath("..")
 
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("3_wjm0y")]
-size = Vector2i(229, 77)
+size = Vector2i(230, 117)
 visible = false
 graphnod = NodePath("..")
 
@@ -52,10 +52,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_top = 5
 
 [node name="VBox" type="VBoxContainer" parent="Window Config/Margin" unique_id=1802200117]
 layout_mode = 2
 theme_override_constants/separation = 10
+
+[node name="HContainerAddsExcel" type="HBoxContainer" parent="Window Config/Margin/VBox" unique_id=2033949166]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BtnAddLinha" type="Button" parent="Window Config/Margin/VBox/HContainerAddsExcel" unique_id=1604291800]
+layout_mode = 2
+text = "+"
+
+[node name="BtnAddColuna" type="Button" parent="Window Config/Margin/VBox/HContainerAddsExcel" unique_id=288852608]
+layout_mode = 2
+text = "-"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Window Config/Margin/VBox" unique_id=1394719351]
 layout_mode = 2
@@ -91,17 +104,6 @@ size_flags_horizontal = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=303279720]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer" unique_id=2033949166]
-layout_mode = 2
-
-[node name="BtnAddLinha" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1604291800]
-layout_mode = 2
-text = "+"
-
-[node name="BtnAddColuna" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=288852608]
-layout_mode = 2
-text = "-"
 
 [node name="ScrollTopo" type="ScrollContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer" unique_id=986400521]
 layout_mode = 2
