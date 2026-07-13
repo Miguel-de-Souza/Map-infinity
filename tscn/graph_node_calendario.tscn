@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dxkn703ac8rh0" path="res://tscn/reset.tscn" id="6_ocirf"]
 [ext_resource type="PackedScene" uid="uid://bgd138ytwcilv" path="res://tscn/edit_property_button.tscn" id="10_a3gna"]
 
-[node name="GraphNode" type="GraphNode" unique_id=56170215 node_paths=PackedStringArray("grid", "label_mes", "text_edit", "campo_spin", "checked_b", "title_line", "font_size", "mini_spix", "hide_title")]
+[node name="GraphNode" type="GraphNode" unique_id=56170215 node_paths=PackedStringArray("grid", "label_mes", "text_edit", "campo_spin", "checked_b", "title_line", "font_size", "mini_spix", "hide_title", "anotation")]
 offset_right = 400.0
 offset_bottom = 379.0
 theme_override_constants/separation = 10
@@ -44,6 +44,7 @@ title_line = NodePath("HBoxContainer/HBoxContainer/Ttle")
 font_size = NodePath("Window Config/Margin/VContainer/HContainer/VContainer/Container Size Title/Font Title")
 mini_spix = NodePath("Window Config/Margin/VContainer/HContainer/Margin/VContainer/Container Mini/Check mini ok")
 hide_title = NodePath("Window Config/Margin/VContainer/HContainer/Margin/VContainer/ContainerHide/Hide Title")
+anotation = NodePath("HBoxContainer/HBoxContainer/Anotations")
 
 [node name="State" parent="." unique_id=1853703314 node_paths=PackedStringArray("node_bloc") instance=ExtResource("2_x5qfm")]
 layout_mode = 2
@@ -52,6 +53,7 @@ node_bloc = NodePath("..")
 [node name="Window Config" parent="." unique_id=482414457 node_paths=PackedStringArray("graphnod") instance=ExtResource("2_v35jj")]
 title = "Node Calendário"
 size = Vector2i(492, 134)
+visible = false
 graphnod = NodePath("..")
 
 [node name="Margin" type="MarginContainer" parent="Window Config" unique_id=47021629]
@@ -251,6 +253,11 @@ columns = 7
 
 [node name="Notepad" parent="HBoxContainer/HBoxContainer" unique_id=2500004 instance=ExtResource("2_ffbfs")]
 layout_mode = 2
+
+[node name="Anotations" type="Label" parent="HBoxContainer/HBoxContainer" unique_id=1789331375]
+visible = false
+layout_mode = 2
+text = "Anotações:"
 
 [node name="Container Slots" type="HBoxContainer" parent="HBoxContainer/HBoxContainer" unique_id=1220437624]
 layout_mode = 2

@@ -10,6 +10,7 @@ extends GraphNode
 @export var font_size: SpinBox
 @export var mini_spix: CheckBox
 @export var hide_title: CheckBox
+@export var anotation: Label
 
 var new_stylebox = get_theme_stylebox("panel").duplicate()
 var new_stylebox_focus = get_theme_stylebox("panel_selected").duplicate()
@@ -37,6 +38,30 @@ func _ready():
 func atualizar_calendario():
 	limpar_grid()
 	
+	anotation.text = "Anotações:"
+	
+	# 2. MOSTRA TODAS AS ANOTAÇÕES DE TODOS OS MESES E ANOS
+	for chave in eventos:
+		if eventos[chave].strip_edges() != "":
+			# A chave está no formato "AAAA-MM-DD" (ex: "2027-02-15")
+			# Vamos dividir a string pelos traços para formatar como DD/MM/AAAA
+			var partes = chave.split("-")
+			if partes.size() == 3:
+				var ano_anotacao = partes[0].to_int()
+				var mes_anotacao = partes[1].to_int()
+				var dia_anotacao = partes[2].to_int()
+				
+				var data_formatada = "%d/%d/%d" % [dia_anotacao, mes_anotacao, ano_anotacao]
+				anotation.show()
+				
+				var texto_exibido = eventos[chave]
+				
+				if len(eventos[chave]) >= 10:
+					texto_exibido = texto_exibido.left(9) + "..."
+					
+				anotation.text += "\n" + data_formatada + " - " + texto_exibido
+	
+	# 3. ATUALIZA A INTERFACE DO MÊS ATUAL NA TELA
 	label_mes.text = nome_mes(mes) + " " + str(ano)
 	
 	var data = {
@@ -56,7 +81,7 @@ func atualizar_calendario():
 	for i in range(weekday):
 		grid.add_child(Label.new())
 	
-	# Dias do mês
+	# Dias do mês atual (Gera os botões na tela)
 	for dia in range(1, dias_no_mes + 1):
 		var btn = Button.new()
 		btn.text = str(dia)
@@ -66,12 +91,12 @@ func atualizar_calendario():
 		
 		grid.add_child(btn)
 		
-		var chave = gerar_chave(dia)
+		var chave_dia = gerar_chave(dia)
 
 		if dia == dia_selecionado:
-			btn.modulate = Color(0.6, 0.6, 1) # prioridade
+			btn.modulate = Color(0.6, 0.6, 1)
 			
-		elif chave in eventos and eventos[chave] != "":
+		elif chave_dia in eventos and eventos[chave_dia].strip_edges() != "":
 			btn.modulate = Color(0.6, 1, 0.6)
 
 func limpar_grid():
